@@ -13,6 +13,8 @@ import javax.swing.*;
  */
 public class Kayttoliittyma {
     
-    
+//    Logiikka logiikka;
+//    piirra();
+//    kuuntele();
     
 }

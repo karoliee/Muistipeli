@@ -9,5 +9,6 @@ package Logiikka;
  * @author karoliee
  */
 public class Logiikka {
+//    kaannaNappula();
     
 }

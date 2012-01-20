@@ -7,11 +7,13 @@ package Muistipeli;
 import java.awt.*;
 import javax.swing.*;
 
+
+
 /**
  *
  * @author karoliee
  */
-public class Kayttoliittyma {
+public class Muistipeli {
 
     /**
      * @param args the command line arguments
@@ -22,10 +24,11 @@ public class Kayttoliittyma {
         ikkuna.setTitle("Muistipeli");
         ikkuna.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ikkuna.setVisible(true);
-        Logiikka peli = new Logiikka();
-        peli.setBackground(Color.BLUE);
-        Container sisalto = ikkuna.getContentPane();
-        sisalto.add(peli);
-        System.out.println("");
+//        Peli peli = new Peli();
+//        peli.setBackground(Color.BLUE);
+//        Container sisalto = ikkuna.getContentPane();
+//        sisalto.add(peli);
+//        System.out.println("");
+        
     }
 }

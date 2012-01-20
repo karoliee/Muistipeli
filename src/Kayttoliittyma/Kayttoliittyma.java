@@ -2,16 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Muistipeli;
+package Kayttoliittyma;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
  *
  * @author karoliee
  */
-class Logiikka extends JPanel {
+public class Kayttoliittyma {
+    
+    
     
 }

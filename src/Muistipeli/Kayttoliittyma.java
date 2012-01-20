@@ -26,5 +26,6 @@ public class Kayttoliittyma {
         peli.setBackground(Color.BLUE);
         Container sisalto = ikkuna.getContentPane();
         sisalto.add(peli);
+        System.out.println("");
     }
 }

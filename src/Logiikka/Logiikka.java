@@ -9,6 +9,5 @@ package Logiikka;
  * @author karoliee
  */
 public class Logiikka {
-//    kaannaNappula();
-    
+//    esim. kaannaNappula(); ja testaa ovatko ne samat
 }

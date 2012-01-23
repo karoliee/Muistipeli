@@ -4,10 +4,9 @@
  */
 package Muistipeli;
 
+import Kayttoliittyma.Kayttoliittyma;
 import java.awt.*;
 import javax.swing.*;
-
-
 
 /**
  *
@@ -24,11 +23,10 @@ public class Muistipeli {
         ikkuna.setTitle("Muistipeli");
         ikkuna.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ikkuna.setVisible(true);
-//        Peli peli = new Peli();
-//        peli.setBackground(Color.BLUE);
-//        Container sisalto = ikkuna.getContentPane();
-//        sisalto.add(peli);
-//        System.out.println("");
-        
+        Kayttoliittyma kayttis = new Kayttoliittyma();
+        kayttis.setBackground(Color.BLUE);
+        Container sisalto = ikkuna.getContentPane();
+        sisalto.add(kayttis);
+
     }
 }

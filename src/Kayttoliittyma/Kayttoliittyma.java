@@ -29,5 +29,7 @@ public class Kayttoliittyma extends JPanel {
         }
 
     }
-//    tänne eventListener jne...
+    //    tänne actionListener jne...
 }
+
+

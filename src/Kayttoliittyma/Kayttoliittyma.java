@@ -25,11 +25,18 @@ public class Kayttoliittyma extends JPanel {
         //ehkä taulukko JButtoneista tai arraylist?
         JButton[] kortit = new JButton[10];
         for (int i = 0; i < kortit.length; i++) {
+            kortit[i] = new JButton();
+//            kortit[i].addActionListener(new NapinKuuntelija());
             //tässä luo jButtonit, määrä myöhemmin riippuvaksi jostain muusta
         }
 
     }
     //    tänne actionListener jne...
+
+//    public class NapinKuuntelija implements ActionListener {
+//
+//       public void actionPerformed(ActionEvent e) {
+//            System.out.println("Nappia painettu!");
+//        }
+//    }
 }
-
-

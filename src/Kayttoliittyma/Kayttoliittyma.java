@@ -4,9 +4,8 @@
  */
 package Kayttoliittyma;
 
-import Logiikka.Logiikka;
+import Logiikka.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -26,17 +25,9 @@ public class Kayttoliittyma extends JPanel {
         JButton[] kortit = new JButton[10];
         for (int i = 0; i < kortit.length; i++) {
             kortit[i] = new JButton();
-//            kortit[i].addActionListener(new NapinKuuntelija());
+            kortit[i].addActionListener(new KortinKuuntelija());
             //tässä luo jButtonit, määrä myöhemmin riippuvaksi jostain muusta
         }
 
     }
-    //    tänne actionListener jne...
-
-//    public class NapinKuuntelija implements ActionListener {
-//
-//       public void actionPerformed(ActionEvent e) {
-//            System.out.println("Nappia painettu!");
-//        }
-//    }
 }

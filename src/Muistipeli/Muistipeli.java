@@ -4,7 +4,7 @@
  */
 package Muistipeli;
 
-import Kayttoliittyma.Kayttoliittyma;
+import Kayttoliittyma.*;
 import java.awt.*;
 import javax.swing.*;
 

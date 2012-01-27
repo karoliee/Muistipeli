@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="dcb-27" name="MuistipeliTest" tests="10" time="0.113" timestamp="2012-01-27T14:46:45">
+<testsuite errors="0" failures="0" hostname="dcb-27" name="MuistipeliTest" tests="10" time="0.116" timestamp="2012-01-27T15:01:29">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="FI" />
@@ -66,7 +66,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner MuistipeliTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/test/results/TEST-MuistipeliTest.xml crashfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junitvmwatcher4684900658903380048.properties propsfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junit3379561613848760210.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner MuistipeliTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/test/results/TEST-MuistipeliTest.xml crashfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junitvmwatcher9090097016305617756.properties propsfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junit8780698531525618208.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />

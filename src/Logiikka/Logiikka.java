@@ -8,6 +8,7 @@ import java.util.*;
 import javax.swing.*;
 
 /**
+ * Luokka ohjaa pelin pelaamista ja muuta toimintaa pelissä
  *
  * @author karoliee
  */

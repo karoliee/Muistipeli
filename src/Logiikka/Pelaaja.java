@@ -5,6 +5,7 @@
 package Logiikka;
 
 /**
+ * Luokka pitää kirjaa pelaajan nimestä ja erilaisista pistelaskuista
  *
  * @author karoliee
  */

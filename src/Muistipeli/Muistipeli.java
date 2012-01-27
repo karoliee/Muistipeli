@@ -13,6 +13,8 @@ import Kayttoliittyma.Kayttoliittyma;
 public class Muistipeli {
 
     /**
+     * Luokka ohjaa muistipelin käyttämistä
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {

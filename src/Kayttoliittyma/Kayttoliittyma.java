@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
+ * Luokka luo pelilaudan ja sen muut sen komponentit ja asettaa ne paikoilleen
+ * pelaamista varten
  *
  * @author karoliee
  */

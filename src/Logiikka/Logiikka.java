@@ -18,6 +18,9 @@ public class Logiikka {
      * kappaletta
      */
     ArrayList<Integer> korttienNumerot;
+    /**
+     * Olio, joka pelaa peliä
+     */
     Pelaaja pelaaja;
 
     /**
@@ -74,6 +77,11 @@ public class Logiikka {
         return false;
     }
 
+    /**
+     * Metodi palauttaa pelin pelaajan
+     *
+     * @return pelin pelaaja
+     */
     public Pelaaja getPelaaja() {
         return pelaaja;
     }

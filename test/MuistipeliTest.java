@@ -37,27 +37,28 @@ public class MuistipeliTest {
 
     @Test
     public void konstruktorissaEiOleLoydettyjaKorttipareja() {
-        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+        assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
 
     @Test
     public void parinLoytaminenLisaaLoydettyjenKorttiparienMaaraa() {
-        pelaaja.arvattujenKorttienMaaranKasvu();
-        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 1, vertailuTarkkuus);
+        pelaaja.loydettyjenKorttiparienMaaranKasvu();
+        assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 1, vertailuTarkkuus);
     }
 
     @Test
     public void loydettyjenParienNollausKunEiOleLoydettyjaPareja() {
-        pelaaja.arvattujenKorttiparienMaaranNollaus();
-        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+        pelaaja.loydettyjenKorttiparienMaaranNollaus();
+        assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
 
     @Test
     public void loydettyjenParienNollausKunOnLoydettyjaPareja() {
-        pelaaja.arvattujenKorttienMaaranKasvu();
-        pelaaja.arvattujenKorttiparienMaaranNollaus();
-        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+        pelaaja.loydettyjenKorttiparienMaaranKasvu();
+        pelaaja.loydettyjenKorttiparienMaaranNollaus();
+        assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
+
     @Test
     public void konstruktorissaEiOleYrityksia() {
         assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
@@ -77,8 +78,8 @@ public class MuistipeliTest {
 
     @Test
     public void yritystenNollausKunOnYrityksia() {
+        pelaaja.yritystenMaaranKasvu();
         pelaaja.yritystenMaaranNollaus();
-        pelaaja.arvattujenKorttiparienMaaranNollaus();
         assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
     }
 }

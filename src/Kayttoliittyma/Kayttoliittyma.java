@@ -86,6 +86,12 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Metodi kuulee tapahtuman, joka tapahtuu ja tekee sen jälkeen jotain (en
+     * ole vielä päättänyt täysin)
+     *
+     * @param e tapahtuma, joka tapahtuu
+     */
     public void actionPerformed(ActionEvent e) {
         //tässä pitäisi saada tietää kortin järjestysnumero jotenkin
 //        Object kaannettyKortti = e.getSource();

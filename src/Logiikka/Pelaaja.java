@@ -10,44 +10,94 @@ package Logiikka;
  */
 public class Pelaaja {
 
-    int arvattujenKorttiparienMaara;
+    /**
+     * löydettyjen parien määrä
+     */
+    int loydettyjenKorttiparienMaara;
+    /**
+     * montako kertaa pelaaja on yrittänyt arvata korttiparia (sekä löydetyt
+     * parit että epäonnistuneet yritykset)
+     */
     int yritystenMaara;
+    /**
+     * pelaajan nimi
+     */
     String pelaajanNimi;
 
+    /**
+     * Konstruktori luo pelaajan, jonka nimi tiedetään
+     *
+     * @param nimi Pelaajan nimi
+     *
+     */
     public Pelaaja(String nimi) {
-        arvattujenKorttiparienMaara = 0;
+        loydettyjenKorttiparienMaara = 0;
         yritystenMaara = 0;
         pelaajanNimi = nimi;
     }
 
-    public void arvattujenKorttienMaaranKasvu() {
-        arvattujenKorttiparienMaara++;
+    /**
+     * Kun pelaaja on löytänyt uuden korttiparin, metodi kasvattaa löydettyjen
+     * parien summaa
+     */
+    public void loydettyjenKorttiparienMaaranKasvu() {
+        loydettyjenKorttiparienMaara++;
     }
 
-    public void arvattujenKorttiparienMaaranNollaus() {
-        arvattujenKorttiparienMaara = 0;
+    /**
+     * Metodi nollaa löydettyjen parien summan
+     */
+    public void loydettyjenKorttiparienMaaranNollaus() {
+        loydettyjenKorttiparienMaara = 0;
     }
 
-    public int getArvattujenKorttiparienMaara() {
-        return arvattujenKorttiparienMaara;
+    /**
+     * Metodi palauttaa löydettyjen parien määrän
+     *
+     * @return löydettyjen parien määrä
+     */
+    public int getLoydettyjenKorttiparienMaara() {
+        return loydettyjenKorttiparienMaara;
     }
 
+    /**
+     * Metodi kasvattaa yrityksien summaa yhdellä
+     */
     public void yritystenMaaranKasvu() {
         yritystenMaara++;
     }
 
+    /**
+     * Metodi nollaa yritysten summan
+     */
     public void yritystenMaaranNollaus() {
         yritystenMaara = 0;
     }
 
+    /**
+     * Metodi palauttaa yrityksien määrän
+     *
+     * @return yrityksien määrä
+     */
     public int getYritystenMaara() {
         return yritystenMaara;
     }
 
+    /**
+     * Metodi vaihtaa pelaajan nimeä
+     *
+     * @param nimi pelaajan uusi nimi
+     *
+     */
     public void nimenVaihto(String nimi) {
         pelaajanNimi = nimi;
     }
 
+    /**
+     * Metodi palauttaa pelaajan sen hetkisen nimen
+     *
+     * @return pelaajan nykyinen nimi
+     */
     public String getPelaajanNimi() {
         return pelaajanNimi;
     }

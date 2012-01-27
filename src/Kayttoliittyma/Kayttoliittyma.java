@@ -6,7 +6,6 @@ package Kayttoliittyma;
 
 import Logiikka.*;
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 
 /**
@@ -15,6 +14,10 @@ import javax.swing.*;
  */
 public class Kayttoliittyma extends JPanel {
 
+    /**
+     * Pelin logiikka-luokka
+     */
+    Logiikka logiikka;
     /**
      * Taulukko, jonka alkiot ovat muistipelin kortit
      */
@@ -31,11 +34,6 @@ public class Kayttoliittyma extends JPanel {
      * Käyttöliittymä, joka asettaa pelin osat pelilaudalle
      */
     Container kayttoliittyma;
-    /**
-     * Lista korttien "kuvista", eli numeroista. Jokaista numeroa on siis kaksi
-     * kappaletta
-     */
-    ArrayList<Integer> korttienNumerot;
 
     /**
      * Konstruktori, jossa luodaan luokan oliot
@@ -44,7 +42,7 @@ public class Kayttoliittyma extends JPanel {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
         kortit = new JButton[4];
         kortinkuuntelija = new KortinKuuntelija();
-        korttienNumerot = new ArrayList<Integer>();
+        logiikka = new Logiikka();
     }
 
     /**
@@ -61,13 +59,14 @@ public class Kayttoliittyma extends JPanel {
     }
 
     /**
-     * Metodi luo muistipelin kortit taulukkoon
+     * Metodi luo muistipelin kortit ja laittaa ne taulukkoon
      */
     public void teeKortit() {
         for (int i = 0; i < kortit.length; i++) {
             kortit[i] = new JButton();
             kortit[i].addActionListener(kortinkuuntelija);
         }
+        logiikka.teeNumerotKorttejaVartenJaSekoitaNe(kortit.length);
     }
 
     /**
@@ -75,31 +74,18 @@ public class Kayttoliittyma extends JPanel {
      * pelin
      */
     public void teeMuutNapit() {
-//        tee aloitus- ja lopetusnapit, JButton kai?
+//        tee aloitus- ja lopetusnapit, JButton kai kanssa?
     }
 
     /**
      * Metodi asettaa kortit pelilaudalle
      */
     public void asetaKortitPelilaudalle() {
-        //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit? 
-        //tai tee niille oma metodi
+        //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit laudalle? 
+        //tai tee se metodissa teePelilauta() + 
+        //mieti miten saat kortit asetettua laudalle vierekkäin vielä
         for (int i = 0; i < kortit.length; i++) {
             kayttoliittyma.add(kortit[i]);
         }
-    }
-
-    /**
-     * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
-     * Kaikkia numeroita on kaksi kappaletta taulukossa. Tämän jälkeen metodi
-     * sekoittaa listan
-     */
-    public void teeNumerotKorttejaVartenJaSekoitaNe() {
-        for (int i = 1; i <= kortit.length / 2; i++) {
-            korttienNumerot.add(i);
-            korttienNumerot.add(i);
-        }
-        Collections.shuffle(korttienNumerot);
-
     }
 }

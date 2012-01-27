@@ -88,8 +88,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        Object kaannettyKortti = e.getSource();
-        System.out.println(kaannettyKortti);
-        
+        //tässä pitäisi saada tietää kortin järjestysnumero jotenkin
+//        Object kaannettyKortti = e.getSource();
+//        System.out.println(kaannettyKortti);
     }
 }

@@ -18,6 +18,7 @@ public class Logiikka {
      * kappaletta
      */
     ArrayList<Integer> korttienNumerot;
+    public Pelaaja pelaaja;
 
     /**
      * Konstruktori luo luokan oliot
@@ -25,6 +26,7 @@ public class Logiikka {
     public Logiikka() {
 
         korttienNumerot = new ArrayList<Integer>();
+        pelaaja = new Pelaaja();
     }
 
     /**

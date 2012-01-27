@@ -13,10 +13,12 @@ import javax.swing.*;
  */
 public class KortinKuuntelija implements ActionListener {
 
-    public KortinKuuntelija() {
-    }
-
+//    public KortinKuuntelija() {
+//    }
+    /**
+     * Metodi kuulee, milloin korttia on painettu ja tulee tekemään jotain
+     */
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Korttia painettu");
+//        System.out.println("Korttia painettu");
     }
 }

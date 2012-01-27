@@ -14,24 +14,42 @@ import javax.swing.*;
  */
 public class Kayttoliittyma extends JPanel {
 
+    /**
+     * Taulukko, jonka alkiot ovat muistipelin kortit
+     */
     public JButton[] kortit;
+    /**
+     * Kuuntelija, joka kuuntelee milloin korttia painetaan
+     */
     KortinKuuntelija kortinkuuntelija;
-    JFrame ikkuna;
+    /**
+     * Pelilauta, missä peliä pelataan
+     */
+    JFrame pelilauta;
+    /**
+     * Käyttöliittymä, joka asettaa pelin osat pelilaudalle
+     */
     Container kayttoliittyma;
 
+    /**
+     * Konstruktori tekee pelilaudan, jolla peliä tullaan pelaamaan
+     */
     public Kayttoliittyma() {
         teeKortit();
         kortinkuuntelija = new KortinKuuntelija();
-        ikkuna = new JFrame();
-        kayttoliittyma = ikkuna.getContentPane();
-        ikkuna.setSize(500, 500);
-//        asetaKortitLaudalle();
-        ikkuna.setTitle("Muistipeli");
-        ikkuna.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        ikkuna.setVisible(true);
+        pelilauta = new JFrame();
+        kayttoliittyma = pelilauta.getContentPane();
+        pelilauta.setSize(500, 500);
+//        asetaKortitPelilaudalle();
+        pelilauta.setTitle("Muistipeli");
+        pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        pelilauta.setVisible(true);
 
     }
 
+    /**
+     * Metodi tekee taulukon, ja luo sinne alkiot, jotka ovat muistipelin kortit
+     */
     public void teeKortit() {
         JButton[] kortit = new JButton[5];
         //tässä luo jButtonit, määrä myöhemmin riippuvaksi jostain muusta
@@ -41,11 +59,18 @@ public class Kayttoliittyma extends JPanel {
         }
     }
 
+    /**
+     * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
+     * pelin
+     */
     public void teeMuutNapit() {
 //        tee aloitus- ja lopetusnapit, JButton kai?
     }
 
-    public void asetaKortitLaudalle() {
+    /**
+     * Metodi asettaa kortit pelilaudalle
+     */
+    public void asetaKortitPelilaudalle() {
         //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit? 
         //tai tee niille oma metodi
         for (int i = 0; i < kortit.length; i++) {
@@ -53,10 +78,17 @@ public class Kayttoliittyma extends JPanel {
         }
     }
 
+    /**
+     * Metodi luo taulukon, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
+     * Kaikkia numeroita on kaksi kappaletta taulukossa
+     */
     public void teeNumerotKorttejaVarten() {
 //        uusi taulukko johon tulee numeroita?
     }
 
+    /**
+     * Metodi sekoittaa taulukon, jossa on pelikorttejen numerot
+     */
     public void liitaKortteihinNumerotSatunnaisesti() {
 //        eli sekoita numerot täällä. vai edellisessä (onko tämä turha metodi?)
     }

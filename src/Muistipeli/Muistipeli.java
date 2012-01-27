@@ -17,7 +17,9 @@ public class Muistipeli {
      */
     public static void main(String[] args) {
         Kayttoliittyma kayttis = new Kayttoliittyma();
+        kayttis.teeKortit();
         kayttis.teePelilauta();
+        
 
     }
 }

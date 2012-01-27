@@ -6,6 +6,7 @@ package Kayttoliittyma;
 
 import Logiikka.*;
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -30,19 +31,26 @@ public class Kayttoliittyma extends JPanel {
      * Käyttöliittymä, joka asettaa pelin osat pelilaudalle
      */
     Container kayttoliittyma;
+    /**
+     * Lista korttien "kuvista", eli numeroista. Jokaista numeroa on siis kaksi
+     * kappaletta
+     */
+    ArrayList<Integer> korttienNumerot;
 
     /**
-     * Luku, joka kertoo montako paria peliin tulee, eli korttejen määrä on siis
-     * kaksinkertainen tähän verrattuna
+     * Konstruktori, jossa luodaan luokan oliot
      */
     public Kayttoliittyma() {
+        // korttien määrä myöhemmin riippuvaksi jostain muusta
+        kortit = new JButton[3];
         kortinkuuntelija = new KortinKuuntelija();
-
+        korttienNumerot = new ArrayList<Integer>();
     }
 
+    /**
+     * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
+     */
     public void teePelilauta() {
-        // korttiparien määrä myöhemmin riippuvaksi jostain muusta
-        teeKortit(3);
         pelilauta = new JFrame();
         kayttoliittyma = pelilauta.getContentPane();
         pelilauta.setSize(500, 500);
@@ -53,12 +61,9 @@ public class Kayttoliittyma extends JPanel {
     }
 
     /**
-     * Metodi tekee taulukon, ja luo sinne alkiot, jotka ovat muistipelin kortit
-     *
-     * @param korttiparienMaara Kertoo, montako paria kortteja on
+     * Metodi luo muistipelin kortit taulukkoon
      */
-    public void teeKortit(int korttiparienMaara) {
-        kortit = new JButton[2 * korttiparienMaara];
+    public void teeKortit() {
         for (int i = 0; i < kortit.length; i++) {
             kortit[i] = new JButton();
             kortit[i].addActionListener(kortinkuuntelija);
@@ -85,7 +90,7 @@ public class Kayttoliittyma extends JPanel {
     }
 
     /**
-     * Metodi luo taulukon, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
+     * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
      * Kaikkia numeroita on kaksi kappaletta taulukossa
      */
     public void teeNumerotKorttejaVarten() {
@@ -93,7 +98,7 @@ public class Kayttoliittyma extends JPanel {
     }
 
     /**
-     * Metodi sekoittaa taulukon, jossa on pelikorttejen numerot
+     * Metodi sekoittaa listan, jossa on pelikorttejen numerot
      */
     public void liitaKortteihinNumerotSatunnaisesti() {
 //        eli sekoita numerot täällä. vai edellisessä (onko tämä turha metodi?)

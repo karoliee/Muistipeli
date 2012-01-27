@@ -6,7 +6,7 @@ package Kayttoliittyma;
 
 import Logiikka.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
 
 /**
@@ -42,7 +42,7 @@ public class Kayttoliittyma extends JPanel {
      */
     public Kayttoliittyma() {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
-        kortit = new JButton[3];
+        kortit = new JButton[4];
         kortinkuuntelija = new KortinKuuntelija();
         korttienNumerot = new ArrayList<Integer>();
     }
@@ -91,16 +91,15 @@ public class Kayttoliittyma extends JPanel {
 
     /**
      * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
-     * Kaikkia numeroita on kaksi kappaletta taulukossa
+     * Kaikkia numeroita on kaksi kappaletta taulukossa. Tämän jälkeen metodi
+     * sekoittaa listan
      */
-    public void teeNumerotKorttejaVarten() {
-//        uusi taulukko johon tulee numeroita?
-    }
+    public void teeNumerotKorttejaVartenJaSekoitaNe() {
+        for (int i = 1; i <= kortit.length / 2; i++) {
+            korttienNumerot.add(i);
+            korttienNumerot.add(i);
+        }
+        Collections.shuffle(korttienNumerot);
 
-    /**
-     * Metodi sekoittaa listan, jossa on pelikorttejen numerot
-     */
-    public void liitaKortteihinNumerotSatunnaisesti() {
-//        eli sekoita numerot täällä. vai edellisessä (onko tämä turha metodi?)
     }
 }

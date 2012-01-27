@@ -19,7 +19,7 @@ public class Muistipeli {
         Kayttoliittyma kayttis = new Kayttoliittyma();
         kayttis.teeKortit();
         kayttis.teePelilauta();
-        
+
 
     }
 }

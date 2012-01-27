@@ -25,9 +25,9 @@ public class Kayttoliittyma extends JPanel {
         ikkuna = new JFrame();
         kayttoliittyma = ikkuna.getContentPane();
         ikkuna.setSize(500, 500);
+//        asetaKortitLaudalle();
         ikkuna.setTitle("Muistipeli");
         ikkuna.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-//        asetaKortit();
         ikkuna.setVisible(true);
 
     }
@@ -41,11 +41,23 @@ public class Kayttoliittyma extends JPanel {
         }
     }
 
-    public void asetaKortit() {
-        //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit? JButtonit 
-        // myös, mutta tee ne kanssa jossain metodissa ensin
+    public void teeMuutNapit() {
+//        tee aloitus- ja lopetusnapit, JButton kai?
+    }
+
+    public void asetaKortitLaudalle() {
+        //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit? 
+        //tai tee niille oma metodi
         for (int i = 0; i < kortit.length; i++) {
             kayttoliittyma.add(kortit[i]);
         }
+    }
+
+    public void teeNumerotKorttejaVarten() {
+//        uusi taulukko johon tulee numeroita?
+    }
+
+    public void liitaKortteihinNumerotSatunnaisesti() {
+//        eli sekoita numerot täällä. vai edellisessä (onko tämä turha metodi?)
     }
 }

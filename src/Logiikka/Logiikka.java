@@ -9,5 +9,11 @@ package Logiikka;
  * @author karoliee
  */
 public class Logiikka {
-//    esim. kaannaNappula(); ja testaa ovatko ne samat
+
+    public void kaannaKortti() {
+    }
+
+    public boolean testaaOvatkoKortitSamoja() {
+        return false;
+    }
 }

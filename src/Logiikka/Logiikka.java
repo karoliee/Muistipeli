@@ -19,10 +19,14 @@ public class Logiikka {
      */
     ArrayList<Integer> korttienNumerot;
 
+    /**
+     * Konstruktori luo luokan oliot
+     */
     public Logiikka() {
 
         korttienNumerot = new ArrayList<Integer>();
     }
+
     /**
      * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
      * Kaikkia numeroita on kaksi kappaletta taulukossa. Tämän jälkeen metodi
@@ -46,8 +50,19 @@ public class Logiikka {
     /**
      * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
      * numerot samoja
+     *
+     * @param ensimmaisenKortinJarjestysnumero kertoo, monesko ensimmäiseksi
+     * valittu kortti on korttitaulukossa
+     * @param toisenKortinJarjestysnumero kertoo, monesko toiseksi valittu
+     * kortti on korttitaulukossa
      */
-    public boolean testaaOvatkoKortitSamoja() {
+    public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysnumero,
+            int toisenKortinJarjestysnumero) {
+        if (korttienNumerot.get(ensimmaisenKortinJarjestysnumero).equals(
+                korttienNumerot.get(toisenKortinJarjestysnumero))) {
+            return true;
+
+        }
         return false;
     }
 }

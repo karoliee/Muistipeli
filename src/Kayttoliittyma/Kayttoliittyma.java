@@ -42,7 +42,7 @@ public class Kayttoliittyma extends JPanel {
         pelilauta = new JFrame();
         kayttoliittyma = pelilauta.getContentPane();
         pelilauta.setSize(500, 500);
-//        asetaKortitPelilaudalle();
+        asetaKortitPelilaudalle();
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pelilauta.setVisible(true);

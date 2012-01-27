@@ -18,10 +18,7 @@ public class Logiikka {
      * kappaletta
      */
     ArrayList<Integer> korttienNumerot;
-    /**
-     * Pelin pelaaja
-     */
-    public Pelaaja<String> pelaaja;
+    Pelaaja pelaaja;
 
     /**
      * Konstruktori luo luokan oliot
@@ -36,6 +33,8 @@ public class Logiikka {
      * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
      * Kaikkia numeroita on kaksi kappaletta taulukossa. Tämän jälkeen metodi
      * sekoittaa listan
+     *
+     * @param korttienMaara pelikorttien määrä
      */
     public void teeNumerotKorttejaVartenJaSekoitaNe(int korttienMaara) {
         for (int i = 1; i <= korttienMaara / 2; i++) {
@@ -73,5 +72,9 @@ public class Logiikka {
 
         }
         return false;
+    }
+
+    public Pelaaja getPelaaja() {
+        return pelaaja;
     }
 }

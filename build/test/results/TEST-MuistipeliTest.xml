@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="dhp-18" name="MuistipeliTest" tests="1" time="0.196" timestamp="2012-01-26T10:00:45">
+<testsuite errors="0" failures="0" hostname="dcb-27" name="MuistipeliTest" tests="3" time="0.069" timestamp="2012-01-27T14:11:11">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="FI" />
@@ -66,7 +66,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner MuistipeliTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/test/results/TEST-MuistipeliTest.xml crashfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junitvmwatcher1642012408479244192.properties propsfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junit7358707380215663045.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner MuistipeliTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/test/results/TEST-MuistipeliTest.xml crashfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junitvmwatcher869826436992115118.properties propsfile=/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/junit1099133966313520566.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -255,7 +255,7 @@
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/amd64" />
     <property name="have.sources" value="true" />
     <property name="debug.classpath" value=":build/classes" />
-    <property name="javadoc.private" value="false" />
+    <property name="javadoc.private" value="true" />
     <property name="test.src.dir" value="test" />
     <property name="libs.jsf20.classpath" value="/opt/netbeans-7.1/enterprise/modules/ext/jsf-2_1/jsf-api.jar:/opt/netbeans-7.1/enterprise/modules/ext/jsf-2_1/jsf-impl.jar" />
     <property name="ap.processors.internal" value="" />
@@ -263,7 +263,6 @@
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="libs.DataBindingME-SVG.src" value="/opt/netbeans-7.1/mobility/sources/netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/Muistipeli.jar" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="Muistipeli" />
     <property name="netbeans.hash.code" value="unique=NB_CND_GFMOD_GROOVY_JAVA_MOB_PHP_WEBEE09672e6c6-42ba-4b19-bac2-809dd51f64e3_798ad282-6393-4b5e-920c-54ae134bc814" />
@@ -289,15 +288,15 @@
     <property name="libs.hibernate-persistence.maven-pom" value="" />
     <property name="libs.absolutelayout.javadoc" value="" />
     <property name="java.specification.name" value="Java Platform API Specification" />
-    <property name="libs.jakarta_slide_ant_webdav.maven-pom" value="" />
     <property name="libs.NetBeans MIDP Components WMA.classpath" value="/opt/netbeans-7.1/mobility/modules/ext/netbeans_midp_components_wma.jar" />
+    <property name="libs.jakarta_slide_ant_webdav.maven-pom" value="" />
     <property name="do.archive+main.class.available" value="true" />
     <property name="libs.sjmc-ant-utils.src" value="" />
-    <property name="libs.cdc-agui-swing-layout.javadoc" value="" />
     <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="libs.cdc-agui-swing-layout.javadoc" value="" />
     <property name="libs.javac-api.classpath" value="/opt/netbeans-7.1/java/modules/ext/javac-api-nb-7.0-b07.jar" />
-    <property name="libs.nokiaS80-ant-utils.classpath" value="/opt/netbeans-7.1/mobility/modules/ext/org-netbeans-modules-j2me-cdc-project-nokiaS80.jar" />
     <property name="java.version" value="1.6.0_26" />
+    <property name="libs.nokiaS80-ant-utils.classpath" value="/opt/netbeans-7.1/mobility/modules/ext/org-netbeans-modules-j2me-cdc-project-nokiaS80.jar" />
     <property name="javadoc.version" value="false" />
     <property name="libs.NetBeans MIDP Components WMA.javadoc" value="/opt/netbeans-7.1/mobility/modules/docs/netbeans_midp_components_wma-api.zip" />
     <property name="libs.MySQLDriver.javadoc" value="" />
@@ -313,22 +312,22 @@
     <property name="netbeans.home+have.tests" value="true" />
     <property name="annotation.processing.processor.options" value="" />
     <property name="libs.jaxb.src" value="" />
-    <property name="work.dir" value="/fs-1/3/karoliee/NetBeansProjects/Muistipeli" />
     <property name="libs.cdc-ant-utils.src" value="" />
+    <property name="work.dir" value="/fs-1/3/karoliee/NetBeansProjects/Muistipeli" />
     <property name="libs.jaxb.classpath" value="/opt/netbeans-7.1/ide/modules/ext/jaxb/jaxb-impl.jar:/opt/netbeans-7.1/ide/modules/ext/jaxb/jaxb-xjc.jar:/opt/netbeans-7.1/ide/modules/ext/jaxb/jaxb1-impl.jar:/opt/netbeans-7.1/ide/modules/ext/jaxb/activation.jar:/opt/netbeans-7.1/ide/modules/ext/jaxb/api/jaxb-api.jar:/opt/netbeans-7.1/ide/modules/ext/jaxb/api/jsr173_api.jar" />
     <property name="do.depend" value="false" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="libs.spring-webmvc3.0.classpath" value="/opt/netbeans-7.1/java/modules/ext/spring-3.0/spring-webmvc-3.0.6.RELEASE.jar" />
     <property name="libs.swing-layout.classpath" value="/opt/netbeans-7.1/platform/modules/ext/swing-layout-1.0.4.jar" />
     <property name="libs.restlib.src" value="" />
-    <property name="build.generated.dir" value="build/generated" />
     <property name="javac.source" value="1.6" />
+    <property name="build.generated.dir" value="build/generated" />
     <property name="line.separator" value="&#xa;" />
     <property name="libs.hibernate-persistence.src" value="" />
     <property name="libs.nb_svg_midp_components.javadoc" value="/opt/netbeans-7.1/mobility/modules/docs/nb_svg_midp_components-api.zip" />
     <property name="java.specification.version" value="1.6" />
-    <property name="java.vm.info" value="mixed mode" />
     <property name="libs.jaxws21.maven-pom" value="" />
+    <property name="java.vm.info" value="mixed mode" />
     <property name="libs.cdc-ant-utils.javadoc" value="" />
     <property name="junit.forkmode" value="perTest" />
     <property name="libs.ojec-ant-utils.classpath" value="/opt/netbeans-7.1/mobility/modules/ext/org-netbeans-modules-j2me-cdc-project-ojec.jar" />
@@ -340,8 +339,8 @@
     <property name="src.dir" value="src" />
     <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
-    <property name="libs.DataBindingME-SVG.maven-pom" value="" />
     <property name="libs.jsf12.src" value="" />
+    <property name="libs.DataBindingME-SVG.maven-pom" value="" />
     <property name="libs.nokiadeployment.src" value="" />
     <property name="libs.savaje-ant-utils.javadoc" value="" />
     <property name="libs.struts.javadoc" value="/opt/netbeans-7.1/enterprise/docs/struts-1.3.10-javadoc.zip" />
@@ -352,11 +351,11 @@
     <property name="dist.dir" value="dist" />
     <property name="libs.groovy-all.javadoc" value="" />
     <property name="do.archive+manifest.available+main.class" value="true" />
+    <property name="libs.groovy-all.classpath" value="/opt/netbeans-7.1/groovy/modules/ext/groovy-all.jar" />
     <property name="javac.fork" value="false" />
     <property name="libs.sjmc-ant-utils.classpath" value="/opt/netbeans-7.1/mobility/modules/ext/org-netbeans-modules-j2me-cdc-project-sjmc.jar" />
-    <property name="libs.groovy-all.classpath" value="/opt/netbeans-7.1/groovy/modules/ext/groovy-all.jar" />
-    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="libs.JMUnit4CLDC10.classpath" value="/opt/netbeans-7.1/mobility/modules/ext/jmunit4cldc10-1.2.1.jar" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="default.javac.source" value="1.6" />
     <property name="debug-transport-by-os" value="dt_socket" />
     <property name="sun.jnu.encoding" value="UTF-8" />
@@ -367,9 +366,9 @@
     <property name="java.runtime.version" value="1.6.0_26-b03" />
     <property name="libs.ejb3-persistence.javadoc" value="" />
     <property name="libs.NetBeans MIDP Components.src" value="/opt/netbeans-7.1/mobility/sources/netbeans_midp_components_basic-src.zip" />
+    <property name="jna.platform.library.path" value="/usr/lib64:/lib64" />
     <property name="manifest.available+main.class+mkdist.available" value="true" />
     <property name="libs.sjmc-ant-utils.javadoc" value="" />
-    <property name="jna.platform.library.path" value="/usr/lib64:/lib64" />
     <property name="default.javac.target" value="1.6" />
     <property name="libs.junit_4.classpath" value="/fs-1/3/karoliee/.netbeans/7.1/modules/ext/junit-4.10.jar" />
     <property name="user.timezone" value="" />
@@ -380,23 +379,23 @@
     <property name="libs.jsf20.javadoc" value="/opt/netbeans-7.1/enterprise/docs/javaee6-doc-api.zip" />
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/ext:/usr/java/packages/lib/ext" />
     <property name="libs.metro.src" value="" />
+    <property name="libs.savaje-ant-utils.maven-pom" value="" />
     <property name="libs.semc-ant-utils.src" value="" />
     <property name="endorsed.classpath" value="" />
-    <property name="libs.savaje-ant-utils.maven-pom" value="" />
     <property name="libs.absolutelayout.classpath" value="/opt/netbeans-7.1/java/modules/ext/AbsoluteLayout.jar" />
     <property name="excludes" value="" />
-    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.metro.classpath" value="/opt/netbeans-7.1/ide/modules/ext/jaxb/activation.jar:/opt/netbeans-7.1/enterprise/modules/ext/metro/webservices-api.jar:/opt/netbeans-7.1/enterprise/modules/ext/metro/webservices-extra-api.jar:/opt/netbeans-7.1/enterprise/modules/ext/metro/webservices-extra.jar:/opt/netbeans-7.1/enterprise/modules/ext/metro/webservices-rt.jar:/opt/netbeans-7.1/enterprise/modules/ext/metro/webservices-tools.jar" />
+    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.DataBindingME.javadoc" value="/opt/netbeans-7.1/mobility/modules/docs/netbeans_databindingme-api.zip" />
-    <property name="java.class.path" value="/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/classes:/fs-1/3/karoliee/.netbeans/7.1/modules/ext/junit-4.10.jar:/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/test/classes:/opt/netbeans-7.1/java/ant/lib/ant-launcher.jar:/opt/netbeans-7.1/java/ant/lib/ant.jar:/opt/netbeans-7.1/java/ant/lib/ant-junit.jar:/opt/netbeans-7.1/java/ant/lib/ant-junit4.jar" />
     <property name="apple.laf.useScreenMenuBar" value="true" />
+    <property name="java.class.path" value="/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/classes:/fs-1/3/karoliee/.netbeans/7.1/modules/ext/junit-4.10.jar:/fs-1/3/karoliee/NetBeansProjects/Muistipeli/build/test/classes:/opt/netbeans-7.1/java/ant/lib/ant-launcher.jar:/opt/netbeans-7.1/java/ant/lib/ant.jar:/opt/netbeans-7.1/java/ant/lib/ant-junit.jar:/opt/netbeans-7.1/java/ant/lib/ant-junit4.jar" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.cdc-pp-awt-layout.maven-pom" value="" />
     <property name="os.version" value="2.6.38-13-generic" />
     <property name="application.args" value="" />
-    <property name="libs.JMUnit4CLDC11.maven-pom" value="" />
     <property name="main.class.available" value="true" />
+    <property name="libs.JMUnit4CLDC11.maven-pom" value="" />
     <property name="libs.toplink.javadoc" value="" />
     <property name="sun.desktop" value="gnome" />
     <property name="libs.nb_svg_midp_components.maven-pom" value="" />
@@ -425,13 +424,15 @@
     <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="/opt/netbeans-7.1/java/ant/lib/ant.jar:/opt/netbeans-7.1/enterprise/modules/ext/servlet3.0-jsp2.2-api.jar:/opt/netbeans-7.1/enterprise/modules/ext/glassfish-jspparser-3.0.jar:/opt/netbeans-7.1/enterprise/modules/ext/jsf-2_1/jsf-api.jar:/opt/netbeans-7.1/enterprise/modules/ext/jstl.jar:/opt/netbeans-7.1/java/ant/lib/ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on December 20 2010" />
-    <property name="build.classes.excludes" value="**/*.java,**/*.form" />
     <property name="file.encoding" value="UTF-8" />
+    <property name="build.classes.excludes" value="**/*.java,**/*.form" />
     <property name="jdkBug6558476" value="false" />
     <property name="javadoc.nonavbar" value="false" />
     <property name="platform.active" value="default_platform" />
   </properties>
-  <testcase classname="MuistipeliTest" name="hello" time="0.142" />
+  <testcase classname="MuistipeliTest" name="nimenTarkistus" time="0.0020" />
+  <testcase classname="MuistipeliTest" name="eiYhtaanKorttipariaLoydetty" time="0.0" />
+  <testcase classname="MuistipeliTest" name="yksiKorttipariLoydetty" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

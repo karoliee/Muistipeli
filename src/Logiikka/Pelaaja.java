@@ -8,23 +8,25 @@ package Logiikka;
  *
  * @author karoliee
  */
-class Pelaaja<String> {
-    
+public class Pelaaja {
+
     int arvattujenKorttiparienMaara;
     String pelaajanNimi;
-    
+
     public Pelaaja(String nimi) {
         arvattujenKorttiparienMaara = 0;
         pelaajanNimi = nimi;
     }
+
     public void arvattujenKorttienMaaranKasvu() {
         arvattujenKorttiparienMaara++;
     }
+
     public int arvattujenKorttiparienMaara() {
         return arvattujenKorttiparienMaara;
     }
+
     public String pelaajanNimi() {
         return pelaajanNimi;
     }
-    
 }

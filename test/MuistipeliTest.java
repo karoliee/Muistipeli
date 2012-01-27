@@ -15,14 +15,26 @@ import static org.junit.Assert.*;
 public class MuistipeliTest {
 
     Logiikka logiikka;
-    Pelaaja<String> pelaaja;
+    Pelaaja pelaaja;
+    double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         logiikka = new Logiikka();
+        pelaaja = logiikka.getPelaaja();
     }
 
     @Test
-    public void hello() {
+    public void nimenTarkistus() {
+        assertEquals(pelaaja.pelaajanNimi(), "matti");
+    }
+    @Test
+    public void eiYhtaanKorttipariaLoydetty() {
+        assertEquals(pelaaja.arvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+    }
+    @Test
+    public void yksiKorttipariLoydetty() {
+        pelaaja.arvattujenKorttienMaaranKasvu();
+        assertEquals(pelaaja.arvattujenKorttiparienMaara(), 1, vertailuTarkkuus);
     }
 }

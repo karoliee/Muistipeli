@@ -16,7 +16,8 @@ public class Muistipeli {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new Kayttoliittyma();
+        Kayttoliittyma kayttis = new Kayttoliittyma();
+        kayttis.teePelilauta();
 
     }
 }

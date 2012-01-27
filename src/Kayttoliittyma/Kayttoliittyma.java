@@ -36,9 +36,13 @@ public class Kayttoliittyma extends JPanel {
      * kaksinkertainen tähän verrattuna
      */
     public Kayttoliittyma() {
+        kortinkuuntelija = new KortinKuuntelija();
+
+    }
+
+    public void teePelilauta() {
         // korttiparien määrä myöhemmin riippuvaksi jostain muusta
         teeKortit(3);
-        kortinkuuntelija = new KortinKuuntelija();
         pelilauta = new JFrame();
         kayttoliittyma = pelilauta.getContentPane();
         pelilauta.setSize(500, 500);
@@ -46,7 +50,6 @@ public class Kayttoliittyma extends JPanel {
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pelilauta.setVisible(true);
-
     }
 
     /**

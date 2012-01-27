@@ -44,7 +44,11 @@ public class Logiikka {
     /**
      * Metodi kääntää kortin, eli kertoo siihen liittyvän numeron
      */
-    public void kaannaKortti() {
+    public void kaannaKaksiKorttia() {
+        // käännä yksi, talleta arvo, käännä toinen, talleta arvo, katso 
+        //ovatko samoja
+        //jos on, poista kortit
+        //jos ei, käännä kortit
     }
 
     /**

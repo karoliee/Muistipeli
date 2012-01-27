@@ -6,13 +6,15 @@ package Kayttoliittyma;
 
 import Logiikka.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  *
  * @author karoliee
  */
-public class Kayttoliittyma extends JPanel {
+public class Kayttoliittyma extends JPanel implements ActionListener {
 
     /**
      * Pelin logiikka-luokka
@@ -22,10 +24,6 @@ public class Kayttoliittyma extends JPanel {
      * Taulukko, jonka alkiot ovat muistipelin kortit
      */
     public JButton[] kortit;
-    /**
-     * Kuuntelija, joka kuuntelee milloin korttia painetaan
-     */
-    KortinKuuntelija kortinkuuntelija;
     /**
      * Pelilauta, missä peliä pelataan
      */
@@ -41,7 +39,7 @@ public class Kayttoliittyma extends JPanel {
     public Kayttoliittyma() {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
         kortit = new JButton[4];
-        kortinkuuntelija = new KortinKuuntelija();
+
         logiikka = new Logiikka();
     }
 
@@ -64,7 +62,7 @@ public class Kayttoliittyma extends JPanel {
     public void teeKortit() {
         for (int i = 0; i < kortit.length; i++) {
             kortit[i] = new JButton();
-            kortit[i].addActionListener(kortinkuuntelija);
+            kortit[i].addActionListener(this);
         }
         logiikka.teeNumerotKorttejaVartenJaSekoitaNe(kortit.length);
     }
@@ -87,5 +85,11 @@ public class Kayttoliittyma extends JPanel {
         for (int i = 0; i < kortit.length; i++) {
             kayttoliittyma.add(kortit[i]);
         }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        Object kaannettyKortti = e.getSource();
+        System.out.println(kaannettyKortti);
+        
     }
 }

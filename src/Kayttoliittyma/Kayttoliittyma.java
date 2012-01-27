@@ -36,7 +36,7 @@ public class Kayttoliittyma extends JPanel {
      * kaksinkertainen tähän verrattuna
      */
     public Kayttoliittyma() {
-        // korttipartien määrä myöhemmin riippuvaksi jostain muusta
+        // korttiparien määrä myöhemmin riippuvaksi jostain muusta
         teeKortit(3);
         kortinkuuntelija = new KortinKuuntelija();
         pelilauta = new JFrame();
@@ -55,7 +55,7 @@ public class Kayttoliittyma extends JPanel {
      * @param korttiparienMaara Kertoo, montako paria kortteja on
      */
     public void teeKortit(int korttiparienMaara) {
-        JButton[] kortit = new JButton[2 * korttiparienMaara];
+        kortit = new JButton[2 * korttiparienMaara];
         for (int i = 0; i < kortit.length; i++) {
             kortit[i] = new JButton();
             kortit[i].addActionListener(kortinkuuntelija);

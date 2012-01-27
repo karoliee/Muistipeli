@@ -25,16 +25,60 @@ public class MuistipeliTest {
     }
 
     @Test
-    public void nimenTarkistus() {
-        assertEquals(pelaaja.pelaajanNimi(), "matti");
+    public void konstruktoriAntaaOikeanNimen() {
+        assertEquals(pelaaja.getPelaajanNimi(), "matti");
     }
+
     @Test
-    public void eiYhtaanKorttipariaLoydetty() {
-        assertEquals(pelaaja.arvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+    public void pelaajanNimenVaihto() {
+        pelaaja.nimenVaihto("maija");
+        assertEquals(pelaaja.getPelaajanNimi(), "maija");
     }
+
     @Test
-    public void yksiKorttipariLoydetty() {
+    public void konstruktorissaEiOleLoydettyjaKorttipareja() {
+        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+    }
+
+    @Test
+    public void parinLoytaminenLisaaLoydettyjenKorttiparienMaaraa() {
         pelaaja.arvattujenKorttienMaaranKasvu();
-        assertEquals(pelaaja.arvattujenKorttiparienMaara(), 1, vertailuTarkkuus);
+        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 1, vertailuTarkkuus);
+    }
+
+    @Test
+    public void loydettyjenParienNollausKunEiOleLoydettyjaPareja() {
+        pelaaja.arvattujenKorttiparienMaaranNollaus();
+        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+    }
+
+    @Test
+    public void loydettyjenParienNollausKunOnLoydettyjaPareja() {
+        pelaaja.arvattujenKorttienMaaranKasvu();
+        pelaaja.arvattujenKorttiparienMaaranNollaus();
+        assertEquals(pelaaja.getArvattujenKorttiparienMaara(), 0, vertailuTarkkuus);
+    }
+    @Test
+    public void konstruktorissaEiOleYrityksia() {
+        assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
+    }
+
+    @Test
+    public void yritysLisaaLoydettyjenYritystenMaaraa() {
+        pelaaja.yritystenMaaranKasvu();
+        assertEquals(pelaaja.getYritystenMaara(), 1, vertailuTarkkuus);
+    }
+
+    @Test
+    public void yritystenNollausKunEiOleYrityksia() {
+        pelaaja.yritystenMaaranNollaus();
+        assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
+    }
+
+    @Test
+    public void yritystenNollausKunOnYrityksia() {
+        pelaaja.yritystenMaaranNollaus();
+        pelaaja.arvattujenKorttiparienMaaranNollaus();
+        assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
     }
 }

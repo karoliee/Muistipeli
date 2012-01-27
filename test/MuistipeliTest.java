@@ -14,12 +14,11 @@ import static org.junit.Assert.*;
  */
 public class MuistipeliTest {
 
-    Kayttoliittyma kayttis;
     Logiikka logiikka;
+    Pelaaja<String> pelaaja;
 
     @Before
     public void setUp() {
-        kayttis = new Kayttoliittyma();
         logiikka = new Logiikka();
     }
 

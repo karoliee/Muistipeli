@@ -39,7 +39,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public Kayttoliittyma() {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
         kortit = new JButton[4];
-
         logiikka = new Logiikka();
     }
 

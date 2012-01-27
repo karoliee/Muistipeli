@@ -32,10 +32,12 @@ public class Kayttoliittyma extends JPanel {
     Container kayttoliittyma;
 
     /**
-     * Konstruktori tekee pelilaudan, jolla peliä tullaan pelaamaan
+     * Luku, joka kertoo montako paria peliin tulee, eli korttejen määrä on siis
+     * kaksinkertainen tähän verrattuna
      */
     public Kayttoliittyma() {
-        teeKortit();
+        // korttipartien määrä myöhemmin riippuvaksi jostain muusta
+        teeKortit(3);
         kortinkuuntelija = new KortinKuuntelija();
         pelilauta = new JFrame();
         kayttoliittyma = pelilauta.getContentPane();
@@ -49,10 +51,11 @@ public class Kayttoliittyma extends JPanel {
 
     /**
      * Metodi tekee taulukon, ja luo sinne alkiot, jotka ovat muistipelin kortit
+     *
+     * @param korttiparienMaara Kertoo, montako paria kortteja on
      */
-    public void teeKortit() {
-        JButton[] kortit = new JButton[5];
-        //tässä luo jButtonit, määrä myöhemmin riippuvaksi jostain muusta
+    public void teeKortit(int korttiparienMaara) {
+        JButton[] kortit = new JButton[2 * korttiparienMaara];
         for (int i = 0; i < kortit.length; i++) {
             kortit[i] = new JButton();
             kortit[i].addActionListener(kortinkuuntelija);

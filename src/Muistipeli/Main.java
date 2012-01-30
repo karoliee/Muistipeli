@@ -10,7 +10,7 @@ import Kayttoliittyma.Kayttoliittyma;
  *
  * @author karoliee
  */
-public class Muistipeli {
+public class Main {
 
     /**
      * Luokka ohjaa muistipelin käyttämistä

@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author karoliee
  */
-public class Logiikka {
+public class Peli {
 
     /**
      * Lista korttien "kuvista", eli numeroista. Jokaista numeroa on siis kaksi
@@ -27,7 +27,7 @@ public class Logiikka {
     /**
      * Konstruktori luo luokan oliot
      */
-    public Logiikka() {
+    public Peli() {
 
         korttienNumerot = new ArrayList<Integer>();
         pelaaja = new Pelaaja("matti");

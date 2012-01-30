@@ -14,14 +14,14 @@ import static org.junit.Assert.*;
  */
 public class MuistipeliTest {
 
-    Logiikka logiikka;
+    Peli muistipeli;
     Pelaaja pelaaja;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
-        logiikka = new Logiikka();
-        pelaaja = logiikka.getPelaaja();
+        muistipeli = new Peli();
+        pelaaja = muistipeli.getPelaaja();
     }
 
     @Test

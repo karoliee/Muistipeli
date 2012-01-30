@@ -19,9 +19,9 @@ import javax.swing.*;
 public class Kayttoliittyma extends JPanel implements ActionListener {
 
     /**
-     * Pelin logiikka-luokka
+     * Pelin muistipeli-luokka
      */
-    Logiikka logiikka;
+    Peli muistipeli;
     /**
      * Taulukko, jonka alkiot ovat muistipelin kortit
      */
@@ -41,7 +41,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public Kayttoliittyma() {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
         kortit = new JButton[4];
-        logiikka = new Logiikka();
+        muistipeli = new Peli();
     }
 
     /**
@@ -65,7 +65,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             kortit[i] = new JButton();
             kortit[i].addActionListener(this);
         }
-        logiikka.teeNumerotKorttejaVartenJaSekoitaNe(kortit.length);
+        muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(kortit.length);
     }
 
     /**

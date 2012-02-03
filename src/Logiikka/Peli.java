@@ -6,7 +6,6 @@ package Logiikka;
 
 import java.util.*;
 import javax.swing.*;
-import Kayttoliittyma.*;
 
 /**
  * Luokka ohjaa pelin pelaamista ja muuta toimintaa pelissä
@@ -61,8 +60,7 @@ public class Peli {
     }
 
     /**
-     * Metodi kääntää kortin, eli kertoo siihen liittyvän numeron ja katsoo,
-     * ovatko korttejen arvot samat
+     * Metodi katsoo, onko käännetty kortti ensimmäinen vai toinen
      */
     public void kaannaKortti(int kortinJarjestysNumero) {
         if (ensimmainenKortti = true) {
@@ -72,8 +70,11 @@ public class Peli {
             if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
                     kortinJarjestysNumero)) {
                 //jos on, poista molemmat kortit, remove()
+                pelaaja.loydettyjenKorttiparienMaaranKasvu();
+                pelaaja.yritystenMaaranKasvu();
             } else {
                 //jos ei, käännä kortit, setText("Muistipeli")
+                pelaaja.yritystenMaaranKasvu();
             }
             ensimmainenKortti = true;
             ensimmaisenKortinJarjestysNumero = -1;

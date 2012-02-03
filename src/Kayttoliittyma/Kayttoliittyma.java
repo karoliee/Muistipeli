@@ -60,6 +60,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         pelilauta.setSize(500, 400);
         pelilauta.getContentPane().setLayout(new GridLayout(2, (kortit.length - 1) / 2));
         asetaKortitPelilaudalle();
+        teeMuutNapit();
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pelilauta.setVisible(true);
@@ -106,9 +107,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < kortit.length; i++) {
             if (kortit[i] == e.getSource()) {
-                System.out.println(i + 1);
-                kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i + 1));
-                muistipeli.kaannaKortti(i + 1);
+                kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
+                muistipeli.kaannaKortti(i);
             }
         }
         if (e.getSource() == lopetusNappi) {

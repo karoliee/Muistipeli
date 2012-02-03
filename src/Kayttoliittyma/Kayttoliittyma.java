@@ -7,8 +7,6 @@ package Kayttoliittyma;
 import Logiikka.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -115,14 +113,13 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
                 if (tapahtuma.equals("Kortit olivat samoja")) {
                     poistaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                             muistipeli.getToisenKortinJarjestysNumero());
-                    System.out.println("poistin kortit");
+                    System.out.println("Poistin kortit");
                 } else if (tapahtuma.equals("Kortit eivät olleet samoja")) {
                     kaannaKortitTakaisinAlaspain(
                             muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                             muistipeli.getToisenKortinJarjestysNumero());
-                    System.out.println("käänsin kortit takaisin");
-                } else {
-                }
+                    System.out.println("Käänsin kortit takaisin");
+                } 
             }
         }
         if (e.getSource() == lopetusNappi) {
@@ -145,6 +142,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void poistaKortit(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
+        odotaVahanAikaa();
         kortit[ensimmaisenKortinJarjestysNumero].setVisible(false);
         kortit[toisenKortinJarjestysNumero].setVisible(false);
 
@@ -160,8 +158,19 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void kaannaKortitTakaisinAlaspain(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
+        odotaVahanAikaa();
         kortit[ensimmaisenKortinJarjestysNumero].setText("Muistipeli");
         kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
 
+    }
+
+    /**
+     * Metodi pysäyttää ohjelman etenemisen 0,5 sekunniksi
+     */
+    public void odotaVahanAikaa() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+        }
     }
 }

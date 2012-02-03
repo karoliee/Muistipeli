@@ -31,6 +31,14 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JFrame pelilauta;
     /**
+     * Nappi, jota painamalla pelin voi lopettaa
+     */
+    JButton lopetusNappi;
+    /**
+     * Nappi, jota painamalla voi aloittaa uuden pelin
+     */
+    JButton uudenPelinAloitusNappi;
+    /**
      * Käyttöliittymä, joka asettaa pelin osat pelilaudalle
      */
     Container kayttoliittyma;
@@ -40,7 +48,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public Kayttoliittyma() {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
-        kortit = new JButton[4];
+        kortit = new JButton[6];
         muistipeli = new Peli();
     }
 
@@ -50,7 +58,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public void teePelilauta() {
         pelilauta = new JFrame();
         kayttoliittyma = pelilauta.getContentPane();
-        pelilauta.setSize(500, 500);
+        pelilauta.setSize(500, 400);
+        pelilauta.getContentPane().setLayout(new GridLayout(2, (kortit.length - 1) / 2));
         asetaKortitPelilaudalle();
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -62,7 +71,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void teeKortit() {
         for (int i = 0; i < kortit.length; i++) {
-            kortit[i] = new JButton();
+            kortit[i] = new JButton("Muistipeli");
             kortit[i].addActionListener(this);
         }
         muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(kortit.length);
@@ -73,7 +82,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * pelin
      */
     public void teeMuutNapit() {
-//        tee aloitus- ja lopetusnapit, JButton kai kanssa?
+        lopetusNappi = new JButton("Lopeta");
+        uudenPelinAloitusNappi = new JButton("Uusi peli");
     }
 
     /**
@@ -81,22 +91,33 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void asetaKortitPelilaudalle() {
         //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit laudalle? 
-        //tai tee se metodissa teePelilauta() + 
-        //mieti miten saat kortit asetettua laudalle vierekkäin vielä
+        //tai tee se metodissa teePelilauta() ?
         for (int i = 0; i < kortit.length; i++) {
             kayttoliittyma.add(kortit[i]);
         }
     }
 
     /**
-     * Metodi kuulee tapahtuman, joka tapahtuu ja tekee sen jälkeen jotain (en
-     * ole vielä päättänyt täysin)
+     * Metodi kuulee tapahtuman, ja kertoo peli-luokalle, mitä nappia
+     * painettiin, tai lopettaa pelin tai aloittaa uuden pelin riippuen
+     * painetusta napista
      *
      * @param e tapahtuma, joka tapahtuu
      */
     public void actionPerformed(ActionEvent e) {
-        //tässä pitäisi saada tietää kortin järjestysnumero jotenkin
-//        Object kaannettyKortti = e.getSource();
-//        System.out.println(kaannettyKortti);
+        for (int i = 0; i < kortit.length; i++) {
+            if (kortit[i] == e.getSource()) {
+                System.out.println(i + 1);
+                muistipeli.kaannaKortti(i + 1);
+            }
+        }
+        if (e.getSource() == lopetusNappi) {
+            System.exit(0);
+        }
+        if (e.getSource() == uudenPelinAloitusNappi) {
+            teeKortit();
+            teePelilauta();
+        }
+
     }
 }

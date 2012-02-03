@@ -23,6 +23,14 @@ public class Peli {
      * Olio, joka pelaa peliä
      */
     Pelaaja pelaaja;
+    /**
+     * Kertoo, onko käännetty kortti ensimmäinen käännetty vai toinen
+     */
+    boolean ensimmainenKortti;
+    /**
+     * Kertoo ensimmäiseksi käännetyn kortin järjestysnumeron
+     */
+    int ensimmaisenKortinJarjestysNumero;
 
     /**
      * Konstruktori luo luokan oliot
@@ -31,6 +39,8 @@ public class Peli {
 
         korttienNumerot = new ArrayList<Integer>();
         pelaaja = new Pelaaja("matti");
+        ensimmainenKortti = true;
+        ensimmaisenKortinJarjestysNumero = -1;
     }
 
     /**
@@ -50,28 +60,40 @@ public class Peli {
     }
 
     /**
-     * Metodi kääntää kortin, eli kertoo siihen liittyvän numeron
+     * Metodi kääntää kortin, eli kertoo siihen liittyvän numeron ja katsoo,
+     * ovatko korttejen arvot samat
      */
-    public void kaannaKaksiKorttia() {
-        // käännä yksi, talleta arvo, käännä toinen, talleta arvo, katso 
-        //ovatko samoja
-        //jos on, poista kortit
-        //jos ei, käännä kortit
+    public void kaannaKortti(int kortinJarjestysNumero) {
+        if (ensimmainenKortti = true) {
+            //käännä kortti, setText(kortin arvo)
+            ensimmaisenKortinJarjestysNumero = kortinJarjestysNumero;
+            ensimmainenKortti = false;
+        } else {
+            //käännä kortti, setText(kortin arvo)
+            if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
+                    kortinJarjestysNumero)) {
+                //jos on, poista molemmat kortit, remove()
+            } else {
+                //jos ei, käännä kortit, setText("Muistipeli")
+            }
+            ensimmainenKortti = true;
+            ensimmaisenKortinJarjestysNumero = -1;
+        }
     }
 
     /**
      * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
      * numerot samoja
      *
-     * @param ensimmaisenKortinJarjestysnumero kertoo, monesko ensimmäiseksi
+     * @param ensimmaisenKortinJarjestysNumero kertoo, monesko ensimmäiseksi
      * valittu kortti on korttitaulukossa
-     * @param toisenKortinJarjestysnumero kertoo, monesko toiseksi valittu
+     * @param toisenKortinJarjestysNumero kertoo, monesko toiseksi valittu
      * kortti on korttitaulukossa
      */
-    public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysnumero,
-            int toisenKortinJarjestysnumero) {
-        if (korttienNumerot.get(ensimmaisenKortinJarjestysnumero).equals(
-                korttienNumerot.get(toisenKortinJarjestysnumero))) {
+    public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysNumero,
+            int toisenKortinJarjestysNumero) {
+        if (korttienNumerot.get(ensimmaisenKortinJarjestysNumero).equals(
+                korttienNumerot.get(toisenKortinJarjestysNumero))) {
             return true;
 
         }

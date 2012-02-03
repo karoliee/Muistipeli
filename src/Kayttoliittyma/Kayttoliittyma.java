@@ -78,7 +78,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             kortit[i] = new JButton("Muistipeli");
             kortit[i].addActionListener(this);
         }
-        muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(kortit.length);
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
     }
 
     /**

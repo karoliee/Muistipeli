@@ -23,18 +23,18 @@ public class PeliTest {
 
     @Test
     public void listaSekoittaaItsensa() {
-        muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(11);
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(11);
     }
     @Test
     public void listaSekoittaaMyosYhdenKortin() {
-        muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(1);
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(1);
     }
     @Test
     public void kortitOvatSamoja() {
-        muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(1);
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(1);
     }
     @Test
     public void kortitEivatOleSamoja() {
-        muistipeli.teeNumerotKorttejaVartenJaSekoitaNe(1);
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(1);
     }
 }

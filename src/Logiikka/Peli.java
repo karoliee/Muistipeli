@@ -18,7 +18,7 @@ public class Peli {
      * Lista korttien "kuvista", eli numeroista. Jokaista numeroa on siis kaksi
      * kappaletta
      */
-    ArrayList<Integer> korttienNumerot;
+    ArrayList<Integer> korttienArvot;
     /**
      * Olio, joka pelaa peliä
      */
@@ -41,7 +41,7 @@ public class Peli {
      */
     public Peli() {
 
-        korttienNumerot = new ArrayList<Integer>();
+        korttienArvot = new ArrayList<Integer>();
         pelaaja = new Pelaaja("matti");
         onEnsimmainenKortti = true;
         ensimmaisenKortinJarjestysNumero = -1;
@@ -54,12 +54,12 @@ public class Peli {
      *
      * @param korttienMaara pelikorttien määrä
      */
-    public void teeNumerotKorttejaVartenJaSekoitaNe(int korttienMaara) {
+    public void teeArvotKorttejaVartenJaSekoitaNe(int korttienMaara) {
         for (int i = 1; i <= korttienMaara / 2; i++) {
-            korttienNumerot.add(i);
-            korttienNumerot.add(i);
+            korttienArvot.add(i);
+            korttienArvot.add(i);
         }
-        Collections.shuffle(korttienNumerot);
+        Collections.shuffle(korttienArvot);
 
     }
 
@@ -91,7 +91,7 @@ public class Peli {
 
     /**
      * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
-     * numerot samoja
+     * arvot samoja
      *
      * @param ensimmaisenKortinJarjestysNumero kertoo, monesko ensimmäiseksi
      * valittu kortti on korttitaulukossa
@@ -100,8 +100,8 @@ public class Peli {
      */
     public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
-        if (korttienNumerot.get(ensimmaisenKortinJarjestysNumero).equals(
-                korttienNumerot.get(toisenKortinJarjestysNumero))) {
+        if (korttienArvot.get(ensimmaisenKortinJarjestysNumero).equals(
+                korttienArvot.get(toisenKortinJarjestysNumero))) {
             return true;
 
         }
@@ -109,14 +109,14 @@ public class Peli {
     }
 
     /**
-     * Metodi palauttaa kortin arvon merkkijonona
+     * Metodi palauttaa valitun kortin arvon merkkijonona
      *
      * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
      * korttitaulukossa
      * @return kortin arvo merkkijonona
      */
     public String kortinArvoMerkkiJonona(int kortinJarjestysNumero) {
-        return Integer.toString(korttienNumerot.get(kortinJarjestysNumero));
+        return Integer.toString(korttienArvot.get(kortinJarjestysNumero));
     }
 
     /**
@@ -125,7 +125,7 @@ public class Peli {
      * @return kortin arvo
      */
     public int getKortinArvo(int kortinJarjestysNumero) {
-        return korttienNumerot.get(kortinJarjestysNumero);
+        return korttienArvot.get(kortinJarjestysNumero);
     }
 
     /**

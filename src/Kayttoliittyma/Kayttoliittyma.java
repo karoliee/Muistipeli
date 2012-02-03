@@ -7,6 +7,8 @@ package Kayttoliittyma;
 import Logiikka.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -109,7 +111,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             if (kortit[i] == e.getSource()) {
                 kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
                 String tapahtuma = muistipeli.kaannaKortti(i);
-                
                 System.out.println(tapahtuma);
                 if (tapahtuma.equals("Kortit olivat samoja")) {
                     poistaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),

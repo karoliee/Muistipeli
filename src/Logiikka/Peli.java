@@ -72,6 +72,9 @@ public class Peli {
             onEnsimmainenKortti = false;
             return "Oli ensimmäinen kortti";
         } else {
+            if (kortinJarjestysNumero == ensimmaisenKortinJarjestysNumero) {
+                return "Painoit samaa korttia!";
+            }
             pelaaja.yritystenMaaranKasvu();
             toisenKortinJarjestysNumero = kortinJarjestysNumero;
             if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,

@@ -41,14 +41,19 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Käyttöliittymä, joka asettaa pelin osat pelilaudalle
      */
     Container kayttoliittyma;
+    /**
+     * Ajastin, joka ilmoittaa kun aika on kulunut
+     */
+    Ajastin ajastin;
 
     /**
      * Konstruktori, jossa luodaan luokan oliot
      */
     public Kayttoliittyma() {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
-        kortit = new JButton[6];
+        kortit = new JButton[8];
         muistipeli = new Peli();
+        ajastin = new Ajastin(this, 500);
     }
 
     /**
@@ -119,7 +124,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
                             muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                             muistipeli.getToisenKortinJarjestysNumero());
                     System.out.println("Käänsin kortit takaisin");
-                } 
+                }
             }
         }
         if (e.getSource() == lopetusNappi) {
@@ -142,7 +147,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void poistaKortit(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
-        odotaVahanAikaa();
         kortit[ensimmaisenKortinJarjestysNumero].setVisible(false);
         kortit[toisenKortinJarjestysNumero].setVisible(false);
 
@@ -158,19 +162,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void kaannaKortitTakaisinAlaspain(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
-        odotaVahanAikaa();
         kortit[ensimmaisenKortinJarjestysNumero].setText("Muistipeli");
         kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
 
-    }
-
-    /**
-     * Metodi pysäyttää ohjelman etenemisen 0,5 sekunniksi
-     */
-    public void odotaVahanAikaa() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException ex) {
-        }
     }
 }

@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 
-import Kayttoliittyma.*;
 import Logiikka.*;
 import org.junit.*;
 import static org.junit.Assert.*;

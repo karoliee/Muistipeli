@@ -26,11 +26,15 @@ public class Peli {
     /**
      * Kertoo, onko käännetty kortti ensimmäinen käännetty vai toinen
      */
-    boolean ensimmainenKortti;
+    boolean onEnsimmainenKortti;
     /**
      * Kertoo ensimmäiseksi käännetyn kortin järjestysnumeron
      */
     int ensimmaisenKortinJarjestysNumero;
+    /**
+     * Kertoo toiseksi käännetyn kortin järjestysnumeron
+     */
+    int toisenKortinJarjestysNumero;
 
     /**
      * Konstruktori luo luokan oliot
@@ -39,7 +43,7 @@ public class Peli {
 
         korttienNumerot = new ArrayList<Integer>();
         pelaaja = new Pelaaja("matti");
-        ensimmainenKortti = true;
+        onEnsimmainenKortti = true;
         ensimmaisenKortinJarjestysNumero = -1;
     }
 
@@ -62,23 +66,43 @@ public class Peli {
     /**
      * Metodi katsoo, onko käännetty kortti ensimmäinen vai toinen
      */
-    public void kaannaKortti(int kortinJarjestysNumero) {
-        if (ensimmainenKortti = true) {
+    public String kaannaKortti(int kortinJarjestysNumero) {
+        if (onEnsimmainenKortti) {
             ensimmaisenKortinJarjestysNumero = kortinJarjestysNumero;
-            ensimmainenKortti = false;
+            onEnsimmainenKortti = false;
+            return "Oli ensimmäinen kortti";
         } else {
+            pelaaja.yritystenMaaranKasvu();
+            toisenKortinJarjestysNumero = kortinJarjestysNumero;
             if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
                     kortinJarjestysNumero)) {
-                //jos on, poista molemmat kortit, remove()
                 pelaaja.loydettyjenKorttiparienMaaranKasvu();
-                pelaaja.yritystenMaaranKasvu();
+                onEnsimmainenKortti = true;
+                return "Kortit olivat samoja";
             } else {
-                //jos ei, käännä kortit, setText("Muistipeli")
-                pelaaja.yritystenMaaranKasvu();
+                onEnsimmainenKortti = true;
+                return "Kortit eivät olleet samoja";
             }
-            ensimmainenKortti = true;
-            ensimmaisenKortinJarjestysNumero = -1;
+
         }
+    }
+
+    /**
+     * Metodi palauttaa ensimmäisenä käännetyn kortin järjestysnumeron
+     *
+     * @return kortin järjestysnumero
+     */
+    public int getEnsimmaisenKortinJarjestysNumero() {
+        return ensimmaisenKortinJarjestysNumero;
+    }
+
+    /**
+     * Metodi palauttaa toisena käännetyn kortin järjestysnumeron
+     *
+     * @return kortin järjestysnumero
+     */
+    public int getToisenKortinJarjestysNumero() {
+        return toisenKortinJarjestysNumero;
     }
 
     /**
@@ -118,5 +142,14 @@ public class Peli {
      */
     public Pelaaja getPelaaja() {
         return pelaaja;
+    }
+
+    /**
+     * Metodi palauttaa valitun kortin arvon
+     *
+     * @return kortin arvo
+     */
+    public int getKortinArvo(int kortinJarjestysNumero) {
+        return korttienNumerot.get(kortinJarjestysNumero);
     }
 }

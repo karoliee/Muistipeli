@@ -108,7 +108,20 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         for (int i = 0; i < kortit.length; i++) {
             if (kortit[i] == e.getSource()) {
                 kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
-                muistipeli.kaannaKortti(i);
+                String tapahtuma = muistipeli.kaannaKortti(i);
+                
+                System.out.println(tapahtuma);
+                if (tapahtuma.equals("Kortit olivat samoja")) {
+                    poistaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
+                            muistipeli.getToisenKortinJarjestysNumero());
+                    System.out.println("poistin kortit");
+                } else if (tapahtuma.equals("Kortit eivät olleet samoja")) {
+                    kaannaKortitTakaisinAlaspain(
+                            muistipeli.getEnsimmaisenKortinJarjestysNumero(),
+                            muistipeli.getToisenKortinJarjestysNumero());
+                    System.out.println("käänsin kortit takaisin");
+                } else {
+                }
             }
         }
         if (e.getSource() == lopetusNappi) {
@@ -131,8 +144,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void poistaKortit(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
-        kayttoliittyma.remove(ensimmaisenKortinJarjestysNumero);
-        kayttoliittyma.remove(toisenKortinJarjestysNumero);
+        kortit[ensimmaisenKortinJarjestysNumero].setVisible(false);
+        kortit[toisenKortinJarjestysNumero].setVisible(false);
 
     }
 

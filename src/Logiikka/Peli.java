@@ -6,6 +6,7 @@ package Logiikka;
 
 import java.util.*;
 import javax.swing.*;
+import Kayttoliittyma.*;
 
 /**
  * Luokka ohjaa pelin pelaamista ja muuta toimintaa pelissä
@@ -65,11 +66,9 @@ public class Peli {
      */
     public void kaannaKortti(int kortinJarjestysNumero) {
         if (ensimmainenKortti = true) {
-            //käännä kortti, setText(kortin arvo)
             ensimmaisenKortinJarjestysNumero = kortinJarjestysNumero;
             ensimmainenKortti = false;
         } else {
-            //käännä kortti, setText(kortin arvo)
             if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
                     kortinJarjestysNumero)) {
                 //jos on, poista molemmat kortit, remove()
@@ -98,6 +97,17 @@ public class Peli {
 
         }
         return false;
+    }
+
+    /**
+     * Metodi palauttaa kortin arvon merkkijonona
+     *
+     * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
+     * korttitaulukossa
+     * @return kortin arvo merkkijonona
+     */
+    public String kortinArvoMerkkiJonona(int kortinJarjestysNumero) {
+        return Integer.toString(korttienNumerot.get(kortinJarjestysNumero));
     }
 
     /**

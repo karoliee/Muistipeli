@@ -6,8 +6,7 @@ package Kayttoliittyma;
 
 import Logiikka.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -98,8 +97,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi kuulee tapahtuman, ja kertoo peli-luokalle, mitä nappia
-     * painettiin, tai lopettaa pelin tai aloittaa uuden pelin riippuen
+     * Metodi kuulee tapahtuman, ja kertoo peli-luokalle, mitä nappia painettiin
+     * ja kääntää kortin, tai lopettaa pelin tai aloittaa uuden pelin riippuen
      * painetusta napista
      *
      * @param e tapahtuma, joka tapahtuu
@@ -108,6 +107,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         for (int i = 0; i < kortit.length; i++) {
             if (kortit[i] == e.getSource()) {
                 System.out.println(i + 1);
+                kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i + 1));
                 muistipeli.kaannaKortti(i + 1);
             }
         }
@@ -115,9 +115,39 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             System.exit(0);
         }
         if (e.getSource() == uudenPelinAloitusNappi) {
+            muistipeli = new Peli();
             teeKortit();
             teePelilauta();
         }
+    }
+
+    /**
+     * Metodi poistaa kortit, jotka ovat pari
+     *
+     * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
+     * järjestysnumero
+     * @param toisenKortinJarjestysNumero toiseksi käännetyn kortin
+     * järjestysnumero
+     */
+    public void poistaKortit(int ensimmaisenKortinJarjestysNumero,
+            int toisenKortinJarjestysNumero) {
+        kayttoliittyma.remove(ensimmaisenKortinJarjestysNumero);
+        kayttoliittyma.remove(toisenKortinJarjestysNumero);
+
+    }
+
+    /**
+     * Metodi kääntää kortit takaisin alaspäin, koska ne eivät olleet samoja
+     *
+     * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
+     * järjestysnumero
+     * @param toisenKortinJarjestysNumero toiseksi käännetyn kortin
+     * järjestysnumero
+     */
+    public void kaannaKortitTakaisinAlaspain(int ensimmaisenKortinJarjestysNumero,
+            int toisenKortinJarjestysNumero) {
+        kortit[ensimmaisenKortinJarjestysNumero].setText("Muistipeli");
+        kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
 
     }
 }

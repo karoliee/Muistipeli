@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  *
  * @author karoliee
  */
-public class MuistipeliTest {
+public class PelaajaTest {
 
     Peli muistipeli;
     Pelaaja pelaaja;

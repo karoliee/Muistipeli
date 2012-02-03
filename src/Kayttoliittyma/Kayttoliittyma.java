@@ -42,10 +42,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     Container kayttoliittyma;
     /**
-     * Ajastin, joka ilmoittaa kun aika on kulunut
-     */
-    Ajastin ajastin;
-    /**
      * Merkkijono kertoo, mitä korttia käännettäessä tapahtui
      */
     String tapahtuma;
@@ -57,7 +53,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
         kortit = new JButton[8];
         muistipeli = new Peli();
-        ajastin = new Ajastin(this, 500);
     }
 
     /**
@@ -118,7 +113,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             if (kortit[i] == e.getSource()) {
                 kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
                 tapahtuma = muistipeli.kaannaKortti(i);
-                System.out.println(tapahtuma);
+                Ajastin ajastin = new Ajastin(this, 500);
                 ajastin.start();
             }
         }
@@ -132,28 +127,29 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Metodi kertoo, mitä korteille tapahtuu kun aika on on kulunut ajastimesta
+     */
     public void aikaOnKulunut() {
         if (tapahtuma.equals("Kortit olivat samoja")) {
-            poistaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
+            piilotaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
-            System.out.println("Poistin kortit");
         } else if (tapahtuma.equals("Kortit eivät olleet samoja")) {
             kaannaKortitTakaisinAlaspain(
                     muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
-            System.out.println("Käänsin kortit takaisin");
         }
     }
 
     /**
-     * Metodi poistaa kortit, jotka ovat pari
+     * Metodi piilottaa näkyvistä kortit, jotka ovat pari
      *
      * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
      * järjestysnumero
      * @param toisenKortinJarjestysNumero toiseksi käännetyn kortin
      * järjestysnumero
      */
-    public void poistaKortit(int ensimmaisenKortinJarjestysNumero,
+    public void piilotaKortit(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {
         kortit[ensimmaisenKortinJarjestysNumero].setVisible(false);
         kortit[toisenKortinJarjestysNumero].setVisible(false);

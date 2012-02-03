@@ -74,38 +74,19 @@ public class Peli {
         } else {
             if (kortinJarjestysNumero == ensimmaisenKortinJarjestysNumero) {
                 return "Painoit samaa korttia!";
-            }
-            pelaaja.yritystenMaaranKasvu();
-            toisenKortinJarjestysNumero = kortinJarjestysNumero;
-            if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
-                    kortinJarjestysNumero)) {
-                pelaaja.loydettyjenKorttiparienMaaranKasvu();
-                onEnsimmainenKortti = true;
-                return "Kortit olivat samoja";
             } else {
                 onEnsimmainenKortti = true;
-                return "Kortit eivät olleet samoja";
+                pelaaja.yritystenMaaranKasvu();
+                toisenKortinJarjestysNumero = kortinJarjestysNumero;
+                if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
+                        kortinJarjestysNumero)) {
+                    pelaaja.loydettyjenKorttiparienMaaranKasvu();
+                    return "Kortit olivat samoja";
+                } else {
+                    return "Kortit eivät olleet samoja";
+                }
             }
-
         }
-    }
-
-    /**
-     * Metodi palauttaa ensimmäisenä käännetyn kortin järjestysnumeron
-     *
-     * @return kortin järjestysnumero
-     */
-    public int getEnsimmaisenKortinJarjestysNumero() {
-        return ensimmaisenKortinJarjestysNumero;
-    }
-
-    /**
-     * Metodi palauttaa toisena käännetyn kortin järjestysnumeron
-     *
-     * @return kortin järjestysnumero
-     */
-    public int getToisenKortinJarjestysNumero() {
-        return toisenKortinJarjestysNumero;
     }
 
     /**
@@ -139,6 +120,15 @@ public class Peli {
     }
 
     /**
+     * Metodi palauttaa valitun kortin arvon
+     *
+     * @return kortin arvo
+     */
+    public int getKortinArvo(int kortinJarjestysNumero) {
+        return korttienNumerot.get(kortinJarjestysNumero);
+    }
+
+    /**
      * Metodi palauttaa pelin pelaajan
      *
      * @return pelin pelaaja
@@ -148,11 +138,20 @@ public class Peli {
     }
 
     /**
-     * Metodi palauttaa valitun kortin arvon
+     * Metodi palauttaa ensimmäisenä käännetyn kortin järjestysnumeron
      *
-     * @return kortin arvo
+     * @return kortin järjestysnumero
      */
-    public int getKortinArvo(int kortinJarjestysNumero) {
-        return korttienNumerot.get(kortinJarjestysNumero);
+    public int getEnsimmaisenKortinJarjestysNumero() {
+        return ensimmaisenKortinJarjestysNumero;
+    }
+
+    /**
+     * Metodi palauttaa toisena käännetyn kortin järjestysnumeron
+     *
+     * @return kortin järjestysnumero
+     */
+    public int getToisenKortinJarjestysNumero() {
+        return toisenKortinJarjestysNumero;
     }
 }

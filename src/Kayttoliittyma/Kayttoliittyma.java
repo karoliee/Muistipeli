@@ -45,6 +45,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Ajastin, joka ilmoittaa kun aika on kulunut
      */
     Ajastin ajastin;
+    /**
+     * Merkkijono kertoo, mitä korttia käännettäessä tapahtui
+     */
+    String tapahtuma;
 
     /**
      * Konstruktori, jossa luodaan luokan oliot
@@ -113,18 +117,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         for (int i = 0; i < kortit.length; i++) {
             if (kortit[i] == e.getSource()) {
                 kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
-                String tapahtuma = muistipeli.kaannaKortti(i);
+                tapahtuma = muistipeli.kaannaKortti(i);
                 System.out.println(tapahtuma);
-                if (tapahtuma.equals("Kortit olivat samoja")) {
-                    poistaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
-                            muistipeli.getToisenKortinJarjestysNumero());
-                    System.out.println("Poistin kortit");
-                } else if (tapahtuma.equals("Kortit eivät olleet samoja")) {
-                    kaannaKortitTakaisinAlaspain(
-                            muistipeli.getEnsimmaisenKortinJarjestysNumero(),
-                            muistipeli.getToisenKortinJarjestysNumero());
-                    System.out.println("Käänsin kortit takaisin");
-                }
+                ajastin.start();
             }
         }
         if (e.getSource() == lopetusNappi) {
@@ -134,6 +129,19 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             muistipeli = new Peli();
             teeKortit();
             teePelilauta();
+        }
+    }
+
+    public void aikaOnKulunut() {
+        if (tapahtuma.equals("Kortit olivat samoja")) {
+            poistaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
+                    muistipeli.getToisenKortinJarjestysNumero());
+            System.out.println("Poistin kortit");
+        } else if (tapahtuma.equals("Kortit eivät olleet samoja")) {
+            kaannaKortitTakaisinAlaspain(
+                    muistipeli.getEnsimmaisenKortinJarjestysNumero(),
+                    muistipeli.getToisenKortinJarjestysNumero());
+            System.out.println("Käänsin kortit takaisin");
         }
     }
 

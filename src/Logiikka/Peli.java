@@ -15,12 +15,12 @@ import javax.swing.*;
 public class Peli {
 
     /**
-     * Lista korttien "kuvista", eli numeroista. Jokaista numeroa on siis kaksi
+     * Lista korttien "kuvista", eli arvoista. Jokaista arvoa on siis kaksi
      * kappaletta
      */
     ArrayList<Integer> korttienArvot;
     /**
-     * Olio, joka pelaa peliä
+     * Olio, joka pelaa peliä, eli pelaajan ilmentymä
      */
     Pelaaja pelaaja;
     /**
@@ -48,17 +48,19 @@ public class Peli {
     }
 
     /**
-     * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot
+     * Metodi vaihtaa listan, jonka alkiot ovat pelikorttejen "kuvat" eli arvot,
+     * alkiot parametrina olevan listan alkioilla, eli asettaa korteille uudet
+     * arvot
      *
-     * @param ArrayList<Integer> korttienArvot pelikorttien arvot listana
+     * @param ArrayList<Integer> korttienArvot pelikorttien uudet arvot listana
      */
     public void setKorttienArvot(ArrayList<Integer> korttienArvot) {
         this.korttienArvot = korttienArvot;
     }
 
     /**
-     * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
-     * Kaikkia numeroita on kaksi kappaletta taulukossa. Tämän jälkeen metodi
+     * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli arvot.
+     * Kaikkia arvoja on kaksi kappaletta taulukossa. Tämän jälkeen metodi
      * sekoittaa listan
      *
      * @param korttienMaara pelikorttien määrä

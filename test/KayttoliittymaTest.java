@@ -13,18 +13,19 @@ import Logiikka.*;
  * @author karoliee
  */
 public class KayttoliittymaTest {
+
     Kayttoliittyma kayttis;
     Peli muistipeli;
-    
+
     @Before
     public void konstruktoritLuovatOliot() {
         kayttis = new Kayttoliittyma();
         muistipeli = new Peli();
     }
-    
-     @Test
-     public void KaikillaKorteillaOnArvo() {
-         kayttis.teeKortit();
-         assertEquals( 8, kayttis.getMuistipeli().getArvojenMaara(), 0.001 );
-     }
+
+    @Test
+    public void KaikillaKorteillaOnArvo() {
+        kayttis.teeKortit();
+        assertEquals(8, kayttis.getMuistipeli().getArvojenMaara(), 0.001);
+    }
 }

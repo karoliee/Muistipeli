@@ -18,7 +18,7 @@ import javax.swing.*;
 public class Kayttoliittyma extends JPanel implements ActionListener {
 
     /**
-     * Pelin muistipeli-luokka
+     * Pelin ilmentymä eli muistipeli-luokka
      */
     Peli muistipeli;
     /**

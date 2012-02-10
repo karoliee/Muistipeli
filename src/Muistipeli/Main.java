@@ -7,14 +7,14 @@ package Muistipeli;
 import Kayttoliittyma.Kayttoliittyma;
 
 /**
- *Luokka ohjaa muistipelin käyttämistä
- * 
+ * Luokka ohjaa muistipelin käyttämistä
+ *
  * @author karoliee
  */
 public class Main {
 
     /**
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {

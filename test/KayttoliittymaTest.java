@@ -5,34 +5,26 @@
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import Kayttoliittyma.*;
+import Logiikka.*;
 
 /**
  *
  * @author karoliee
  */
 public class KayttoliittymaTest {
-    
-    public KayttoliittymaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    Kayttoliittyma kayttis;
+    Peli muistipeli;
     
     @Before
-    public void setUp() {
+    public void konstruktoritLuovatOliot() {
+        kayttis = new Kayttoliittyma();
+        muistipeli = new Peli();
     }
     
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+     @Test
+     public void KaikillaKorteillaOnArvo() {
+         kayttis.teeKortit();
+         assertEquals( 8, kayttis.getMuistipeli().getArvojenMaara(), 0.001 );
+     }
 }

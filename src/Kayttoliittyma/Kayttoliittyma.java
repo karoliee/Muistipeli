@@ -25,10 +25,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Taulukko, jonka alkiot ovat muistipelin kortit
      */
     public JButton[] kortit;
-    /**
-     * Pelilauta, missä peliä pelataan
-     */
-    JFrame pelilauta;
+//    /**
+//     * Pelilauta, missä peliä pelataan
+//     */
+//    JFrame pelilauta;
     /**
      * Nappi, jota painamalla pelin voi lopettaa
      */
@@ -38,13 +38,17 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JButton uudenPelinAloitusNappi;
     /**
-     * Käyttöliittymä, joka asettaa pelin osat pelilaudalle
+     * Säiliö, joka asettaa kortit pelilaudalle
      */
-    Container kayttoliittyma;
+    Container korttienSailio;
     /**
      * Merkkijono kertoo, mitä korttia käännettäessä tapahtui
      */
     String tapahtuma;
+    /**
+     * Olio, joka hallitsee ajan kulumista
+     */
+    Ajastin ajastin;
 
     /**
      * Konstruktori, jossa luodaan luokan oliot
@@ -53,18 +57,19 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         // korttien määrä myöhemmin riippuvaksi jostain muusta
         kortit = new JButton[8];
         muistipeli = new Peli();
+        ajastin = new Ajastin(this, 500);
     }
 
     /**
      * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
      */
     public void teePelilauta() {
-        pelilauta = new JFrame();
-        kayttoliittyma = pelilauta.getContentPane();
+        JFrame pelilauta = new JFrame();
+        korttienSailio = pelilauta.getContentPane();
         pelilauta.setSize(500, 400);
         pelilauta.getContentPane().setLayout(new GridLayout(2, (kortit.length - 1) / 2));
-        asetaKortitPelilaudalle();
         teeMuutNapit();
+        asetaKortitPelilaudalle();
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pelilauta.setVisible(true);
@@ -82,12 +87,24 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
+     * Metodi palauttaa Peli-olion. Tämä on lähinnä testausta varten
+     *
+     * @return muistipeli-peli
+     */
+    public Peli getMuistipeli() {
+        return muistipeli;
+    }
+
+    /**
      * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
      * pelin
      */
     public void teeMuutNapit() {
         lopetusNappi = new JButton("Lopeta");
+        lopetusNappi.addActionListener(this);
         uudenPelinAloitusNappi = new JButton("Uusi peli");
+        uudenPelinAloitusNappi.addActionListener(this);
+
     }
 
     /**
@@ -97,7 +114,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit laudalle? 
         //tai tee se metodissa teePelilauta() ?
         for (int i = 0; i < kortit.length; i++) {
-            kayttoliittyma.add(kortit[i]);
+            korttienSailio.add(kortit[i]);
         }
     }
 
@@ -113,7 +130,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             if (kortit[i] == e.getSource()) {
                 kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
                 tapahtuma = muistipeli.kaannaKortti(i);
-                Ajastin ajastin = new Ajastin(this, 500);
                 ajastin.start();
             }
         }
@@ -123,7 +139,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         if (e.getSource() == uudenPelinAloitusNappi) {
             muistipeli = new Peli();
             teeKortit();
-            teePelilauta();
+            asetaKortitPelilaudalle();
         }
     }
 

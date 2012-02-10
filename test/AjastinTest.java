@@ -4,35 +4,23 @@
  */
 
 import org.junit.*;
-import static org.junit.Assert.*;
+import Kayttoliittyma.*;
 
 /**
  *
  * @author karoliee
  */
 public class AjastinTest {
+    Ajastin ajastin;
+    Kayttoliittyma kayttis;
     
-    public AjastinTest() {
+    @Test
+    public void konstruktoriLuoAjastimen() {
+        ajastin = new Ajastin(kayttis, 5);
     }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
-    @Before
-    public void setUp() {
+    @Test
+    public void konstruktoriLuoMyosTyhjanAjastimen() {
+        ajastin = new Ajastin(kayttis, 0);
     }
     
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

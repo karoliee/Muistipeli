@@ -48,6 +48,15 @@ public class Peli {
     }
 
     /**
+     * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot
+     *
+     * @param ArrayList<Integer> korttienArvot pelikorttien arvot listana
+     */
+    public void setKorttienArvot(ArrayList<Integer> korttienArvot) {
+        this.korttienArvot = korttienArvot;
+    }
+
+    /**
      * Metodi luo listan, jonka alkiot ovat pelikorttejen "kuvat" eli numerot.
      * Kaikkia numeroita on kaksi kappaletta taulukossa. Tämän jälkeen metodi
      * sekoittaa listan
@@ -64,7 +73,20 @@ public class Peli {
     }
 
     /**
+     * Metodi palauttaa korttien arvojen määrän, eli korttien lukumäärän
+     *
+     * @return korttien arvojen määrä
+     */
+    public int getArvojenMaara() {
+        return korttienArvot.size();
+    }
+
+    /**
      * Metodi katsoo, onko käännetty kortti ensimmäinen vai toinen
+     *
+     * @param kortinJarjestysNumero kertoo, monesko kortti on
+     *
+     * @return merkkijono, joka kertoo mitä tapahtui kun kortti käännettiin
      */
     public String kaannaKortti(int kortinJarjestysNumero) {
         if (onEnsimmainenKortti) {
@@ -97,6 +119,8 @@ public class Peli {
      * valittu kortti on korttitaulukossa
      * @param toisenKortinJarjestysNumero kertoo, monesko toiseksi valittu
      * kortti on korttitaulukossa
+     *
+     * @return true tai false riippuen siitä, ovatko kortit samoja
      */
     public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysNumero,
             int toisenKortinJarjestysNumero) {

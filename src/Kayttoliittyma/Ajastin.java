@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 /**
- * Luokka, joka hallitsee ajan kulumista
+ * Luokka hallitsee ajan kulumista
  *
  * @author karoliee
  */

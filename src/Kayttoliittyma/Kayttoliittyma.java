@@ -7,6 +7,7 @@ package Kayttoliittyma;
 import Logiikka.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Scanner;
 import javax.swing.*;
 
 /**
@@ -17,6 +18,7 @@ import javax.swing.*;
  */
 public class Kayttoliittyma extends JPanel implements ActionListener {
 
+    private static Scanner lukija = new Scanner(System.in);
     /**
      * Pelin ilmentymä eli muistipeli-luokka
      */
@@ -25,10 +27,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Taulukko, jonka alkiot ovat muistipelin kortit
      */
     public JButton[] kortit;
-//    /**
-//     * Pelilauta, missä peliä pelataan
-//     */
-//    JFrame pelilauta;
+    /**
+     * Pelilauta, missä peliä pelataan
+     */
+    JFrame pelilauta;
     /**
      * Nappi, jota painamalla pelin voi lopettaa
      */
@@ -38,9 +40,14 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JButton uudenPelinAloitusNappi;
     /**
-     * Säiliö, joka asettaa kortit pelilaudalle
+     * Nappi, jota painamalla voi aloittaa uuden pelin, johon tulee uusi määrä
+     * kortteja
      */
-    Container korttienSailio;
+    JButton uudenTasonValitsemisNappi;
+    /**
+     * Säiliö korteille, joka asetetaan pelilaudalle
+     */
+    Panel korttiPaneeli;
     /**
      * Merkkijono kertoo, mitä korttia käännettäessä tapahtui
      */
@@ -54,24 +61,42 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Konstruktori, jossa luodaan luokan oliot
      */
     public Kayttoliittyma() {
-        // korttien määrä myöhemmin riippuvaksi jostain muusta
-        kortit = new JButton[8];
         muistipeli = new Peli();
         ajastin = new Ajastin(this, 500);
+    }
+
+    /**
+     * Metodi, jossa kysytään pelaajalta, kuinka monta korttia peliin halutaan
+     */
+    public void kysyKorttienMaara() {
+        //tee tähän mieluummin ponnahdusikkunat, katso ohpen materiaali
+        System.out.println("Kuinka monta paria?");
+        int korttiParienMaara = lukija.nextInt();
+        setKorttienMaara(korttiParienMaara);
+    }
+
+    /**
+     * Metodi, jossa päätetään, kuinka monta korttia pelissä on
+     *
+     * @param korttiParienMaara korttiparien määrä
+     */
+    public void setKorttienMaara(int korttiParienMaara) {
+        kortit = new JButton[2 * korttiParienMaara];
     }
 
     /**
      * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
      */
     public void teePelilauta() {
-        JFrame pelilauta = new JFrame();
-        korttienSailio = pelilauta.getContentPane();
-        pelilauta.setSize(500, 400);
-        pelilauta.getContentPane().setLayout(new GridLayout(2, (kortit.length - 1) / 2));
-        teeMuutNapit();
-        asetaKortitPelilaudalle();
+        kysyKorttienMaara();
+        pelilauta = new JFrame();
+        pelilauta.setSize(500, 500);
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        teeKortit();
+        teeMuutNapit();
+        asetaKortitPelilaudalle();
+        asetaNapitPelilaudalle();
         pelilauta.setVisible(true);
     }
 
@@ -87,15 +112,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi palauttaa Peli-olion. Tämä on lähinnä testausta varten
-     *
-     * @return muistipeli-peli
-     */
-    public Peli getMuistipeli() {
-        return muistipeli;
-    }
-
-    /**
      * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
      * pelin
      */
@@ -104,6 +120,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         lopetusNappi.addActionListener(this);
         uudenPelinAloitusNappi = new JButton("Uusi peli");
         uudenPelinAloitusNappi.addActionListener(this);
+        uudenTasonValitsemisNappi = new JButton("Uusi taso");
+        uudenTasonValitsemisNappi.addActionListener(this);
 
     }
 
@@ -111,17 +129,32 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Metodi asettaa kortit pelilaudalle
      */
     public void asetaKortitPelilaudalle() {
-        //aseta täällä myös ehkä pelin aloittamis- ja lopettamisnapit laudalle? 
-        //tai tee se metodissa teePelilauta() ?
+        //täällä myös ehkä tilastot;löydetyt parit ja yritykset?
+        korttiPaneeli = new Panel();
+        korttiPaneeli.setLayout(new GridLayout(2, (kortit.length - 1) / 2));
         for (int i = 0; i < kortit.length; i++) {
-            korttienSailio.add(kortit[i]);
+            korttiPaneeli.add(kortit[i]);
         }
+        pelilauta.add(korttiPaneeli);
+
+    }
+
+    /**
+     * Metodi asettaa napit pelilaudalle
+     */
+    public void asetaNapitPelilaudalle() {
+        Panel nappiPaneeli = new Panel();
+        nappiPaneeli.setLayout(new GridLayout(1, 3));
+        nappiPaneeli.add(lopetusNappi);
+        nappiPaneeli.add(uudenPelinAloitusNappi);
+        nappiPaneeli.add(uudenTasonValitsemisNappi);
+        pelilauta.add(nappiPaneeli, BorderLayout.SOUTH);
     }
 
     /**
      * Metodi kuulee tapahtuman, ja kertoo peli-luokalle, mitä nappia painettiin
-     * ja kääntää kortin, tai lopettaa pelin tai aloittaa uuden pelin riippuen
-     * painetusta napista
+     * ja kääntää kortin tai lopettaa pelin tai aloittaa uuden pelin samalla tai
+     * uudella määrällä kortteja, riippuen painetusta napista
      *
      * @param e tapahtuma, joka tapahtuu
      */
@@ -138,8 +171,21 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         }
         if (e.getSource() == uudenPelinAloitusNappi) {
             muistipeli = new Peli();
+            muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
+            for (int i = 0; i < kortit.length; i++) {
+                kortit[i].setText("Muistipeli");
+                kortit[i].setVisible(true);
+            }
+
+        }
+        if (e.getSource() == uudenTasonValitsemisNappi) {
+            muistipeli = new Peli();
+            pelilauta.remove(korttiPaneeli);
+            kysyKorttienMaara();
             teeKortit();
             asetaKortitPelilaudalle();
+            pelilauta.setVisible(true);
+
         }
     }
 
@@ -185,5 +231,14 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         kortit[ensimmaisenKortinJarjestysNumero].setText("Muistipeli");
         kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
 
+    }
+
+    /**
+     * Metodi palauttaa Peli-olion. Tämä on lähinnä testausta varten
+     *
+     * @return muistipeli-peli
+     */
+    public Peli getMuistipeli() {
+        return muistipeli;
     }
 }

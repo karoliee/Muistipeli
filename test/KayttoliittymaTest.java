@@ -25,6 +25,7 @@ public class KayttoliittymaTest {
 
     @Test
     public void KaikillaKorteillaOnArvo() {
+        kayttis.setKorttienMaara(4);
         kayttis.teeKortit();
         assertEquals(8, kayttis.getMuistipeli().getArvojenMaara(), 0.001);
     }

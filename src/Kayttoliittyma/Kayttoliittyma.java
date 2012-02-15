@@ -71,23 +71,18 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public Kayttoliittyma() {
         muistipeli = new Peli();
         ajastin = new Ajastin(this, 500);
-        
+
     }
 
     /**
      * Metodi, jossa kysytään pelaajalta, kuinka monta korttia peliin halutaan
      */
     public void kysyKorttiParienMaara() {
-        //tee tähän mieluummin ponnahdusikkunat, katso ohpen materiaali
-        //vai jtextfield?
         int korttiParienMaara = -1;
+        korttiParienMaara = PonnahdusIkkuna.kysyLuku("Kuinka monta paria?");
         while (korttiParienMaara <= 0) {
-            System.out.println("Kuinka monta paria?");
-            korttiParienMaara = lukija.nextInt();
+            korttiParienMaara = PonnahdusIkkuna.kysyLuku("Kuinka monta paria?" + "\n" + "Ainakin 1");
         }
-        // korttiParienMaara = Pop.kysyInt("Kuinka monta paria?");
-        // while(korttiParienMaara <= 0) {
-        // korttiParienMaara = Pop.kysyInt("Kuinka monta paria?"+ "\n" + "Ainakin 1"); }
         setKorttienMaara(korttiParienMaara);
     }
 
@@ -151,7 +146,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         korttiPaneeli = new Panel();
         if (kortit.length <= 10) {
             korttiPaneeli.setLayout(new GridLayout(2, (kortit.length) / 2));
-        } else if (kortit.length <= 40 ){
+        } else if (kortit.length <= 40) {
             korttiPaneeli.setLayout(new GridLayout(4, (kortit.length) / 4));
         } else {
             korttiPaneeli.setLayout(new GridLayout(6, (kortit.length) / 6));

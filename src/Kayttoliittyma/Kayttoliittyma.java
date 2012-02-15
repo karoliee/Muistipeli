@@ -71,6 +71,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public Kayttoliittyma() {
         muistipeli = new Peli();
         ajastin = new Ajastin(this, 500);
+        
     }
 
     /**
@@ -206,7 +207,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < kortit.length; i++) {
             if (kortit[i] == e.getSource()) {
-                kortit[i].setText(muistipeli.kortinArvoMerkkiJonona(i));
+                kortit[i].setText(muistipeli.getKortinArvoMerkkiJonona(i));
                 tapahtuma = muistipeli.kaannaKortti(i);
                 ajastin.start();
             }

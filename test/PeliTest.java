@@ -85,7 +85,7 @@ public class PeliTest {
             korteillaEriArvot.add(i);
         }
         muistipeli.setKorttienArvot(korteillaEriArvot);
-        assertEquals(muistipeli.kortinArvoMerkkiJonona(1), "2");
+        assertEquals(muistipeli.getKortinArvoMerkkiJonona(1), "2");
     }
 
     @Test

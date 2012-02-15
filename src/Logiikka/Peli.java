@@ -141,7 +141,7 @@ public class Peli {
      * korttitaulukossa
      * @return kortin arvo merkkijonona
      */
-    public String kortinArvoMerkkiJonona(int kortinJarjestysNumero) {
+    public String getKortinArvoMerkkiJonona(int kortinJarjestysNumero) {
         return Integer.toString(korttienArvot.get(kortinJarjestysNumero));
     }
 

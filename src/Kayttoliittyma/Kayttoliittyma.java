@@ -45,6 +45,14 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JButton uudenTasonValitsemisNappi;
     /**
+     * Lappu, josta näkee löydettyjen korttiparien määrän
+     */
+    JLabel loydetytTulos;
+    /**
+     * Lappu, josta näkee vuorojen määrän
+     */
+    JLabel yrityksetTulos;
+    /**
      * Säiliö korteille, joka asetetaan pelilaudalle
      */
     Panel korttiPaneeli;
@@ -68,10 +76,17 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     /**
      * Metodi, jossa kysytään pelaajalta, kuinka monta korttia peliin halutaan
      */
-    public void kysyKorttienMaara() {
+    public void kysyKorttiParienMaara() {
         //tee tähän mieluummin ponnahdusikkunat, katso ohpen materiaali
-        System.out.println("Kuinka monta paria?");
-        int korttiParienMaara = lukija.nextInt();
+        //vai jtextfield?
+        int korttiParienMaara = -1;
+        while (korttiParienMaara <= 0) {
+            System.out.println("Kuinka monta paria?");
+            korttiParienMaara = lukija.nextInt();
+        }
+        // korttiParienMaara = Pop.kysyInt("Kuinka monta paria?");
+        // while(korttiParienMaara <= 0) {
+        // korttiParienMaara = Pop.kysyInt("Kuinka monta paria?"+ "\n" + "Ainakin 1"); }
         setKorttienMaara(korttiParienMaara);
     }
 
@@ -88,9 +103,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
      */
     public void teePelilauta() {
-        kysyKorttienMaara();
+        kysyKorttiParienMaara();
         pelilauta = new JFrame();
-        pelilauta.setSize(500, 500);
+        pelilauta.setSize(700, 500);
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         teeKortit();
@@ -113,7 +128,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
 
     /**
      * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
-     * pelin
+     * pelin, ja joista näkee tulokset
      */
     public void teeMuutNapit() {
         lopetusNappi = new JButton("Lopeta");
@@ -122,6 +137,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         uudenPelinAloitusNappi.addActionListener(this);
         uudenTasonValitsemisNappi = new JButton("Uusi taso");
         uudenTasonValitsemisNappi.addActionListener(this);
+        loydetytTulos = new JLabel("Löydetyt: ");
+        yrityksetTulos = new JLabel("Yritykset: ");
+
 
     }
 
@@ -129,9 +147,15 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Metodi asettaa kortit pelilaudalle
      */
     public void asetaKortitPelilaudalle() {
-        //täällä myös ehkä tilastot;löydetyt parit ja yritykset?
         korttiPaneeli = new Panel();
-        korttiPaneeli.setLayout(new GridLayout(2, (kortit.length - 1) / 2));
+        if (kortit.length <= 10) {
+            korttiPaneeli.setLayout(new GridLayout(2, (kortit.length) / 2));
+        } else if (kortit.length <= 40 ){
+            korttiPaneeli.setLayout(new GridLayout(4, (kortit.length) / 4));
+        } else {
+            korttiPaneeli.setLayout(new GridLayout(6, (kortit.length) / 6));
+        }
+
         for (int i = 0; i < kortit.length; i++) {
             korttiPaneeli.add(kortit[i]);
         }
@@ -144,11 +168,32 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void asetaNapitPelilaudalle() {
         Panel nappiPaneeli = new Panel();
-        nappiPaneeli.setLayout(new GridLayout(1, 3));
+        nappiPaneeli.setLayout(new GridLayout(5, 1));
         nappiPaneeli.add(lopetusNappi);
         nappiPaneeli.add(uudenPelinAloitusNappi);
         nappiPaneeli.add(uudenTasonValitsemisNappi);
-        pelilauta.add(nappiPaneeli, BorderLayout.SOUTH);
+        nappiPaneeli.add(loydetytTulos);
+        nappiPaneeli.add(yrityksetTulos);
+        pelilauta.add(nappiPaneeli, BorderLayout.WEST);
+    }
+
+    /**
+     * Metodi päivittää tulokset pelilaudalle
+     */
+    public void tarkastaTulokset() {
+        loydetytTulos.setText("Löydetyt: "
+                + muistipeli.getPelaaja().getLoydettyjenKorttiparienMaara());
+        yrityksetTulos.setText("Yritykset: " + muistipeli.getPelaaja().getYritystenMaara());
+
+    }
+
+    /**
+     * Metodi nollaa pelaajan tulokset pelilaudalla
+     */
+    public void nollaaTulokset() {
+        muistipeli.getPelaaja().loydettyjenKorttiparienMaaranNollaus();
+        muistipeli.getPelaaja().yritystenMaaranNollaus();
+        tarkastaTulokset();
     }
 
     /**
@@ -172,6 +217,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         if (e.getSource() == uudenPelinAloitusNappi) {
             muistipeli = new Peli();
             muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
+            nollaaTulokset();
             for (int i = 0; i < kortit.length; i++) {
                 kortit[i].setText("Muistipeli");
                 kortit[i].setVisible(true);
@@ -180,8 +226,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         }
         if (e.getSource() == uudenTasonValitsemisNappi) {
             muistipeli = new Peli();
+            nollaaTulokset();
             pelilauta.remove(korttiPaneeli);
-            kysyKorttienMaara();
+            kysyKorttiParienMaara();
             teeKortit();
             asetaKortitPelilaudalle();
             pelilauta.setVisible(true);
@@ -201,6 +248,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
                     muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
         }
+        tarkastaTulokset();
     }
 
     /**

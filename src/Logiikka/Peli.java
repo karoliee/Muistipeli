@@ -13,6 +13,7 @@ import javax.swing.*;
  * @author karoliee
  */
 public class Peli {
+    boolean kaksiKorttiaOnKaannettyna;
 
     /**
      * Lista korttien "kuvista", eli arvoista. Jokaista arvoa on siis kaksi
@@ -45,6 +46,7 @@ public class Peli {
         pelaaja = new Pelaaja("matti");
         onEnsimmainenKortti = true;
         ensimmaisenKortinJarjestysNumero = -1;
+        kaksiKorttiaOnKaannettyna = false;
     }
 
     /**
@@ -99,6 +101,7 @@ public class Peli {
             if (kortinJarjestysNumero == ensimmaisenKortinJarjestysNumero) {
                 return "Painoit samaa korttia!";
             } else {
+                kaksiKorttiaOnKaannettyna = true;
                 onEnsimmainenKortti = true;
                 pelaaja.yritystenMaaranKasvu();
                 toisenKortinJarjestysNumero = kortinJarjestysNumero;
@@ -111,6 +114,12 @@ public class Peli {
                 }
             }
         }
+    }
+    public boolean getKaksiKorttiaOnKaannettyna() {
+        return kaksiKorttiaOnKaannettyna;
+    }
+    public void setKaksiKorttiaOnKaannettyna(boolean onkoKaksiKorttiaKaannetty) {
+        kaksiKorttiaOnKaannettyna = onkoKaksiKorttiaKaannetty;
     }
 
     /**

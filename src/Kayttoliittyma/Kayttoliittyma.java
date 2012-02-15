@@ -70,7 +70,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public Kayttoliittyma() {
         muistipeli = new Peli();
-        ajastin = new Ajastin(this, 500);
+        ajastin = new Ajastin(this, 400);
 
     }
 
@@ -101,7 +101,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public void teePelilauta() {
         kysyKorttiParienMaara();
         pelilauta = new JFrame();
-        pelilauta.setSize(700, 500);
+        pelilauta.setSize(900, 500);
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         teeKortit();
@@ -200,11 +200,13 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * @param e tapahtuma, joka tapahtuu
      */
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < kortit.length; i++) {
-            if (kortit[i] == e.getSource()) {
-                kortit[i].setText(muistipeli.getKortinArvoMerkkiJonona(i));
-                tapahtuma = muistipeli.kaannaKortti(i);
-                ajastin.start();
+        if (!muistipeli.getKaksiKorttiaOnKaannettyna()) {
+            for (int i = 0; i < kortit.length; i++) {
+                if (kortit[i] == e.getSource()) {
+                    kortit[i].setText(muistipeli.getKortinArvoMerkkiJonona(i));
+                    tapahtuma = muistipeli.kaannaKortti(i);
+                    ajastin.start();
+                }
             }
         }
         if (e.getSource() == lopetusNappi) {
@@ -236,6 +238,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Metodi kertoo, mitä korteille tapahtuu kun aika on on kulunut ajastimesta
      */
     public void aikaOnKulunut() {
+        muistipeli.setKaksiKorttiaOnKaannettyna(false);
         if (tapahtuma.equals("Kortit olivat samoja")) {
             piilotaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
@@ -274,6 +277,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             int toisenKortinJarjestysNumero) {
         kortit[ensimmaisenKortinJarjestysNumero].setText("Muistipeli");
         kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
+
 
     }
 

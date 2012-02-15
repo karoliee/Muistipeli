@@ -18,7 +18,6 @@ import javax.swing.*;
  */
 public class Kayttoliittyma extends JPanel implements ActionListener {
 
-    private static Scanner lukija = new Scanner(System.in);
     /**
      * Pelin ilmentymä eli muistipeli-luokka
      */

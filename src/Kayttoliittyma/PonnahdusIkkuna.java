@@ -7,11 +7,15 @@ package Kayttoliittyma;
 import javax.swing.*;
 
 /**
- *
+ * Luokka tekee ponnahdusikkunoita, joissa kysytään pelaajalta kysymyksiä
  * @author karoliee
  */
 public class PonnahdusIkkuna {
-
+    /**
+     * Metodi 
+     *
+     * @return luku 
+     */
     public static int kysyLuku(String kysymys) {
         String tarjottuArvo = "";
         int luku = 0;

@@ -7,7 +7,7 @@ package Muistipeli;
 import Kayttoliittyma.Kayttoliittyma;
 
 /**
- * Luokka ohjaa muistipelin käyttämistä
+ * Luokka aloittaa uuden muistipelin
  *
  * @author karoliee
  */

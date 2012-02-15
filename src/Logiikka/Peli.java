@@ -13,8 +13,13 @@ import javax.swing.*;
  * @author karoliee
  */
 public class Peli {
-    boolean kaksiKorttiaOnKaannettyna;
 
+    /**
+     * Kertoo, onko pelilaudalla kaksi korttia vielä ylöspäin käännettynä
+     * odottamassa ajastimen ajan loppumista. Tällöin ei tietysti voi kääntää
+     * uutta korttia
+     */
+    boolean kaksiKorttiaOnKaannettyna;
     /**
      * Lista korttien "kuvista", eli arvoista. Jokaista arvoa on siis kaksi
      * kappaletta
@@ -86,11 +91,13 @@ public class Peli {
     }
 
     /**
-     * Metodi katsoo, onko käännetty kortti ensimmäinen vai toinen
+     * Metodi katsoo, onko käännetty kortti ensimmäinen vai toinen vai
+     * yritettiinkö kääntää samaa korttia, mikä on vielä käännettynä
+     * pelilaudalla
      *
      * @param kortinJarjestysNumero kertoo, monesko kortti on
      *
-     * @return merkkijono, joka kertoo mitä tapahtui kun kortti käännettiin
+     * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
      */
     public String kaannaKortti(int kortinJarjestysNumero) {
         if (onEnsimmainenKortti) {
@@ -115,9 +122,25 @@ public class Peli {
             }
         }
     }
+     /**
+     * Kertoo, onko pelilaudalla vielä kaksi korttia ylöspäin käännettynä
+     * odottamassa ajastimen ajan loppumista
+     * 
+     * @return true tai false sen mukaan, onko pelilaudalla kaksi korttia vielä
+     * käännettyinä
+     */
+
     public boolean getKaksiKorttiaOnKaannettyna() {
         return kaksiKorttiaOnKaannettyna;
     }
+     /**
+     * Metodi vaihtaa totuusarvoa muuttujalle, joka kertoo onko kaksi korttia
+     * vielä ylöspäin käännettynä pelilaudalla
+     * 
+     * @param onkoKaksiKorttiaKaannetty true tai false sen mukaan, onko 
+     * pelilaudalla kaksi korttia vielä ylöspäin käännettyinä
+     */
+
     public void setKaksiKorttiaOnKaannettyna(boolean onkoKaksiKorttiaKaannetty) {
         kaksiKorttiaOnKaannettyna = onkoKaksiKorttiaKaannetty;
     }

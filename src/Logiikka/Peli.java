@@ -43,7 +43,7 @@ public class Peli {
     int toisenKortinJarjestysNumero;
 
     /**
-     * Konstruktori luo luokan oliot
+     * Konstruktori luo luokan oliot ja asettaa muuttujille arvot
      */
     public Peli() {
 

@@ -10,10 +10,10 @@ import javax.swing.*;
  * Luokka tekee ponnahdusikkunoita, joissa kysytään pelaajalta kysymyksiä
  * @author karoliee
  */
-public class PonnahdusIkkuna {
+public class Ponnahdusikkuna {
     /**
-     * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä lukua, eli
-     * korttiparien määrää
+     * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä korttiparien
+     * määrää, eli kokonaislukua
      * 
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *
@@ -36,7 +36,7 @@ public class PonnahdusIkkuna {
     }
      /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä jotain, ja
-     * annetaan vastausvaihtoehtoina nappuloita, joista yhtä pitää painaa
+     * annetaan vastausvaihtoehtoina nappuloita, joista yhtä pitää painaa vastauksena
      * 
      * @param kysymys kysymys, johon käyttäjän pitää vastata
      * 

@@ -30,7 +30,7 @@ public class PelaajaTest {
 
     @Test
     public void pelaajanNimenVaihto() {
-        pelaaja.nimenVaihto("maija");
+        pelaaja.setPelaajanNimi("maija");
         assertEquals(pelaaja.getPelaajanNimi(), "maija");
     }
 

@@ -90,7 +90,7 @@ public class Pelaaja {
      * @param nimi pelaajan uusi nimi
      *
      */
-    public void nimenVaihto(String nimi) {
+    public void setPelaajanNimi(String nimi) {
         pelaajanNimi = nimi;
     }
 

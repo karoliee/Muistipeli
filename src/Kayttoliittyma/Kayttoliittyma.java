@@ -7,7 +7,6 @@ package Kayttoliittyma;
 import Logiikka.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Scanner;
 import javax.swing.*;
 
 /**
@@ -44,11 +43,11 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JButton uudenTasonValitsemisNappi;
     /**
-     * Lappu, josta näkee löydettyjen korttiparien määrän
+     * Taulu, josta näkee löydettyjen korttiparien määrän
      */
     JLabel loydetytTulos;
     /**
-     * Lappu, josta näkee vuorojen määrän
+     * Taulu, josta näkee vuorojen määrän
      */
     JLabel yrityksetTulos;
     /**
@@ -78,9 +77,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void kysyKorttiParienMaara() {
         int korttiParienMaara = -1;
-        korttiParienMaara = PonnahdusIkkuna.kysyLuku("Kuinka monta paria?");
+        korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?");
         while (korttiParienMaara <= 0) {
-            korttiParienMaara = PonnahdusIkkuna.kysyLuku("Kuinka monta paria?" + "\n" + "Ainakin 1");
+            korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?" + "\n" + "Ainakin 1");
         }
         setKorttienMaara(korttiParienMaara);
     }
@@ -123,7 +122,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
 
     /**
      * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
-     * pelin, ja joista näkee tulokset
+     * pelin, ja taulut joista näkee tulokset
      */
     public void teeMuutNapit() {
         lopetusNappi = new JButton("Lopeta");
@@ -147,8 +146,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             korttiPaneeli.setLayout(new GridLayout(2, (kortit.length) / 2));
         } else if (kortit.length <= 40) {
             korttiPaneeli.setLayout(new GridLayout(4, (kortit.length) / 4));
-        } else {
+        } else if (kortit.length <= 90) {
             korttiPaneeli.setLayout(new GridLayout(6, (kortit.length) / 6));
+        } else {
+            korttiPaneeli.setLayout(new GridLayout(8, (kortit.length) / 8));
         }
 
         for (int i = 0; i < kortit.length; i++) {
@@ -192,9 +193,11 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi kuulee tapahtuman, ja kertoo peli-luokalle, mitä nappia painettiin
-     * ja kääntää kortin tai lopettaa pelin tai aloittaa uuden pelin samalla tai
-     * uudella määrällä kortteja, riippuen painetusta napista
+     * Metodi kuulee tapahtuman eli napin painamisen, ja kertoo peli-luokalle, mitä 
+     * nappia painettiin tai lopettaa pelin tai aloittaa uuden pelin
+     * samalla tai uudella määrällä kortteja, riippuen painetusta napista. Metodi
+     * ei tietysti huomioi uuden kortin kääntämistä, jos laudalla on vielä kaksi
+     * korttia ylöspäin käännettynä odottamassa ajastimen ajan kulumista
      *
      * @param e tapahtuma, joka tapahtuu
      */
@@ -204,7 +207,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
                 if (kortit[i] == e.getSource()) {
                     kortit[i].setText(muistipeli.getKortinArvoMerkkiJonona(i));
                     tapahtuma = muistipeli.kaannaKortti(i);
-                    ajastin.start();
+                    if (tapahtuma.equals("Kortit olivat samoja")
+                            || tapahtuma.equals("Kortit eivät olleet samoja")) {
+                        ajastin.start();
+                    }
                 }
             }
         }
@@ -237,7 +243,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Metodi kertoo, mitä korteille tapahtuu kun aika on on kulunut ajastimesta
      */
     public void aikaOnKulunut() {
-        muistipeli.setKaksiKorttiaOnKaannettyna(false);
         if (tapahtuma.equals("Kortit olivat samoja")) {
             piilotaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
@@ -246,6 +251,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
                     muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
         }
+        muistipeli.setKaksiKorttiaOnKaannettyna(false);
         tarkastaTulokset();
     }
 

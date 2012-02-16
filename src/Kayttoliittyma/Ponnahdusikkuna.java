@@ -8,13 +8,15 @@ import javax.swing.*;
 
 /**
  * Luokka tekee ponnahdusikkunoita, joissa kysytään pelaajalta kysymyksiä
+ *
  * @author karoliee
  */
 public class Ponnahdusikkuna {
+
     /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä korttiparien
      * määrää, eli kokonaislukua
-     * 
+     *
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *
      * @return luku kokonaisluku, joka on käyttäjän antama vastaus kysymykseen
@@ -34,19 +36,19 @@ public class Ponnahdusikkuna {
 
         return luku;
     }
-     /**
+
+    /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä jotain, ja
-     * annetaan vastausvaihtoehtoina nappuloita, joista yhtä pitää painaa vastauksena
-     * 
+     * annetaan vastausvaihtoehtoina nappuloita, joista yhtä pitää painaa
+     * vastauksena
+     *
      * @param kysymys kysymys, johon käyttäjän pitää vastata
-     * 
+     *
      * @param valinnat valinnat, jotka näytetään nappuloina, joista käyttäjän
      * pitää valita yksi, joka on hänen vastauksensa kysymykseen
      *
-     * @return nappulan indeksi, eli tieto siitä, monettako nappulaa
-     * painettiin
+     * @return nappulan indeksi, eli tieto siitä, monettako nappulaa painettiin
      */
-
     public static int valitseNappula(String kysymys, String... valinnat) {
         return JOptionPane.showOptionDialog(null,
                 kysymys,

@@ -122,25 +122,25 @@ public class Peli {
             }
         }
     }
-     /**
+
+    /**
      * Kertoo, onko pelilaudalla vielä kaksi korttia ylöspäin käännettynä
      * odottamassa ajastimen ajan loppumista
-     * 
+     *
      * @return true tai false sen mukaan, onko pelilaudalla kaksi korttia vielä
      * käännettyinä
      */
-
     public boolean getKaksiKorttiaOnKaannettyna() {
         return kaksiKorttiaOnKaannettyna;
     }
-     /**
+
+    /**
      * Metodi vaihtaa totuusarvoa muuttujalle, joka kertoo onko kaksi korttia
      * vielä ylöspäin käännettynä pelilaudalla
-     * 
-     * @param onkoKaksiKorttiaKaannetty true tai false sen mukaan, onko 
+     *
+     * @param onkoKaksiKorttiaKaannetty true tai false sen mukaan, onko
      * pelilaudalla kaksi korttia vielä ylöspäin käännettyinä
      */
-
     public void setKaksiKorttiaOnKaannettyna(boolean onkoKaksiKorttiaKaannetty) {
         kaksiKorttiaOnKaannettyna = onkoKaksiKorttiaKaannetty;
     }

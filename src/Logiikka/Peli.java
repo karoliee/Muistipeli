@@ -124,28 +124,6 @@ public class Peli {
     }
 
     /**
-     * Kertoo, onko pelilaudalla vielä kaksi korttia ylöspäin käännettynä
-     * odottamassa ajastimen ajan loppumista
-     *
-     * @return true tai false sen mukaan, onko pelilaudalla kaksi korttia vielä
-     * käännettyinä
-     */
-    public boolean getKaksiKorttiaOnKaannettyna() {
-        return kaksiKorttiaOnKaannettyna;
-    }
-
-    /**
-     * Metodi vaihtaa totuusarvoa muuttujalle, joka kertoo onko kaksi korttia
-     * vielä ylöspäin käännettynä pelilaudalla
-     *
-     * @param onkoKaksiKorttiaKaannetty true tai false sen mukaan, onko
-     * pelilaudalla kaksi korttia vielä ylöspäin käännettyinä
-     */
-    public void setKaksiKorttiaOnKaannettyna(boolean onkoKaksiKorttiaKaannetty) {
-        kaksiKorttiaOnKaannettyna = onkoKaksiKorttiaKaannetty;
-    }
-
-    /**
      * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
      * arvot samoja
      *
@@ -167,14 +145,25 @@ public class Peli {
     }
 
     /**
-     * Metodi palauttaa valitun kortin arvon merkkijonona
+     * Metodi vaihtaa totuusarvoa muuttujalle, joka kertoo onko kaksi korttia
+     * vielä ylöspäin käännettynä pelilaudalla
      *
-     * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
-     * korttitaulukossa
-     * @return kortin arvo merkkijonona
+     * @param onkoKaksiKorttiaKaannetty true tai false sen mukaan, onko
+     * pelilaudalla kaksi korttia vielä ylöspäin käännettyinä
      */
-    public String getKortinArvoMerkkiJonona(int kortinJarjestysNumero) {
-        return Integer.toString(korttienArvot.get(kortinJarjestysNumero));
+    public void setKaksiKorttiaOnKaannettyna(boolean onkoKaksiKorttiaKaannetty) {
+        kaksiKorttiaOnKaannettyna = onkoKaksiKorttiaKaannetty;
+    }
+
+    /**
+     * Kertoo, onko pelilaudalla vielä kaksi korttia ylöspäin käännettynä
+     * odottamassa ajastimen ajan loppumista
+     *
+     * @return true tai false sen mukaan, onko pelilaudalla kaksi korttia vielä
+     * käännettyinä
+     */
+    public boolean getKaksiKorttiaOnKaannettyna() {
+        return kaksiKorttiaOnKaannettyna;
     }
 
     /**
@@ -187,12 +176,14 @@ public class Peli {
     }
 
     /**
-     * Metodi palauttaa pelin pelaajan
+     * Metodi palauttaa valitun kortin arvon merkkijonona
      *
-     * @return pelin pelaaja
+     * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
+     * korttitaulukossa
+     * @return kortin arvo merkkijonona
      */
-    public Pelaaja getPelaaja() {
-        return pelaaja;
+    public String getKortinArvoMerkkiJonona(int kortinJarjestysNumero) {
+        return Integer.toString(korttienArvot.get(kortinJarjestysNumero));
     }
 
     /**
@@ -211,5 +202,14 @@ public class Peli {
      */
     public int getToisenKortinJarjestysNumero() {
         return toisenKortinJarjestysNumero;
+    }
+
+    /**
+     * Metodi palauttaa pelin pelaajan
+     *
+     * @return pelin pelaaja
+     */
+    public Pelaaja getPelaaja() {
+        return pelaaja;
     }
 }

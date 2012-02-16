@@ -73,11 +73,26 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
+     * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
+     */
+    public void teePelilauta() {
+        kysyKorttiParienMaara();
+        pelilauta = new JFrame();
+        pelilauta.setSize(900, 500);
+        pelilauta.setTitle("Muistipeli");
+        pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        teeKortit();
+        teeMuutNapit();
+        asetaKortitPelilaudalle();
+        asetaNapitPelilaudalle();
+        pelilauta.setVisible(true);
+    }
+
+    /**
      * Metodi, jossa kysytään pelaajalta, kuinka monta korttia peliin halutaan
      */
     public void kysyKorttiParienMaara() {
-        int korttiParienMaara = -1;
-        korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?");
+        int korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?");
         while (korttiParienMaara < 1 || korttiParienMaara > 180) {
             korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?"
                     + "\n" + "Ainakin 1, mutta enintään 180");
@@ -92,22 +107,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void setKorttienMaara(int korttiParienMaara) {
         kortit = new JButton[2 * korttiParienMaara];
-    }
-
-    /**
-     * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
-     */
-    public void teePelilauta() {
-        kysyKorttiParienMaara();
-        pelilauta = new JFrame();
-        pelilauta.setSize(900, 500);
-        pelilauta.setTitle("Muistipeli");
-        pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        teeKortit();
-        teeMuutNapit();
-        asetaKortitPelilaudalle();
-        asetaNapitPelilaudalle();
-        pelilauta.setVisible(true);
     }
 
     /**

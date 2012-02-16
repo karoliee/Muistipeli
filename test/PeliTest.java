@@ -23,6 +23,20 @@ public class PeliTest {
     }
 
     @Test
+    public void kaksiKorttiaOnKaannettynaSaadaanVaihdettua() {
+        muistipeli.setKaksiKorttiaOnKaannettyna(true);
+        assertTrue(muistipeli.getKaksiKorttiaOnKaannettyna());
+    }
+
+    @Test
+    public void kahdenKortinKaannonJalkeenKaksiKorttiaOnKaannettyna() {
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
+        muistipeli.kaannaKortti(1);
+        muistipeli.kaannaKortti(2);
+        assertTrue(muistipeli.getKaksiKorttiaOnKaannettyna());
+    }
+
+    @Test
     public void listaSekoittaaItsensa() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(11);
     }

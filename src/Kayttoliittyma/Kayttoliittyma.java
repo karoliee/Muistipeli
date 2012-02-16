@@ -78,8 +78,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public void kysyKorttiParienMaara() {
         int korttiParienMaara = -1;
         korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?");
-        while (korttiParienMaara <= 0) {
-            korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?" + "\n" + "Ainakin 1");
+        while (korttiParienMaara < 1 || korttiParienMaara > 180) {
+            korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?" +
+                    "\n" + "Ainakin 1, mutta enintään 180");
         }
         setKorttienMaara(korttiParienMaara);
     }
@@ -148,8 +149,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             korttiPaneeli.setLayout(new GridLayout(4, (kortit.length) / 4));
         } else if (kortit.length <= 90) {
             korttiPaneeli.setLayout(new GridLayout(6, (kortit.length) / 6));
-        } else {
+        } else  if (kortit.length <= 120 ) {
             korttiPaneeli.setLayout(new GridLayout(8, (kortit.length) / 8));
+        } else {
+            korttiPaneeli.setLayout(new GridLayout(12, (kortit.length) / 12));
         }
 
         for (int i = 0; i < kortit.length; i++) {

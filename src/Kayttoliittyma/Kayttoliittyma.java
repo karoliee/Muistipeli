@@ -75,6 +75,14 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JLabel nimiPelaaja2;
     /**
+     * Ensimmäisen pelaajan nimi kaksinpelissä
+     */
+    String ensimmaisenPelaajanNimi;
+    /**
+     * Toisen pelaajan nimi kaksinpelissä
+     */
+    String toisenPelaajanNimi;
+    /**
      * Säiliö korteille, joka asetetaan pelilaudalle
      */
     Panel korttiPaneeli;
@@ -118,6 +126,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         asetaKortitPelilaudalle();
         asetaNapitPelilaudalle();
         pelilauta.setVisible(true);
+        vaihdaVuoroa();
     }
 
     /**
@@ -141,13 +150,15 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             int vastauksenIndeksi = Ponnahdusikkuna.valitseNappula(
                     "Haluatko nimetä pelaajat?", "Kyllä", "Ei");
             if (vastauksenIndeksi == 0) {
-                muistipeli.getPelaaja1().setPelaajanNimi(Ponnahdusikkuna.kysySana("Ensimmäisen pelaajan nimi?"));
-                muistipeli.getPelaaja2().setPelaajanNimi(Ponnahdusikkuna.kysySana("Toisen pelaajan nimi"));
+                ensimmaisenPelaajanNimi = Ponnahdusikkuna.kysySana("Ensimmäisen pelaajan nimi?");
+                toisenPelaajanNimi = Ponnahdusikkuna.kysySana("Toisen pelaajan nimi");
             } else {
-                muistipeli.getPelaaja1().setPelaajanNimi("P1");
-                muistipeli.getPelaaja2().setPelaajanNimi("P2");
+                ensimmaisenPelaajanNimi = "P1";
+                toisenPelaajanNimi = "P2";
 
             }
+            muistipeli.getPelaaja1().setPelaajanNimi(ensimmaisenPelaajanNimi);
+            muistipeli.getPelaaja2().setPelaajanNimi(toisenPelaajanNimi);
 
         }
 
@@ -209,6 +220,21 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             yrityksetTulos = new JLabel("Yritykset: ");
         }
 
+    }
+
+    /**
+     * Metodi asettaa pelin otsikoksi tiedon siitä, kumman pelaajan vuoro on
+     * kaksinpelissä
+     */
+    public void vaihdaVuoroa() {
+        if (pelataanKaksinpelia) {
+            if (muistipeli.getOnkoEnsimmaisenPelaajanVuoro()) {
+                pelilauta.setTitle("Muistipeli - pelaajan " + ensimmaisenPelaajanNimi + " vuoro");
+            } else {
+                pelilauta.setTitle("Muistipeli - pelaajan " + toisenPelaajanNimi + " vuoro");
+            }
+            pelilauta.setVisible(true);
+        }
     }
 
     /**
@@ -324,6 +350,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             muistipeli = new Peli();
             if (pelataanKaksinpelia) {
                 muistipeli.setPelaaja2("");
+                vaihdaVuoroa();
             }
             muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
             nollaaTulokset();
@@ -337,6 +364,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             muistipeli = new Peli();
             if (pelataanKaksinpelia) {
                 muistipeli.setPelaaja2("");
+                vaihdaVuoroa();
             }
             nollaaTulokset();
             pelilauta.remove(korttiPaneeli);
@@ -362,6 +390,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         }
         muistipeli.setKaksiKorttiaOnKaannettyna(false);
         tarkastaTulokset();
+        vaihdaVuoroa();
     }
 
     /**

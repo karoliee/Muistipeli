@@ -272,7 +272,7 @@ public class Peli {
      *
      * @return true tai false riippuen siitä, onko ensimmäisen pelaajan vuoro
      */
-    public boolean getonkoEnsimmaisenPelaajanVuoro() {
+    public boolean getOnkoEnsimmaisenPelaajanVuoro() {
         return ensimmaisenPelaajanVuoro;
     }
 }

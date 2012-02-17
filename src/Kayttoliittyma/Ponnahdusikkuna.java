@@ -12,6 +12,16 @@ import javax.swing.*;
  * @author karoliee
  */
 public class Ponnahdusikkuna {
+    /**
+     * Metodi tekee ponnahdusikkunan, jossa kysytään hänen nimeensä
+     *
+     * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
+     *
+     * @return ikkunan, jossa kysytään kysymys, joka palauttaa sanan, joka ikkunaan kirjoitetaan
+     */
+    public static String kysySana(String kysymys) {
+    return JOptionPane.showInputDialog(kysymys);  
+  }
 
     /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä korttiparien
@@ -47,7 +57,8 @@ public class Ponnahdusikkuna {
      * @param valinnat valinnat, jotka näytetään nappuloina, joista käyttäjän
      * pitää valita yksi, joka on hänen vastauksensa kysymykseen
      *
-     * @return nappulan indeksi, eli tieto siitä, monettako nappulaa painettiin
+     * @return ikkuna, jossa on kysymys ja vaihtoehdot, ja joka palauttaa 
+     * nappulan indeksin, eli tiedon siitä, monettako nappulaa painettiin
      */
     public static int valitseNappula(String kysymys, String... valinnat) {
         return JOptionPane.showOptionDialog(null,

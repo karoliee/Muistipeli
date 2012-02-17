@@ -59,7 +59,7 @@ public class Peli {
         onEnsimmainenKortti = true;
         ensimmaisenKortinJarjestysNumero = -1;
         kaksiKorttiaOnKaannettyna = false;
-        pelaaja1 = new Pelaaja("pelaaja1");
+        pelaaja1 = new Pelaaja("");
         ensimmaisenPelaajanVuoro = true;
     }
 

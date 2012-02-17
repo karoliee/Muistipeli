@@ -107,7 +107,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void teePelilauta() {
         kysyPelaajienLukumaara();
-        kysyPelaajienNimet();
+        kysyPelaajienNimetKaksinpelissa();
         kysyKorttiParienMaara();
         pelilauta = new JFrame();
         pelilauta.setSize(900, 500);
@@ -139,7 +139,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * uusi peli-luokka, jossa pelaajat luodaan, joten heidän nimensä pitäisi
      * muuten kysyä aina uudestaan
      */
-    public void kysyPelaajienNimet() {
+    public void kysyPelaajienNimetKaksinpelissa() {
         if (pelataanKaksinpelia) {
             int vastauksenIndeksi = Ponnahdusikkuna.valitseNappula(
                     "Haluatko nimetä pelaajat?", "Kyllä", "Ei");

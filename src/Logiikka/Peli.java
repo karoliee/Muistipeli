@@ -28,7 +28,11 @@ public class Peli {
     /**
      * Olio, joka pelaa peliä, eli pelaajan ilmentymä
      */
-    Pelaaja pelaaja;
+    Pelaaja pelaaja1;
+    /**
+     * Mahdollinen toinen olio, joka pelaa peliä, eli pelaajan ilmentymä
+     */
+    Pelaaja pelaaja2;
     /**
      * Kertoo, onko käännetty kortti ensimmäinen käännetty vai toinen
      */
@@ -41,6 +45,10 @@ public class Peli {
      * Kertoo toiseksi käännetyn kortin järjestysnumeron
      */
     int toisenKortinJarjestysNumero;
+    /**
+     * Pitää kirjaa siitä, kumman pelaajan vuoro on kaksinpelissä
+     */
+    boolean ensimmaisenPelaajanVuoro;
 
     /**
      * Konstruktori luo luokan oliot ja asettaa muuttujille arvot
@@ -48,10 +56,11 @@ public class Peli {
     public Peli() {
 
         korttienArvot = new ArrayList<Integer>();
-        pelaaja = new Pelaaja("matti");
         onEnsimmainenKortti = true;
         ensimmaisenKortinJarjestysNumero = -1;
         kaksiKorttiaOnKaannettyna = false;
+        pelaaja1 = new Pelaaja("pelaaja1");
+        ensimmaisenPelaajanVuoro = true;
     }
 
     /**
@@ -96,10 +105,11 @@ public class Peli {
      * pelilaudalla
      *
      * @param kortinJarjestysNumero kertoo, monesko kortti on
+     * @param pelataanKaksinpelia kertoo, pelataanko kaksin- vai yksinpeliä
      *
      * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
      */
-    public String kaannaKortti(int kortinJarjestysNumero) {
+    public String kaannaKortti(int kortinJarjestysNumero, boolean pelataanKaksinpelia) {
         if (onEnsimmainenKortti) {
             ensimmaisenKortinJarjestysNumero = kortinJarjestysNumero;
             onEnsimmainenKortti = false;
@@ -110,17 +120,44 @@ public class Peli {
             } else {
                 kaksiKorttiaOnKaannettyna = true;
                 onEnsimmainenKortti = true;
-                pelaaja.yritystenMaaranKasvu();
                 toisenKortinJarjestysNumero = kortinJarjestysNumero;
-                if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
-                        kortinJarjestysNumero)) {
-                    pelaaja.loydettyjenKorttiparienMaaranKasvu();
-                    return "Kortit olivat samoja";
+                if (!pelataanKaksinpelia) {
+                    return pelaajaPelaaPelia(pelaaja1, kortinJarjestysNumero);
                 } else {
-                    return "Kortit eivät olleet samoja";
+                    if (ensimmaisenPelaajanVuoro) {
+                        ensimmaisenPelaajanVuoro = false;
+                        return pelaajaPelaaPelia(pelaaja1, kortinJarjestysNumero);
+
+                    } else {
+                        ensimmaisenPelaajanVuoro = true;
+                        return pelaajaPelaaPelia(pelaaja2, kortinJarjestysNumero);
+                    }
                 }
             }
         }
+
+    }
+
+    /**
+     * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
+     * arvot samoja
+     *
+     * @param pelaaja pelaaja, joka pelaa tällä hetkellä peliä
+     * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
+     * korttitaulukossa
+     *
+     * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
+     */
+    public String pelaajaPelaaPelia(Pelaaja pelaaja, int kortinJarjestysNumero) {
+        pelaaja.yritystenMaaranKasvu();
+        if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
+                kortinJarjestysNumero)) {
+            pelaaja.loydettyjenKorttiparienMaaranKasvu();
+            return "Kortit olivat samoja";
+        } else {
+            return "Kortit eivät olleet samoja";
+        }
+
     }
 
     /**
@@ -205,11 +242,29 @@ public class Peli {
     }
 
     /**
-     * Metodi palauttaa pelin pelaajan
+     * Metodi palauttaa pelin ensimmäisen pelaajan
      *
-     * @return pelin pelaaja
+     * @return pelin ensimmäinen pelaaja
      */
-    public Pelaaja getPelaaja() {
-        return pelaaja;
+    public Pelaaja getPelaaja1() {
+        return pelaaja1;
+    }
+
+    /**
+     * Metodi luo pelille toisen pelaajan
+     *
+     * @param nimi pelaajan nimi
+     */
+    public void setPelaaja2(String nimi) {
+        pelaaja2 = new Pelaaja(nimi);
+    }
+
+    /**
+     * Metodi palauttaa pelin toisen pelaajan
+     *
+     * @return pelin toinen pelaaja
+     */
+    public Pelaaja getPelaaja2() {
+        return pelaaja2;
     }
 }

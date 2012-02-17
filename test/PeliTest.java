@@ -31,8 +31,8 @@ public class PeliTest {
     @Test
     public void kahdenKortinKaannonJalkeenKaksiKorttiaOnKaannettyna() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
-        muistipeli.kaannaKortti(1);
-        muistipeli.kaannaKortti(2);
+        muistipeli.kaannaKortti(1, false);
+        muistipeli.kaannaKortti(2, false);
         assertTrue(muistipeli.getKaksiKorttiaOnKaannettyna());
     }
 
@@ -71,14 +71,14 @@ public class PeliTest {
 
     @Test
     public void korttiOnEnsimmainenKaannetty() {
-        assertEquals(muistipeli.kaannaKortti(6), "Oli ensimmäinen kortti");
+        assertEquals(muistipeli.kaannaKortti(6, false), "Oli ensimmäinen kortti");
 
     }
 
     @Test
     public void korttiaPainettiinKaksiKertaa() {
-        muistipeli.kaannaKortti(2);
-        assertEquals(muistipeli.kaannaKortti(2), "Painoit samaa korttia!");
+        muistipeli.kaannaKortti(2, false);
+        assertEquals(muistipeli.kaannaKortti(2, false), "Painoit samaa korttia!");
 
     }
 
@@ -104,7 +104,7 @@ public class PeliTest {
 
     @Test
     public void EnsimmaiseksiKaannetyllaKortillaKortillaOnOikeaJarjestysNumero() {
-        muistipeli.kaannaKortti(2);
+        muistipeli.kaannaKortti(2, false);
         assertEquals(muistipeli.getEnsimmaisenKortinJarjestysNumero(), 2);
 
     }
@@ -116,8 +116,8 @@ public class PeliTest {
             korteillaEriArvot.add(i);
         }
         muistipeli.setKorttienArvot(korteillaEriArvot);
-        muistipeli.kaannaKortti(1);
-        muistipeli.kaannaKortti(2);
+        muistipeli.kaannaKortti(1, false);
+        muistipeli.kaannaKortti(2, false);
         assertEquals(muistipeli.getToisenKortinJarjestysNumero(), 2);
 
     }
@@ -129,8 +129,8 @@ public class PeliTest {
             korteillaSamatArvot.add(6);
         }
         muistipeli.setKorttienArvot(korteillaSamatArvot);
-        muistipeli.kaannaKortti(3);
-        assertEquals(muistipeli.kaannaKortti(5), "Kortit olivat samoja");
+        muistipeli.kaannaKortti(3, false);
+        assertEquals(muistipeli.kaannaKortti(5, false), "Kortit olivat samoja");
 
     }
 }

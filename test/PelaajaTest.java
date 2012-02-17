@@ -20,12 +20,12 @@ public class PelaajaTest {
     @Before
     public void setUp() {
         muistipeli = new Peli();
-        pelaaja = muistipeli.getPelaaja();
+        pelaaja = muistipeli.getPelaaja1();
     }
 
     @Test
     public void konstruktoriAntaaOikeanNimen() {
-        assertEquals(pelaaja.getPelaajanNimi(), "matti");
+        assertEquals(pelaaja.getPelaajanNimi(), "pelaaja1");
     }
 
     @Test

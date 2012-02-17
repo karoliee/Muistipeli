@@ -267,4 +267,12 @@ public class Peli {
     public Pelaaja getPelaaja2() {
         return pelaaja2;
     }
+    /**
+     * Metodi palauttaa tiedon siitä, onko ensimmäisen vai toisen pelaajan vuoro kaksinpelissä
+     *
+     * @return true tai false riippuen siitä, onko ensimmäisen pelaajan vuoro
+     */
+    public boolean getonkoEnsimmaisenPelaajanVuoro() {
+        return ensimmaisenPelaajanVuoro;
+    }
 }

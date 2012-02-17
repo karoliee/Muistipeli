@@ -67,13 +67,13 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JLabel yrityksetPelaaja2;
     /**
-     * Nimi ensimmäiselle pelaajalle kaksinpelissä
+     * Taulu, josta näkee ensimmäisen pelaajan nimen
      */
-    String ensimmaisenPelaajanNimi;
+    JLabel nimiPelaaja1;
     /**
-     * Nimi toiselle pelaajalle kaksinpelissä
+     * Taulu, josta näkee toisen pelaajan nimen
      */
-    String toisenPelaajanNimi;
+    JLabel nimiPelaaja2;
     /**
      * Säiliö korteille, joka asetetaan pelilaudalle
      */
@@ -134,37 +134,23 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi, jossa kysytään pelaajalta, haluaako hän nimetä pelaajat. Nimet
-     * pitää tallentaa tähän luokkaan, sillä joka kierroksen välissä tehdään
-     * uusi peli-luokka, jossa pelaajat luodaan, joten heidän nimensä pitäisi
-     * muuten kysyä aina uudestaan
+     * Metodi, jossa kysytään pelaajalta, haluaako hän nimetä pelaajat
      */
     public void kysyPelaajienNimetKaksinpelissa() {
         if (pelataanKaksinpelia) {
             int vastauksenIndeksi = Ponnahdusikkuna.valitseNappula(
                     "Haluatko nimetä pelaajat?", "Kyllä", "Ei");
             if (vastauksenIndeksi == 0) {
-                ensimmaisenPelaajanNimi = Ponnahdusikkuna.kysySana("Ensimmäisen pelaajan nimi?");
-                toisenPelaajanNimi = Ponnahdusikkuna.kysySana("Toisen pelaajan nimi");
-                muistipeli.getPelaaja1().setPelaajanNimi(ensimmaisenPelaajanNimi);
-                muistipeli.getPelaaja2().setPelaajanNimi(toisenPelaajanNimi);
+                muistipeli.getPelaaja1().setPelaajanNimi(Ponnahdusikkuna.kysySana("Ensimmäisen pelaajan nimi?"));
+                muistipeli.getPelaaja2().setPelaajanNimi(Ponnahdusikkuna.kysySana("Toisen pelaajan nimi"));
             } else {
-                ensimmaisenPelaajanNimi = "P1";
-                toisenPelaajanNimi = "P2";
+                muistipeli.getPelaaja1().setPelaajanNimi("P1");
+                muistipeli.getPelaaja2().setPelaajanNimi("P2");
 
             }
-            setPelaajienNimetKaksinpelissa();
 
         }
 
-    }
-
-    /**
-     * Metodi, asettaa pelaajille nimet kaksinpelissä
-     */
-    public void setPelaajienNimetKaksinpelissa() {
-        muistipeli.getPelaaja1().setPelaajanNimi(ensimmaisenPelaajanNimi);
-        muistipeli.getPelaaja2().setPelaajanNimi(toisenPelaajanNimi);
     }
 
     /**
@@ -211,10 +197,12 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         uudenTasonValitsemisNappi = new JButton("Uusi taso");
         uudenTasonValitsemisNappi.addActionListener(this);
         if (pelataanKaksinpelia) {
-            loydetytPelaaja1 = new JLabel(muistipeli.getPelaaja1().getPelaajanNimi() + " löydetyt: ");
-            loydetytPelaaja2 = new JLabel(muistipeli.getPelaaja2().getPelaajanNimi() + " löydetyt: ");
-            yrityksetPelaaja1 = new JLabel(muistipeli.getPelaaja1().getPelaajanNimi() + " yritykset: ");
-            yrityksetPelaaja2 = new JLabel(muistipeli.getPelaaja2().getPelaajanNimi() + " yritykset:");
+            nimiPelaaja1 = new JLabel(muistipeli.getPelaaja1().getPelaajanNimi());
+            nimiPelaaja2 = new JLabel(muistipeli.getPelaaja2().getPelaajanNimi());
+            loydetytPelaaja1 = new JLabel("löydetyt: ");
+            loydetytPelaaja2 = new JLabel("löydetyt: ");
+            yrityksetPelaaja1 = new JLabel("yritykset: ");
+            yrityksetPelaaja2 = new JLabel("yritykset:");
 
         } else {
             loydetytTulos = new JLabel("Löydetyt: ");
@@ -253,7 +241,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     public void asetaNapitPelilaudalle() {
         Panel nappiPaneeli = new Panel();
         if (pelataanKaksinpelia) {
-            nappiPaneeli.setLayout(new GridLayout(7, 1));
+            nappiPaneeli.setLayout(new GridLayout(9, 1));
         } else {
             nappiPaneeli.setLayout(new GridLayout(5, 1));
         }
@@ -261,8 +249,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         nappiPaneeli.add(uudenPelinAloitusNappi);
         nappiPaneeli.add(uudenTasonValitsemisNappi);
         if (pelataanKaksinpelia) {
+            nappiPaneeli.add(nimiPelaaja1);
             nappiPaneeli.add(loydetytPelaaja1);
             nappiPaneeli.add(yrityksetPelaaja1);
+            nappiPaneeli.add(nimiPelaaja2);
             nappiPaneeli.add(loydetytPelaaja2);
             nappiPaneeli.add(yrityksetPelaaja2);
         } else {
@@ -277,14 +267,12 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void tarkastaTulokset() {
         if (pelataanKaksinpelia) {
-            loydetytPelaaja1.setText(muistipeli.getPelaaja1().getPelaajanNimi() + " löydetyt: "
+            loydetytPelaaja1.setText("löydetyt: "
                     + muistipeli.getPelaaja1().getLoydettyjenKorttiparienMaara());
-            loydetytPelaaja2.setText(muistipeli.getPelaaja2().getPelaajanNimi() + " löydetyt: "
+            loydetytPelaaja2.setText("löydetyt: "
                     + muistipeli.getPelaaja2().getLoydettyjenKorttiparienMaara());
-            yrityksetPelaaja1.setText(muistipeli.getPelaaja1().getPelaajanNimi() + " yritykset: "
-                    + muistipeli.getPelaaja1().getYritystenMaara());
-            yrityksetPelaaja2.setText(muistipeli.getPelaaja2().getPelaajanNimi() + " yritykset: "
-                    + muistipeli.getPelaaja2().getYritystenMaara());
+            yrityksetPelaaja1.setText("yritykset: " + muistipeli.getPelaaja1().getYritystenMaara());
+            yrityksetPelaaja2.setText("yritykset: " + muistipeli.getPelaaja2().getYritystenMaara());
         } else {
             loydetytTulos.setText("Löydetyt: "
                     + muistipeli.getPelaaja1().getLoydettyjenKorttiparienMaara());
@@ -336,7 +324,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             muistipeli = new Peli();
             if (pelataanKaksinpelia) {
                 muistipeli.setPelaaja2("");
-                setPelaajienNimetKaksinpelissa();
             }
             muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
             nollaaTulokset();
@@ -350,7 +337,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             muistipeli = new Peli();
             if (pelataanKaksinpelia) {
                 muistipeli.setPelaaja2("");
-                setPelaajienNimetKaksinpelissa();
             }
             nollaaTulokset();
             pelilauta.remove(korttiPaneeli);

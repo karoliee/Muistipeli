@@ -20,6 +20,7 @@ public class PeliTest {
     @Before
     public void setUp() {
         muistipeli = new Peli();
+        muistipeli.setPelaaja2("maija");
     }
 
     @Test
@@ -28,13 +29,13 @@ public class PeliTest {
         assertTrue(muistipeli.getKaksiKorttiaOnKaannettyna());
     }
 
-    
     @Test
     public void yhdenKortinKaannonJalkeenKaksiKorttiaEiOleKaannettyna() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
         muistipeli.kaannaKortti(1, false);
         assertFalse(muistipeli.getKaksiKorttiaOnKaannettyna());
     }
+
     @Test
     public void kahdenKortinKaannonJalkeenKaksiKorttiaOnKaannettyna() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
@@ -61,13 +62,13 @@ public class PeliTest {
     }
 
     @Test
-    public void kortitOvatSamojaKunKortitOvatSamoja() {
+    public void kortitOvatSamojaKunNiidenPitaisikinOlla() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(2);
         assertTrue(muistipeli.testaaOvatkoKortitSamoja(0, 1));
     }
 
     @Test
-    public void kortitEivatOleSamojaKunKortitEivatOleSamoja() {
+    public void kortitEivatOleSamojaKunNiidenEiPitaisiOlla() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
         for (int i = 1; i <= 8; i++) {
             korteillaEriArvot.add(i);
@@ -77,22 +78,22 @@ public class PeliTest {
     }
 
     @Test
-    public void ensimmainenKorttiOnEnsimmainenKaannetty() {
+    public void ensimmaisenaKaannettyKorttiOnEnsimmainenKaannetty() {
         assertEquals(muistipeli.kaannaKortti(6, false), "Oli ensimmäinen kortti");
 
     }
 
     @Test
-    public void korttiaPainettiinKaksiKertaa() {
+    public void huomataanJosKorttiaPainetaanKaksiKertaa() {
         muistipeli.kaannaKortti(2, false);
         assertEquals(muistipeli.kaannaKortti(2, false), "Painoit samaa korttia!");
 
     }
 
     @Test
-    public void kortillaOnOikeaArvo() {
+    public void kortinArvoPalautetaanOikeana() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= 3; i++) {
             korteillaEriArvot.add(i);
         }
         muistipeli.setKorttienArvot(korteillaEriArvot);
@@ -100,9 +101,9 @@ public class PeliTest {
     }
 
     @Test
-    public void kortillaOnOikeaArvoMerkkijonona() {
+    public void kortinArvoPalautetaanOikeanaArvoMerkkijonona() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= 3; i++) {
             korteillaEriArvot.add(i);
         }
         muistipeli.setKorttienArvot(korteillaEriArvot);
@@ -140,6 +141,7 @@ public class PeliTest {
         assertEquals(muistipeli.kaannaKortti(5, false), "Kortit olivat samoja");
 
     }
+
     @Test
     public void kortitTunnistetaanEriKorteiksiKunKortitEivatOleSamoja() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
@@ -149,6 +151,53 @@ public class PeliTest {
         muistipeli.setKorttienArvot(korteillaEriArvot);
         muistipeli.kaannaKortti(3, false);
         assertEquals(muistipeli.kaannaKortti(5, false), "Kortit eivät olleet samoja");
+
+    }
+
+    @Test
+    public void nimellinenVastapelaajaSaadaanTehtya() {
+        assertEquals(muistipeli.getPelaaja2().getPelaajanNimi(), "maija");
+
+    }
+    @Test
+    public void pelinAlussaOnEnsimmaisenPelaajanVuoro() {
+        assertTrue(muistipeli.getOnkoEnsimmaisenPelaajanVuoro());
+
+    }
+    @Test
+    public void ensimmainenPelaajaPelaaEnsinKaksinpelissa() {
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
+        muistipeli.kaannaKortti(1, true);
+        muistipeli.kaannaKortti(2, true);
+        assertEquals(muistipeli.getPelaaja1().getYritystenMaara(), 1, 0.001);
+
+    }
+    @Test
+    public void toinenPelaajaEiPelaaEnsinKaksinpelissa() {
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
+        muistipeli.kaannaKortti(1, true);
+        muistipeli.kaannaKortti(2, true);
+        assertEquals(muistipeli.getPelaaja2().getYritystenMaara(), 0, 0.001);
+
+    }
+    @Test
+    public void ensimmaisenPelaajanJalkeenOnToisenPelaajanVuoroKaksinpelissa() {
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(6);
+        muistipeli.kaannaKortti(1, true);
+        muistipeli.kaannaKortti(2, true);
+        muistipeli.kaannaKortti(3, true);
+        muistipeli.kaannaKortti(4, true);
+        assertEquals(muistipeli.getPelaaja2().getYritystenMaara(), 1, 0.001);
+
+    }
+    @Test
+    public void ensimmaisenPelaajanJalkeenEiOleEnaaEnsimmaisenPelaajanVuoroKaksinpelissa() {
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(6);
+        muistipeli.kaannaKortti(1, true);
+        muistipeli.kaannaKortti(2, true);
+        muistipeli.kaannaKortti(3, true);
+        muistipeli.kaannaKortti(4, true);
+        assertEquals(muistipeli.getPelaaja1().getYritystenMaara(), 1, 0.001);
 
     }
 }

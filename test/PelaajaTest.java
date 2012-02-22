@@ -24,7 +24,7 @@ public class PelaajaTest {
     }
 
     @Test
-    public void konstruktoriTekeeNimettomanPelaajan() {
+    public void pelinPelaajallaEiOleAluksiNimea() {
         assertEquals(pelaaja.getPelaajanNimi(), "");
     }
 

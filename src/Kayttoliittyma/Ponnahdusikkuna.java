@@ -15,7 +15,7 @@ public class Ponnahdusikkuna {
 
     /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään pelaajan jokin kysymys,
-     * tässä tapauksessa pelaajan nimi
+     * tässä tapauksessa pelaajan nimeä
      *
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *

@@ -85,7 +85,7 @@ public class Pelaaja {
     }
 
     /**
-     * Metodi nollaa pelaajan tulokset
+     * Metodi nollaa pelaajan tulokset kerralla
      */
     public void tulostenNollaus() {
         loydettyjenKorttiparienMaaranNollaus();
@@ -103,9 +103,9 @@ public class Pelaaja {
     }
 
     /**
-     * Metodi palauttaa pelaajan sen hetkisen nimen
+     * Metodi palauttaa pelaajan nimen
      *
-     * @return pelaajan nykyinen nimi
+     * @return pelaajan nimi
      */
     public String getPelaajanNimi() {
         return pelaajanNimi;

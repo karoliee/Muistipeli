@@ -14,9 +14,9 @@ import java.util.*;
 public class Peli {
 
     /**
-     * Kertoo, onko pelilaudalla kaksi korttia vielä ylöspäin käännettynä
+     * Kertoo, onko pelilaudalla kaksi korttia vielä oikeinpäin käännettynä
      * odottamassa ajastimen ajan loppumista. Tällöin ei tietysti voi kääntää
-     * uutta korttia
+     * uutta korttia ennen kuin kortit on käännetty takaisin väärinpäin
      */
     boolean kaksiKorttiaOnKaannettyna;
     /**
@@ -30,7 +30,7 @@ public class Peli {
     Pelaaja pelaaja1;
     /**
      * Mahdollinen toinen olio, joka pelaa peliä, eli ensimmäisen pelaajan
-     * vastapelaaja
+     * vastapelaaja. Vastapelaaja luodaan vain kaksinpelissä
      */
     Pelaaja pelaaja2;
     /**
@@ -60,7 +60,7 @@ public class Peli {
     }
 
     /**
-     * Metodi asettaa uuden pelin muuttujille arvot
+     * Metodi asettaa uuden pelin muuttujille oikeat arvot
      */
     public void aloitaUusiPeli() {
         korttienArvot = new ArrayList<Integer>();
@@ -175,7 +175,7 @@ public class Peli {
 
     /**
      * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
-     * arvot samoja
+     * arvot samat
      *
      * @param ensimmaisenKortinJarjestysNumero kertoo, monesko ensimmäiseksi
      * valittu kortti on korttitaulukossa
@@ -206,7 +206,7 @@ public class Peli {
     }
 
     /**
-     * Kertoo, onko pelilaudalla vielä kaksi korttia ylöspäin käännettynä
+     * Kertoo, onko pelilaudalla vielä kaksi korttia oikeinpäin käännettynä
      * odottamassa ajastimen ajan loppumista
      *
      * @return true tai false sen mukaan, onko pelilaudalla kaksi korttia vielä

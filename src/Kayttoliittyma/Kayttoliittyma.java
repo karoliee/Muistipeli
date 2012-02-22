@@ -10,7 +10,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * Luokka luo pelilaudan ja sen muut sen komponentit ja asettaa ne paikoilleen
+ * Luokka luo pelilaudan ja sen muut komponentit ja asettaa ne paikoilleen
  * pelaamista varten, ja hallitsee pelilaudalle tapahtuvia muutoksia
  *
  * @author karoliee
@@ -83,7 +83,8 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     Ajastin ajastin;
     /**
-     * Tieto siitä, montako korttia on näkyvissä pelilaudalla
+     * Tieto siitä, montako korttia on näkyvissä pelilaudalla, eli kaikki kortit
+     * joille ei ole vielä löydetty paria
      */
     int korttienMaaraPelilaudalla;
 
@@ -153,7 +154,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi, jossa kysytään pelaajalta, kuinka monta korttia peliin halutaan
+     * Metodi, jossa kysytään pelaajalta, kuinka monta korttia peliin halutaan.
+     * Kysymykseen on pakko vastata kokonaisluvulla, joka on tiettyjen rajojen
+     * sisällä
      */
     public void kysyKorttiParienMaara() {
         int korttiParienMaara = Ponnahdusikkuna.kysyLuku("Kuinka monta paria?");
@@ -265,7 +268,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi päivittää tulokset pelilaudalle jokaisen vuoron jälkeen
+     * Metodi päivittää pelaajien tulokset pelilaudalle jokaisen vuoron jälkeen
      */
     public void tarkastaTulokset() {
         if (pelataanKaksinpelia) {
@@ -332,9 +335,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * mitä nappia painettiin tai kutsuu metodia joka lopettaa pelin tai
      * aloittaa uuden pelin samalla tai uudella määrällä kortteja, riippuen
      * painetusta napista. Jos kaksi korttia on käännettynä, metodi kutsuu
-     * ajastinta. Metodi ei tietysti huomioi uuden kortin kääntämistä, jos
-     * laudalla on vielä kaksi korttia ylöspäin käännettynä odottamassa
-     * ajastimen ajan kulumista
+     * ajastinta. Metodi ei tietysti huomioi uuden kortin kääntämistä eli sen
+     * painamista, jos laudalla on vielä kaksi korttia ylöspäin käännettynä
+     * odottamassa ajastimen ajan kulumista
      *
      * @param e tapahtuma, joka tapahtuu, eli tietyn napin painaminen
      */
@@ -397,9 +400,10 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
 
     /**
      * Metodi kutsuu joko metodia, joka piilottaa kortit, sillä ne olivat pari,
-     * tai kääntää kortit takaisin alaspäin, riippuen käännetyistä korteista, ja
-     * kutsuu metodeita jotka tarkastavat tulokset ja kumman pelaajan vuoro on.
-     * Metodia kutsutaan, kun ajastimesta on loppunut aika
+     * tai kääntää kortit takaisin alaspäin, riippuen siitä olivatko kortit pari
+     * vai ei, ja kutsuu tämän jälkeen metodeita jotka tarkastavat tulokset ja
+     * kumman pelaajan vuoro on. Tätä metodia kutsutaan, kun ajastimesta on
+     * loppunut aika
      */
     public void aikaOnKulunut() {
         if (kortinKaantamisenJalkeenHuomattiin.equals("Kortit olivat samoja")) {
@@ -432,7 +436,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi kääntää kortit takaisin alaspäin, koska ne eivät olleet pari
+     * Metodi kääntää kortit takaisin väärinpäin, koska ne eivät olleet pari
      *
      * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
      * järjestysnumero

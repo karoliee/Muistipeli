@@ -5,14 +5,14 @@
 package Logiikka;
 
 /**
- * Luokka pitää kirjaa pelaajan nimestä ja erilaisista pistelaskuista
+ * Luokka pitää kirjaa pelaajan nimestä ja tämän erilaisista pistelaskuista
  *
  * @author karoliee
  */
 public class Pelaaja {
 
     /**
-     * löydettyjen parien määrä
+     * pelaajan löytämien parien määrä
      */
     int loydettyjenKorttiparienMaara;
     /**
@@ -26,7 +26,7 @@ public class Pelaaja {
     String pelaajanNimi;
 
     /**
-     * Konstruktori luo pelaajan, jonka nimi tiedetään
+     * Konstruktori luo pelaajan, ja asettaa tälle nimen
      *
      * @param nimi Pelaajan nimi
      *
@@ -39,14 +39,14 @@ public class Pelaaja {
 
     /**
      * Kun pelaaja on löytänyt uuden korttiparin, metodi kasvattaa löydettyjen
-     * parien summaa
+     * parien määrää
      */
     public void loydettyjenKorttiparienMaaranKasvu() {
         loydettyjenKorttiparienMaara++;
     }
 
     /**
-     * Metodi nollaa löydettyjen parien summan
+     * Metodi nollaa löydettyjen parien määrän
      */
     public void loydettyjenKorttiparienMaaranNollaus() {
         loydettyjenKorttiparienMaara = 0;
@@ -62,14 +62,14 @@ public class Pelaaja {
     }
 
     /**
-     * Metodi kasvattaa yrityksien summaa yhdellä
+     * Metodi kasvattaa yrityksien määrää yhdellä
      */
     public void yritystenMaaranKasvu() {
         yritystenMaara++;
     }
 
     /**
-     * Metodi nollaa yritysten summan
+     * Metodi nollaa yritysten määrän
      */
     public void yritystenMaaranNollaus() {
         yritystenMaara = 0;
@@ -82,6 +82,14 @@ public class Pelaaja {
      */
     public int getYritystenMaara() {
         return yritystenMaara;
+    }
+
+    /**
+     * Metodi nollaa pelaajan tulokset
+     */
+    public void tulostenNollaus() {
+        loydettyjenKorttiparienMaaranNollaus();
+        yritystenMaaranNollaus();
     }
 
     /**

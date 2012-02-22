@@ -12,27 +12,29 @@ import javax.swing.*;
  * @author karoliee
  */
 public class Ponnahdusikkuna {
+
     /**
-     * Metodi tekee ponnahdusikkunan, jossa kysytään hänen nimeensä
+     * Metodi tekee ponnahdusikkunan, jossa kysytään pelaajan nimeä
      *
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *
-     * @return ikkunan, jossa kysytään kysymys, joka palauttaa sanan, joka ikkunaan kirjoitetaan
+     * @return ikkuna, jossa kysytään kysymys, joka palauttaa sanan, joka
+     * ikkunaan kirjoitetaan
      */
     public static String kysySana(String kysymys) {
-    return JOptionPane.showInputDialog(kysymys);  
-  }
+        return JOptionPane.showInputDialog(kysymys);
+    }
 
     /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä korttiparien
-     * määrää, eli kokonaislukua
+     * määrää, eli kokonaislukua. Vain kokonaisluvut kelpaavat vastaukseksi
      *
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *
      * @return luku kokonaisluku, joka on käyttäjän antama vastaus kysymykseen
      */
     public static int kysyLuku(String kysymys) {
-        String tarjottuArvo = "";
+        String tarjottuArvo;
         int luku = 0;
         boolean tarjottuArvoOnKokonaisluku = false;
         do {
@@ -48,8 +50,8 @@ public class Ponnahdusikkuna {
     }
 
     /**
-     * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä jotain, ja
-     * annetaan vastausvaihtoehtoina nappuloita, joista yhtä pitää painaa
+     * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä jokin kysymys,
+     * ja annetaan vastausvaihtoehtoina nappulat, joista yhtä pitää painaa
      * vastauksena
      *
      * @param kysymys kysymys, johon käyttäjän pitää vastata
@@ -57,7 +59,7 @@ public class Ponnahdusikkuna {
      * @param valinnat valinnat, jotka näytetään nappuloina, joista käyttäjän
      * pitää valita yksi, joka on hänen vastauksensa kysymykseen
      *
-     * @return ikkuna, jossa on kysymys ja vaihtoehdot, ja joka palauttaa 
+     * @return ikkuna, jossa on kysymys ja vaihtoehdot, ja joka palauttaa
      * nappulan indeksin, eli tiedon siitä, monettako nappulaa painettiin
      */
     public static int valitseNappula(String kysymys, String... valinnat) {

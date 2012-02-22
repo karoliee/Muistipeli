@@ -24,8 +24,8 @@ public class PelaajaTest {
     }
 
     @Test
-    public void konstruktoriAntaaOikeanNimen() {
-        assertEquals(pelaaja.getPelaajanNimi(), "pelaaja1");
+    public void konstruktoriTekeeNimettomanPelaajan() {
+        assertEquals(pelaaja.getPelaajanNimi(), "");
     }
 
     @Test
@@ -80,5 +80,19 @@ public class PelaajaTest {
         pelaaja.yritystenMaaranKasvu();
         pelaaja.yritystenMaaranNollaus();
         assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
+    }
+    @Test
+    public void kaikkienTulostenNollausNollaaYritykset() {
+        pelaaja.yritystenMaaranKasvu();
+        pelaaja.loydettyjenKorttiparienMaaranKasvu();
+        pelaaja.tulostenNollaus();
+        assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
+    }
+    @Test
+    public void kaikkienTulostenNollausNollaaLoydetytKorttiparit() {
+        pelaaja.yritystenMaaranKasvu();
+        pelaaja.loydettyjenKorttiparienMaaranKasvu();
+        pelaaja.tulostenNollaus();
+        assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
 }

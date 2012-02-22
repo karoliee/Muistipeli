@@ -34,7 +34,7 @@ public class Ajastin extends Timer implements ActionListener {
     }
 
     /**
-     * Metodi kertoo käyttöliittymälle, koska ajastimen aika on kulunut
+     * Metodi kutsuu käyttoliittymän metodia, kun ajastimen aika on kulunut
      *
      * @param e tapahtuma, eli ajan loppuminen
      */

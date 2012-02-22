@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  * Luokka luo pelilaudan ja sen muut sen komponentit ja asettaa ne paikoilleen
- * pelaamista varten
+ * pelaamista varten, ja hallitsee pelilaudalle tapahtuvia muutoksia
  *
  * @author karoliee
  */
@@ -34,7 +34,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JButton lopetusNappi;
     /**
-     * Nappi, jota painamalla voi aloittaa uuden pelin
+     * Nappi, jota painamalla voi aloittaa uuden samanlaisen pelin
      */
     JButton uudenPelinAloitusNappi;
     /**
@@ -42,14 +42,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * kortteja
      */
     JButton uudenTasonValitsemisNappi;
-    /**
-     * Taulu, josta näkee löydettyjen korttiparien määrän
-     */
-    JLabel loydetytTulos;
-    /**
-     * Taulu, josta näkee vuorojen määrän
-     */
-    JLabel yrityksetTulos;
     /**
      * Taulu, josta näkee ensimmäisen pelaajan löytämien parien määrän
      */
@@ -75,21 +67,13 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     JLabel nimiPelaaja2;
     /**
-     * Ensimmäisen pelaajan nimi kaksinpelissä
-     */
-    String ensimmaisenPelaajanNimi;
-    /**
-     * Toisen pelaajan nimi kaksinpelissä
-     */
-    String toisenPelaajanNimi;
-    /**
      * Säiliö korteille, joka asetetaan pelilaudalle
      */
     Panel korttiPaneeli;
     /**
-     * Merkkijono kertoo, mitä korttia käännettäessä tapahtui
+     * Merkkijono kertoo, mitä kortin kääntämisen jälkeen huomattiin
      */
-    String tapahtuma;
+    String kortinKaantamisenJalkeenHuomattiin;
     /**
      * Muuttuja kertoo, pelataanko kaksin- vai yksinpeliä
      */
@@ -98,9 +82,14 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      * Olio, joka hallitsee ajan kulumista
      */
     Ajastin ajastin;
+    /**
+     * Tieto siitä, montako korttia on näkyvissä pelilaudalla
+     */
+    int korttienMaaraPelilaudalla;
 
     /**
-     * Konstruktori, jossa luodaan luokan oliot
+     * Konstruktori, jossa luodaan luokan oliot ja kutsutaan metodia, joka tekee
+     * pelilaudan
      */
     public Kayttoliittyma() {
         muistipeli = new Peli();
@@ -111,7 +100,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi, jossa luodaan pelilauta, jossa peliä pelataan
+     * Metodi, jossa luodaan pelilauta, jossa peliä pelataan, ja kutsutaan
+     * metodeita, jotka tekevät ja asettavat sinne kortit ja muut napit ja
+     * kysyvät käyttäjältä pelin asetukset
      */
     public void teePelilauta() {
         kysyPelaajienLukumaara();
@@ -122,9 +113,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         pelilauta.setTitle("Muistipeli");
         pelilauta.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         teeKortit();
-        teeMuutNapit();
+        teeNapitJaTulostaulut();
         asetaKortitPelilaudalle();
-        asetaNapitPelilaudalle();
+        asetaNapitJaTulostaulutPelilaudalle();
         pelilauta.setVisible(true);
         vaihdaVuoroa();
     }
@@ -143,25 +134,22 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi, jossa kysytään pelaajalta, haluaako hän nimetä pelaajat
+     * Metodi, jossa kysytään pelaajalta, haluaako hän nimetä pelaajat, jos
+     * kyseessä on kaksinpeli. Jos pelaajia ei nimetä, niiden nimiksi tulee P1
+     * ja P2
      */
     public void kysyPelaajienNimetKaksinpelissa() {
         if (pelataanKaksinpelia) {
             int vastauksenIndeksi = Ponnahdusikkuna.valitseNappula(
                     "Haluatko nimetä pelaajat?", "Kyllä", "Ei");
             if (vastauksenIndeksi == 0) {
-                ensimmaisenPelaajanNimi = Ponnahdusikkuna.kysySana("Ensimmäisen pelaajan nimi?");
-                toisenPelaajanNimi = Ponnahdusikkuna.kysySana("Toisen pelaajan nimi");
+                muistipeli.getPelaaja1().setPelaajanNimi(Ponnahdusikkuna.kysySana("Ensimmäisen pelaajan nimi?"));
+                muistipeli.getPelaaja2().setPelaajanNimi(Ponnahdusikkuna.kysySana("Toisen pelaajan nimi"));
             } else {
-                ensimmaisenPelaajanNimi = "P1";
-                toisenPelaajanNimi = "P2";
-
+                muistipeli.getPelaaja1().setPelaajanNimi("P1");
+                muistipeli.getPelaaja2().setPelaajanNimi("P2");
             }
-            muistipeli.getPelaaja1().setPelaajanNimi(ensimmaisenPelaajanNimi);
-            muistipeli.getPelaaja2().setPelaajanNimi(toisenPelaajanNimi);
-
         }
-
     }
 
     /**
@@ -183,10 +171,12 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void setKorttienMaara(int korttiParienMaara) {
         kortit = new JButton[2 * korttiParienMaara];
+        korttienMaaraPelilaudalla = kortit.length;
     }
 
     /**
-     * Metodi luo muistipelin kortit ja laittaa ne taulukkoon
+     * Metodi luo muistipelin kortit ja laittaa ne taulukkoon, ja kutsuu metodia
+     * joka tekee korteille arvot ja sekoittaa ne
      */
     public void teeKortit() {
         for (int i = 0; i < kortit.length; i++) {
@@ -197,48 +187,9 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
-     * pelin, ja taulut joista näkee tulokset
-     */
-    public void teeMuutNapit() {
-        lopetusNappi = new JButton("Lopeta");
-        lopetusNappi.addActionListener(this);
-        uudenPelinAloitusNappi = new JButton("Uusi peli");
-        uudenPelinAloitusNappi.addActionListener(this);
-        uudenTasonValitsemisNappi = new JButton("Uusi taso");
-        uudenTasonValitsemisNappi.addActionListener(this);
-        if (pelataanKaksinpelia) {
-            nimiPelaaja1 = new JLabel(muistipeli.getPelaaja1().getPelaajanNimi());
-            nimiPelaaja2 = new JLabel(muistipeli.getPelaaja2().getPelaajanNimi());
-            loydetytPelaaja1 = new JLabel("löydetyt: ");
-            loydetytPelaaja2 = new JLabel("löydetyt: ");
-            yrityksetPelaaja1 = new JLabel("yritykset: ");
-            yrityksetPelaaja2 = new JLabel("yritykset:");
-
-        } else {
-            loydetytTulos = new JLabel("Löydetyt: ");
-            yrityksetTulos = new JLabel("Yritykset: ");
-        }
-
-    }
-
-    /**
-     * Metodi asettaa pelin otsikoksi tiedon siitä, kumman pelaajan vuoro on
-     * kaksinpelissä
-     */
-    public void vaihdaVuoroa() {
-        if (pelataanKaksinpelia) {
-            if (muistipeli.getOnkoEnsimmaisenPelaajanVuoro()) {
-                pelilauta.setTitle("Muistipeli - pelaajan " + ensimmaisenPelaajanNimi + " vuoro");
-            } else {
-                pelilauta.setTitle("Muistipeli - pelaajan " + toisenPelaajanNimi + " vuoro");
-            }
-            pelilauta.setVisible(true);
-        }
-    }
-
-    /**
-     * Metodi asettaa kortit pelilaudalle
+     * Metodi asettaa kortit pelilaudalle. Rivien määrä vaihtelee korttien
+     * määrän mukaan, jotta kortit saataisiin aseteltua mahdollisimman hyvin
+     * pelilaudalle
      */
     public void asetaKortitPelilaudalle() {
         korttiPaneeli = new Panel();
@@ -262,9 +213,35 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi asettaa napit pelilaudalle
+     * Metodi luo napit, joilla pelistä pystyy poistumaan ja aloittamaan uuden
+     * pelin, ja taulut joista näkee tulokset
      */
-    public void asetaNapitPelilaudalle() {
+    public void teeNapitJaTulostaulut() {
+        lopetusNappi = new JButton("Lopeta");
+        lopetusNappi.addActionListener(this);
+        uudenPelinAloitusNappi = new JButton("Uusi peli");
+        uudenPelinAloitusNappi.addActionListener(this);
+        uudenTasonValitsemisNappi = new JButton("Uusi taso");
+        uudenTasonValitsemisNappi.addActionListener(this);
+        if (pelataanKaksinpelia) {
+            nimiPelaaja1 = new JLabel(muistipeli.getPelaaja1().getPelaajanNimi());
+            nimiPelaaja2 = new JLabel(muistipeli.getPelaaja2().getPelaajanNimi());
+            loydetytPelaaja1 = new JLabel("löydetyt: ");
+            loydetytPelaaja2 = new JLabel("löydetyt: ");
+            yrityksetPelaaja1 = new JLabel("yritykset: ");
+            yrityksetPelaaja2 = new JLabel("yritykset:");
+
+        } else {
+            loydetytPelaaja1 = new JLabel("Löydetyt: ");
+            yrityksetPelaaja1 = new JLabel("Yritykset: ");
+        }
+
+    }
+
+    /**
+     * Metodi asettaa napit ja tulostaulut pelilaudalle
+     */
+    public void asetaNapitJaTulostaulutPelilaudalle() {
         Panel nappiPaneeli = new Panel();
         if (pelataanKaksinpelia) {
             nappiPaneeli.setLayout(new GridLayout(9, 1));
@@ -276,20 +253,19 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         nappiPaneeli.add(uudenTasonValitsemisNappi);
         if (pelataanKaksinpelia) {
             nappiPaneeli.add(nimiPelaaja1);
-            nappiPaneeli.add(loydetytPelaaja1);
-            nappiPaneeli.add(yrityksetPelaaja1);
+        }
+        nappiPaneeli.add(loydetytPelaaja1);
+        nappiPaneeli.add(yrityksetPelaaja1);
+        if (pelataanKaksinpelia) {
             nappiPaneeli.add(nimiPelaaja2);
             nappiPaneeli.add(loydetytPelaaja2);
             nappiPaneeli.add(yrityksetPelaaja2);
-        } else {
-            nappiPaneeli.add(loydetytTulos);
-            nappiPaneeli.add(yrityksetTulos);
         }
         pelilauta.add(nappiPaneeli, BorderLayout.WEST);
     }
 
     /**
-     * Metodi päivittää tulokset pelilaudalle
+     * Metodi päivittää tulokset pelilaudalle jokaisen vuoron jälkeen
      */
     public void tarkastaTulokset() {
         if (pelataanKaksinpelia) {
@@ -300,44 +276,76 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             yrityksetPelaaja1.setText("yritykset: " + muistipeli.getPelaaja1().getYritystenMaara());
             yrityksetPelaaja2.setText("yritykset: " + muistipeli.getPelaaja2().getYritystenMaara());
         } else {
-            loydetytTulos.setText("Löydetyt: "
+            loydetytPelaaja1.setText("Löydetyt: "
                     + muistipeli.getPelaaja1().getLoydettyjenKorttiparienMaara());
-            yrityksetTulos.setText("Yritykset: " + muistipeli.getPelaaja1().getYritystenMaara());
+            yrityksetPelaaja1.setText("Yritykset: " + muistipeli.getPelaaja1().getYritystenMaara());
         }
     }
 
     /**
-     * Metodi nollaa pelaajan tulokset pelilaudalla
+     * Metodi nollaa pelaajien tulokset pelilaudalla, kun uusi peli aloitetaan
      */
     public void nollaaTulokset() {
         if (pelataanKaksinpelia) {
-            muistipeli.getPelaaja2().loydettyjenKorttiparienMaaranNollaus();
-            muistipeli.getPelaaja2().yritystenMaaranNollaus();
+            muistipeli.getPelaaja2().tulostenNollaus();
         }
-        muistipeli.getPelaaja1().loydettyjenKorttiparienMaaranNollaus();
-        muistipeli.getPelaaja1().yritystenMaaranNollaus();
+        muistipeli.getPelaaja1().tulostenNollaus();
         tarkastaTulokset();
 
     }
 
     /**
+     * Metodi asettaa pelin otsikoksi tiedon siitä, kumman pelaajan vuoro on
+     * kaksinpelissä. Jos pelilaudalla ei ole enää kortteja, kutsutaan metodia
+     * joka kertoo kumpi pelaajista on voittanut
+     */
+    public void vaihdaVuoroa() {
+        if (pelataanKaksinpelia) {
+            if (korttienMaaraPelilaudalla == 0) {
+                tarkastaKumpiPelaajaVoitti();
+            } else if (muistipeli.getOnkoEnsimmaisenPelaajanVuoro()) {
+                pelilauta.setTitle("Muistipeli - pelaajan " + muistipeli.getPelaaja1().getPelaajanNimi() + " vuoro");
+            } else {
+                pelilauta.setTitle("Muistipeli - pelaajan " + muistipeli.getPelaaja2().getPelaajanNimi() + " vuoro");
+            }
+            pelilauta.setVisible(true);
+        }
+    }
+
+    /**
+     * Metodi asettaa pelin otsikoksi tiedon siitä, kumpi pelaaja voitti pelin
+     */
+    public void tarkastaKumpiPelaajaVoitti() {
+        if (muistipeli.getPelaaja1().getLoydettyjenKorttiparienMaara()
+                > muistipeli.getPelaaja2().getLoydettyjenKorttiparienMaara()) {
+            pelilauta.setTitle("Pelaaja " + muistipeli.getPelaaja1().getPelaajanNimi() + " voitti!");
+        } else if (muistipeli.getPelaaja1().getLoydettyjenKorttiparienMaara()
+                == muistipeli.getPelaaja2().getLoydettyjenKorttiparienMaara()) {
+            pelilauta.setTitle("Tasapeli!");
+        } else {
+            pelilauta.setTitle("Pelaaja " + muistipeli.getPelaaja2().getPelaajanNimi() + " voitti!");
+        }
+    }
+
+    /**
      * Metodi kuulee tapahtuman eli napin painamisen, ja kertoo peli-luokalle,
-     * mitä nappia painettiin tai lopettaa pelin tai aloittaa uuden pelin
-     * samalla tai uudella määrällä kortteja, riippuen painetusta napista.
-     * Metodi ei tietysti huomioi uuden kortin kääntämistä, jos laudalla on
-     * vielä kaksi korttia ylöspäin käännettynä odottamassa ajastimen ajan
-     * kulumista
+     * mitä nappia painettiin tai kutsuu metodia joka lopettaa pelin tai
+     * aloittaa uuden pelin samalla tai uudella määrällä kortteja, riippuen
+     * painetusta napista. Jos kaksi korttia on käännettynä, metodi kutsuu
+     * ajastinta. Metodi ei tietysti huomioi uuden kortin kääntämistä, jos
+     * laudalla on vielä kaksi korttia ylöspäin käännettynä odottamassa
+     * ajastimen ajan kulumista
      *
-     * @param e tapahtuma, joka tapahtuu
+     * @param e tapahtuma, joka tapahtuu, eli tietyn napin painaminen
      */
     public void actionPerformed(ActionEvent e) {
         if (!muistipeli.getKaksiKorttiaOnKaannettyna()) {
             for (int i = 0; i < kortit.length; i++) {
                 if (kortit[i] == e.getSource()) {
                     kortit[i].setText(muistipeli.getKortinArvoMerkkiJonona(i));
-                    tapahtuma = muistipeli.kaannaKortti(i, pelataanKaksinpelia);
-                    if (tapahtuma.equals("Kortit olivat samoja")
-                            || tapahtuma.equals("Kortit eivät olleet samoja")) {
+                    kortinKaantamisenJalkeenHuomattiin = muistipeli.kaannaKortti(i, pelataanKaksinpelia);
+                    if (kortinKaantamisenJalkeenHuomattiin.equals("Kortit olivat samoja")
+                            || kortinKaantamisenJalkeenHuomattiin.equals("Kortit eivät olleet samoja")) {
                         ajastin.start();
                     }
                 }
@@ -347,43 +355,57 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             System.exit(0);
         }
         if (e.getSource() == uudenPelinAloitusNappi) {
-            muistipeli = new Peli();
-            if (pelataanKaksinpelia) {
-                muistipeli.setPelaaja2("");
-                vaihdaVuoroa();
-            }
-            muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
-            nollaaTulokset();
-            for (int i = 0; i < kortit.length; i++) {
-                kortit[i].setText("Muistipeli");
-                kortit[i].setVisible(true);
-            }
+            aloitaUusiSamanlainenPeli();
 
         }
         if (e.getSource() == uudenTasonValitsemisNappi) {
-            muistipeli = new Peli();
-            if (pelataanKaksinpelia) {
-                muistipeli.setPelaaja2("");
-                vaihdaVuoroa();
-            }
-            nollaaTulokset();
-            pelilauta.remove(korttiPaneeli);
-            kysyKorttiParienMaara();
-            teeKortit();
-            asetaKortitPelilaudalle();
-            pelilauta.setVisible(true);
+            aloitaUusiEriTasoinenPeli();
 
         }
     }
 
     /**
-     * Metodi kertoo, mitä korteille tapahtuu kun aika on on kulunut ajastimesta
+     * Metodi aloittaa uuden pelin, jossa on yhtä monta korttia kuin edellisessä
+     * pelissä
+     */
+    public void aloitaUusiSamanlainenPeli() {
+        muistipeli.aloitaUusiPeli();
+        korttienMaaraPelilaudalla = kortit.length;
+        nollaaTulokset();
+        vaihdaVuoroa();
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(kortit.length);
+        for (int i = 0; i < kortit.length; i++) {
+            kortit[i].setText("Muistipeli");
+            kortit[i].setVisible(true);
+        }
+    }
+
+    /**
+     * Metodi aloittaa uuden pelin, jonka korttien määrän käyttäjä saa taas
+     * valita uudestaan
+     */
+    public void aloitaUusiEriTasoinenPeli() {
+        muistipeli.aloitaUusiPeli();
+        kysyKorttiParienMaara();
+        teeKortit();
+        nollaaTulokset();
+        vaihdaVuoroa();
+        pelilauta.remove(korttiPaneeli);
+        asetaKortitPelilaudalle();
+        pelilauta.setVisible(true);
+    }
+
+    /**
+     * Metodi kutsuu joko metodia, joka piilottaa kortit, sillä ne olivat pari,
+     * tai kääntää kortit takaisin alaspäin, riippuen käännetyistä korteista, ja
+     * kutsuu metodeita jotka tarkastavat tulokset ja kumman pelaajan vuoro on.
+     * Metodia kutsutaan, kun ajastimesta on loppunut aika
      */
     public void aikaOnKulunut() {
-        if (tapahtuma.equals("Kortit olivat samoja")) {
+        if (kortinKaantamisenJalkeenHuomattiin.equals("Kortit olivat samoja")) {
             piilotaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
-        } else if (tapahtuma.equals("Kortit eivät olleet samoja")) {
+        } else if (kortinKaantamisenJalkeenHuomattiin.equals("Kortit eivät olleet samoja")) {
             kaannaKortitTakaisinAlaspain(
                     muistipeli.getEnsimmaisenKortinJarjestysNumero(),
                     muistipeli.getToisenKortinJarjestysNumero());
@@ -394,7 +416,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     * Metodi piilottaa näkyvistä kortit, jotka ovat pari
+     * Metodi piilottaa näkyvistä kortit, jotka olivat pari
      *
      * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
      * järjestysnumero
@@ -405,11 +427,12 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
             int toisenKortinJarjestysNumero) {
         kortit[ensimmaisenKortinJarjestysNumero].setVisible(false);
         kortit[toisenKortinJarjestysNumero].setVisible(false);
+        korttienMaaraPelilaudalla = korttienMaaraPelilaudalla - 2;
 
     }
 
     /**
-     * Metodi kääntää kortit takaisin alaspäin, koska ne eivät olleet samoja
+     * Metodi kääntää kortit takaisin alaspäin, koska ne eivät olleet pari
      *
      * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
      * järjestysnumero
@@ -422,15 +445,6 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
         kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
 
 
-    }
-
-    /**
-     * Metodi palauttaa Peli-olion. Tämä on lähinnä testausta varten
-     *
-     * @return muistipeli-peli
-     */
-    public Peli getMuistipeli() {
-        return muistipeli;
     }
 
     /**

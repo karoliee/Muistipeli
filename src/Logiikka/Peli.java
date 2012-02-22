@@ -5,7 +5,6 @@
 package Logiikka;
 
 import java.util.*;
-import javax.swing.*;
 
 /**
  * Luokka ohjaa pelin pelaamista ja muuta toimintaa pelissä
@@ -21,8 +20,8 @@ public class Peli {
      */
     boolean kaksiKorttiaOnKaannettyna;
     /**
-     * Lista korttien "kuvista", eli arvoista. Jokaista arvoa on siis kaksi
-     * kappaletta
+     * Lista korttien "kuvista", eli arvoista. Jokaista arvoa on tietysti kaksi
+     * kappaletta pelissä
      */
     ArrayList<Integer> korttienArvot;
     /**
@@ -30,7 +29,8 @@ public class Peli {
      */
     Pelaaja pelaaja1;
     /**
-     * Mahdollinen toinen olio, joka pelaa peliä, eli pelaajan ilmentymä
+     * Mahdollinen toinen olio, joka pelaa peliä, eli ensimmäisen pelaajan
+     * vastapelaaja
      */
     Pelaaja pelaaja2;
     /**
@@ -46,21 +46,29 @@ public class Peli {
      */
     int toisenKortinJarjestysNumero;
     /**
-     * Pitää kirjaa siitä, kumman pelaajan vuoro on kaksinpelissä
+     * Kertoo, kumman pelaajan vuoro on kaksinpelissä
      */
     boolean ensimmaisenPelaajanVuoro;
 
     /**
-     * Konstruktori luo luokan oliot ja asettaa muuttujille arvot
+     * Konstruktori luo pelin pelaajan ja kutsuu metodia, jossa aloitetaan uusi
+     * peli
      */
     public Peli() {
+        aloitaUusiPeli();
+        pelaaja1 = new Pelaaja("");
+    }
 
+    /**
+     * Metodi asettaa uuden pelin muuttujille arvot
+     */
+    public void aloitaUusiPeli() {
         korttienArvot = new ArrayList<Integer>();
         onEnsimmainenKortti = true;
         ensimmaisenKortinJarjestysNumero = -1;
         kaksiKorttiaOnKaannettyna = false;
-        pelaaja1 = new Pelaaja("");
         ensimmaisenPelaajanVuoro = true;
+
     }
 
     /**
@@ -101,10 +109,14 @@ public class Peli {
 
     /**
      * Metodi katsoo, onko käännetty kortti ensimmäinen vai toinen vai
-     * yritettiinkö kääntää samaa korttia, mikä on vielä käännettynä
-     * pelilaudalla
+     * yritettiinkö kääntää uudestaan samaa korttia, mikä on vielä käännettynä
+     * pelilaudalla. Jos kortti on ensimmäinen käännettävä, sen järjestysnumero
+     * korttitaulukossa talletetaan. Jos pelataan yksinpeliä, niin pelaaja1
+     * ainoana pelaajana käänsi tämän kortin, ja kutsutaan metodia, jossa
+     * selviää mitä tämän jälkeen tapahtuu. Jos pelataan kaksinpeliä, täytyy
+     * katsoa ensin kumman pelaajan vuoro oli
      *
-     * @param kortinJarjestysNumero kertoo, monesko kortti on
+     * @param kortinJarjestysNumero kertoo, monesko käännetty kortti on
      * @param pelataanKaksinpelia kertoo, pelataanko kaksin- vai yksinpeliä
      *
      * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
@@ -122,15 +134,15 @@ public class Peli {
                 onEnsimmainenKortti = true;
                 toisenKortinJarjestysNumero = kortinJarjestysNumero;
                 if (!pelataanKaksinpelia) {
-                    return pelaajaPelaaPelia(pelaaja1, kortinJarjestysNumero);
+                    return pelaajaKaansiToisenKortin(pelaaja1, kortinJarjestysNumero);
                 } else {
                     if (ensimmaisenPelaajanVuoro) {
                         ensimmaisenPelaajanVuoro = false;
-                        return pelaajaPelaaPelia(pelaaja1, kortinJarjestysNumero);
+                        return pelaajaKaansiToisenKortin(pelaaja1, kortinJarjestysNumero);
 
                     } else {
                         ensimmaisenPelaajanVuoro = true;
-                        return pelaajaPelaaPelia(pelaaja2, kortinJarjestysNumero);
+                        return pelaajaKaansiToisenKortin(pelaaja2, kortinJarjestysNumero);
                     }
                 }
             }
@@ -139,8 +151,9 @@ public class Peli {
     }
 
     /**
-     * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
-     * arvot samoja
+     * Metodi kasvattaa pelaajan yrityksien määrää, ja jos kortit olivat samoja,
+     * niin myös löydettyjen parien määrää, ja palauttaa tiedon olivatko kortit
+     * pari vai ei
      *
      * @param pelaaja pelaaja, joka pelaa tällä hetkellä peliä
      * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
@@ -148,7 +161,7 @@ public class Peli {
      *
      * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
      */
-    public String pelaajaPelaaPelia(Pelaaja pelaaja, int kortinJarjestysNumero) {
+    public String pelaajaKaansiToisenKortin(Pelaaja pelaaja, int kortinJarjestysNumero) {
         pelaaja.yritystenMaaranKasvu();
         if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
                 kortinJarjestysNumero)) {
@@ -251,7 +264,7 @@ public class Peli {
     }
 
     /**
-     * Metodi luo pelille toisen pelaajan
+     * Metodi luo pelille toisen pelaajan kun pelataan kaksinpeliä
      *
      * @param nimi pelaajan nimi
      */
@@ -267,8 +280,10 @@ public class Peli {
     public Pelaaja getPelaaja2() {
         return pelaaja2;
     }
+
     /**
-     * Metodi palauttaa tiedon siitä, onko ensimmäisen vai toisen pelaajan vuoro kaksinpelissä
+     * Metodi palauttaa tiedon siitä, onko ensimmäisen vai toisen pelaajan vuoro
+     * kaksinpelissä
      *
      * @return true tai false riippuen siitä, onko ensimmäisen pelaajan vuoro
      */

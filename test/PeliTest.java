@@ -28,6 +28,13 @@ public class PeliTest {
         assertTrue(muistipeli.getKaksiKorttiaOnKaannettyna());
     }
 
+    
+    @Test
+    public void yhdenKortinKaannonJalkeenKaksiKorttiaEiOleKaannettyna() {
+        muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
+        muistipeli.kaannaKortti(1, false);
+        assertFalse(muistipeli.getKaksiKorttiaOnKaannettyna());
+    }
     @Test
     public void kahdenKortinKaannonJalkeenKaksiKorttiaOnKaannettyna() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(4);
@@ -54,13 +61,13 @@ public class PeliTest {
     }
 
     @Test
-    public void kortitOvatSamoja() {
+    public void kortitOvatSamojaKunKortitOvatSamoja() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(2);
         assertTrue(muistipeli.testaaOvatkoKortitSamoja(0, 1));
     }
 
     @Test
-    public void kortitEivatOleSamoja() {
+    public void kortitEivatOleSamojaKunKortitEivatOleSamoja() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
         for (int i = 1; i <= 8; i++) {
             korteillaEriArvot.add(i);
@@ -70,7 +77,7 @@ public class PeliTest {
     }
 
     @Test
-    public void korttiOnEnsimmainenKaannetty() {
+    public void ensimmainenKorttiOnEnsimmainenKaannetty() {
         assertEquals(muistipeli.kaannaKortti(6, false), "Oli ensimmäinen kortti");
 
     }
@@ -103,14 +110,14 @@ public class PeliTest {
     }
 
     @Test
-    public void EnsimmaiseksiKaannetyllaKortillaKortillaOnOikeaJarjestysNumero() {
+    public void ensimmaiseksiKaannetyllaKortillaKortillaOnOikeaJarjestysNumero() {
         muistipeli.kaannaKortti(2, false);
         assertEquals(muistipeli.getEnsimmaisenKortinJarjestysNumero(), 2);
 
     }
 
     @Test
-    public void ToiseksiKaannetyllaKortillaKortillaOnOikeaJarjestysNumero() {
+    public void toiseksiKaannetyllaKortillaKortillaOnOikeaJarjestysNumero() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
         for (int i = 1; i <= 8; i++) {
             korteillaEriArvot.add(i);
@@ -131,6 +138,17 @@ public class PeliTest {
         muistipeli.setKorttienArvot(korteillaSamatArvot);
         muistipeli.kaannaKortti(3, false);
         assertEquals(muistipeli.kaannaKortti(5, false), "Kortit olivat samoja");
+
+    }
+    @Test
+    public void kortitTunnistetaanEriKorteiksiKunKortitEivatOleSamoja() {
+        ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
+        for (int i = 1; i <= 8; i++) {
+            korteillaEriArvot.add(i);
+        }
+        muistipeli.setKorttienArvot(korteillaEriArvot);
+        muistipeli.kaannaKortti(3, false);
+        assertEquals(muistipeli.kaannaKortti(5, false), "Kortit eivät olleet samoja");
 
     }
 }

@@ -8,7 +8,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Luokassa testataan pelaajan toimintaa
  * @author karoliee
  */
 public class PelaajaTest {
@@ -29,13 +29,13 @@ public class PelaajaTest {
     }
 
     @Test
-    public void pelaajanNimenVaihto() {
+    public void pelaajanNimenVaihtoOnnistuu() {
         pelaaja.setPelaajanNimi("maija");
         assertEquals(pelaaja.getPelaajanNimi(), "maija");
     }
 
     @Test
-    public void konstruktorissaEiOleLoydettyjaKorttipareja() {
+    public void pelinAlussaPelaajallaEiOleLoydettyjaKorttipareja() {
         assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
 
@@ -46,20 +46,20 @@ public class PelaajaTest {
     }
 
     @Test
-    public void loydettyjenParienNollausKunEiOleLoydettyjaPareja() {
+    public void loydettyjenParienNollausKunEiOleLoydettyjaParejaOnnistuu() {
         pelaaja.loydettyjenKorttiparienMaaranNollaus();
         assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
 
     @Test
-    public void loydettyjenParienNollausKunOnLoydettyjaPareja() {
+    public void loydettyjenParienNollausKunOnLoydettyjaParejaOnnistuu() {
         pelaaja.loydettyjenKorttiparienMaaranKasvu();
         pelaaja.loydettyjenKorttiparienMaaranNollaus();
         assertEquals(pelaaja.getLoydettyjenKorttiparienMaara(), 0, vertailuTarkkuus);
     }
 
     @Test
-    public void konstruktorissaEiOleYrityksia() {
+    public void pelinAlussaPelaajallaEiOleYrityksia() {
         assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
     }
 
@@ -70,13 +70,13 @@ public class PelaajaTest {
     }
 
     @Test
-    public void yritystenNollausKunEiOleYrityksia() {
+    public void yritystenNollausKunEiOleYrityksiaOnnistuu() {
         pelaaja.yritystenMaaranNollaus();
         assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);
     }
 
     @Test
-    public void yritystenNollausKunOnYrityksia() {
+    public void yritystenNollausKunOnYrityksiaOnnistuu() {
         pelaaja.yritystenMaaranKasvu();
         pelaaja.yritystenMaaranNollaus();
         assertEquals(pelaaja.getYritystenMaara(), 0, vertailuTarkkuus);

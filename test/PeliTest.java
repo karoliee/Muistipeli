@@ -9,7 +9,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Luokassa testataan pelin toimintaa
  * @author karoliee
  */
 public class PeliTest {
@@ -55,7 +55,7 @@ public class PeliTest {
     }
 
     @Test
-    public void kaikillaKorteillaOnArvo() {
+    public void kaikillaKorteillaOnTasanYksiArvo() {
         muistipeli.teeArvotKorttejaVartenJaSekoitaNe(6);
         assertEquals(6, muistipeli.getArvojenMaara(), 0.001);
 
@@ -91,7 +91,7 @@ public class PeliTest {
     }
 
     @Test
-    public void kortinArvoPalautetaanOikeana() {
+    public void kortinArvoPalautetaanOikeanaLukuna() {
         ArrayList<Integer> korteillaEriArvot = new ArrayList<Integer>();
         for (int i = 1; i <= 3; i++) {
             korteillaEriArvot.add(i);

@@ -14,11 +14,12 @@ import javax.swing.*;
 public class Ponnahdusikkuna {
 
     /**
-     * Metodi tekee ponnahdusikkunan, jossa kysytään pelaajan nimeä
+     * Metodi tekee ponnahdusikkunan, jossa kysytään pelaajan jokin kysymys,
+     * tässä tapauksessa pelaajan nimi
      *
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *
-     * @return ikkuna, jossa kysytään kysymys, joka palauttaa sanan, joka
+     * @return ikkuna, jossa kysytään kysymys, joka palauttaa sanan, ja joka
      * ikkunaan kirjoitetaan
      */
     public static String kysySana(String kysymys) {
@@ -26,8 +27,10 @@ public class Ponnahdusikkuna {
     }
 
     /**
-     * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä korttiparien
-     * määrää, eli kokonaislukua. Vain kokonaisluvut kelpaavat vastaukseksi
+     * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä jotain
+     * kokonaislukua, tässä tapauksessa korttiparien määrää. Vain kokonaisluvut
+     * kelpaavat vastaukseksi. Kysymys toistetaan niin kauan kunnes käyttäjä
+     * antaa vastauksena kokonaisluvun
      *
      * @param kysymys kysymys, joka kysytään käyttäjältä ikkunassa
      *
@@ -52,12 +55,14 @@ public class Ponnahdusikkuna {
     /**
      * Metodi tekee ponnahdusikkunan, jossa kysytään käyttäjältä jokin kysymys,
      * ja annetaan vastausvaihtoehtoina nappulat, joista yhtä pitää painaa
-     * vastauksena
+     * vastauksena. Tällä kysytään, haluaako käyttäjä pelata yksin- vai
+     * kaksinpeliä ja kaksinpelin tapauksessa, haluaako hän nimetä pelaajat
      *
      * @param kysymys kysymys, johon käyttäjän pitää vastata
      *
      * @param valinnat valinnat, jotka näytetään nappuloina, joista käyttäjän
-     * pitää valita yksi, joka on hänen vastauksensa kysymykseen
+     * pitää valita yksi, joka on hänen vastauksensa kysymykseen. Valinnat ovat
+     * siis merkkijonoja jossain merkkijonotaulukossa
      *
      * @return ikkuna, jossa on kysymys ja vaihtoehdot, ja joka palauttaa
      * nappulan indeksin, eli tiedon siitä, monettako nappulaa painettiin

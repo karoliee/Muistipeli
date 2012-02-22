@@ -7,7 +7,7 @@ import org.junit.*;
 import Kayttoliittyma.*;
 
 /**
- *
+ * Luokassa testataan ajastimen toimintaa
  * @author karoliee
  */
 public class AjastinTest {
@@ -21,7 +21,7 @@ public class AjastinTest {
     }
 
     @Test
-    public void konstruktoriLuoMyosTyhjanAjastimen() {
+    public void konstruktoriVoiMyosLuodaAjastimenJossaEiOleAikaa() {
         ajastin = new Ajastin(kayttis, 0);
     }
 }

@@ -40,14 +40,14 @@ public class Ponnahdusikkuna {
         String tarjottuArvo;
         int luku = 0;
         boolean tarjottuArvoOnKokonaisluku = false;
-        do {
+        while (!tarjottuArvoOnKokonaisluku) {
             try {
                 tarjottuArvo = JOptionPane.showInputDialog(kysymys);
                 luku = Integer.parseInt(tarjottuArvo);
                 tarjottuArvoOnKokonaisluku = true;
             } catch (Exception e) {
             }
-        } while (!tarjottuArvoOnKokonaisluku);
+        }
 
         return luku;
     }

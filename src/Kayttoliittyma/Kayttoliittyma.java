@@ -94,7 +94,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public Kayttoliittyma() {
         muistipeli = new Peli();
-        ajastin = new Ajastin(this, 400);
+        ajastin = new Ajastin(this, 300);
         pelataanKaksinpelia = false;
         teePelilauta();
 
@@ -407,12 +407,12 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public void aikaOnKulunut() {
         if (kortinKaantamisenJalkeenHuomattiin.equals("Kortit olivat samoja")) {
-            piilotaKortit(muistipeli.getEnsimmaisenKortinJarjestysNumero(),
-                    muistipeli.getToisenKortinJarjestysNumero());
+            piilotaKortit(muistipeli.getEnsimmaisenKortinJarjestysnumero(),
+                    muistipeli.getToisenKortinJarjestysnumero());
         } else if (kortinKaantamisenJalkeenHuomattiin.equals("Kortit eivät olleet samoja")) {
             kaannaKortitTakaisinAlaspain(
-                    muistipeli.getEnsimmaisenKortinJarjestysNumero(),
-                    muistipeli.getToisenKortinJarjestysNumero());
+                    muistipeli.getEnsimmaisenKortinJarjestysnumero(),
+                    muistipeli.getToisenKortinJarjestysnumero());
         }
         muistipeli.setKaksiKorttiaOnKaannettyna(false);
         tarkastaTulokset();
@@ -422,15 +422,15 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     /**
      * Metodi piilottaa näkyvistä kortit, jotka olivat pari
      *
-     * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
+     * @param ensimmaisenKortinJarjestysnumero ensimmäiseksi käännetyn kortin
      * järjestysnumero
-     * @param toisenKortinJarjestysNumero toiseksi käännetyn kortin
+     * @param toisenKortinJarjestysnumero toiseksi käännetyn kortin
      * järjestysnumero
      */
-    public void piilotaKortit(int ensimmaisenKortinJarjestysNumero,
-            int toisenKortinJarjestysNumero) {
-        kortit[ensimmaisenKortinJarjestysNumero].setVisible(false);
-        kortit[toisenKortinJarjestysNumero].setVisible(false);
+    public void piilotaKortit(int ensimmaisenKortinJarjestysnumero,
+            int toisenKortinJarjestysnumero) {
+        kortit[ensimmaisenKortinJarjestysnumero].setVisible(false);
+        kortit[toisenKortinJarjestysnumero].setVisible(false);
         korttienMaaraPelilaudalla = korttienMaaraPelilaudalla - 2;
 
     }
@@ -438,15 +438,15 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     /**
      * Metodi kääntää kortit takaisin väärinpäin, koska ne eivät olleet pari
      *
-     * @param ensimmaisenKortinJarjestysNumero ensimmäiseksi käännetyn kortin
+     * @param ensimmaisenKortinJarjestysnumero ensimmäiseksi käännetyn kortin
      * järjestysnumero
-     * @param toisenKortinJarjestysNumero toiseksi käännetyn kortin
+     * @param toisenKortinJarjestysnumero toiseksi käännetyn kortin
      * järjestysnumero
      */
-    public void kaannaKortitTakaisinAlaspain(int ensimmaisenKortinJarjestysNumero,
-            int toisenKortinJarjestysNumero) {
-        kortit[ensimmaisenKortinJarjestysNumero].setText("Muistipeli");
-        kortit[toisenKortinJarjestysNumero].setText("Muistipeli");
+    public void kaannaKortitTakaisinAlaspain(int ensimmaisenKortinJarjestysnumero,
+            int toisenKortinJarjestysnumero) {
+        kortit[ensimmaisenKortinJarjestysnumero].setText("Muistipeli");
+        kortit[toisenKortinJarjestysnumero].setText("Muistipeli");
 
 
     }

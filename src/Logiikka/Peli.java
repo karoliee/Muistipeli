@@ -40,11 +40,11 @@ public class Peli {
     /**
      * Kertoo ensimmäiseksi käännetyn kortin järjestysnumeron
      */
-    int ensimmaisenKortinJarjestysNumero;
+    int ensimmaisenKortinJarjestysnumero;
     /**
      * Kertoo toiseksi käännetyn kortin järjestysnumeron
      */
-    int toisenKortinJarjestysNumero;
+    int toisenKortinJarjestysnumero;
     /**
      * Kertoo, kumman pelaajan vuoro on kaksinpelissä
      */
@@ -65,7 +65,7 @@ public class Peli {
     public void aloitaUusiPeli() {
         korttienArvot = new ArrayList<Integer>();
         onEnsimmainenKortti = true;
-        ensimmaisenKortinJarjestysNumero = -1;
+        ensimmaisenKortinJarjestysnumero = -1;
         kaksiKorttiaOnKaannettyna = false;
         ensimmaisenPelaajanVuoro = true;
 
@@ -116,33 +116,33 @@ public class Peli {
      * selviää mitä tämän jälkeen tapahtuu. Jos pelataan kaksinpeliä, täytyy
      * katsoa ensin kumman pelaajan vuoro oli
      *
-     * @param kortinJarjestysNumero kertoo, monesko käännetty kortti on
+     * @param kortinJarjestysnumero kertoo, monesko käännetty kortti on
      * @param pelataanKaksinpelia kertoo, pelataanko kaksin- vai yksinpeliä
      *
      * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
      */
-    public String kaannaKortti(int kortinJarjestysNumero, boolean pelataanKaksinpelia) {
+    public String kaannaKortti(int kortinJarjestysnumero, boolean pelataanKaksinpelia) {
         if (onEnsimmainenKortti) {
-            ensimmaisenKortinJarjestysNumero = kortinJarjestysNumero;
+            ensimmaisenKortinJarjestysnumero = kortinJarjestysnumero;
             onEnsimmainenKortti = false;
             return "Oli ensimmäinen kortti";
         } else {
-            if (kortinJarjestysNumero == ensimmaisenKortinJarjestysNumero) {
+            if (kortinJarjestysnumero == ensimmaisenKortinJarjestysnumero) {
                 return "Painoit samaa korttia!";
             } else {
                 kaksiKorttiaOnKaannettyna = true;
                 onEnsimmainenKortti = true;
-                toisenKortinJarjestysNumero = kortinJarjestysNumero;
+                toisenKortinJarjestysnumero = kortinJarjestysnumero;
                 if (!pelataanKaksinpelia) {
-                    return pelaajaKaansiToisenKortin(pelaaja1, kortinJarjestysNumero);
+                    return pelaajaKaansiToisenKortin(pelaaja1, kortinJarjestysnumero);
                 } else {
                     if (ensimmaisenPelaajanVuoro) {
                         ensimmaisenPelaajanVuoro = false;
-                        return pelaajaKaansiToisenKortin(pelaaja1, kortinJarjestysNumero);
+                        return pelaajaKaansiToisenKortin(pelaaja1, kortinJarjestysnumero);
 
                     } else {
                         ensimmaisenPelaajanVuoro = true;
-                        return pelaajaKaansiToisenKortin(pelaaja2, kortinJarjestysNumero);
+                        return pelaajaKaansiToisenKortin(pelaaja2, kortinJarjestysnumero);
                     }
                 }
             }
@@ -156,15 +156,15 @@ public class Peli {
      * pari vai ei
      *
      * @param pelaaja pelaaja, joka pelaa tällä hetkellä peliä
-     * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
+     * @param kortinJarjestysnumero kertoo, monesko valittu kortti on
      * korttitaulukossa
      *
      * @return merkkijono, joka kertoo mitä huomattiin kun kortti käännettiin
      */
-    public String pelaajaKaansiToisenKortin(Pelaaja pelaaja, int kortinJarjestysNumero) {
+    public String pelaajaKaansiToisenKortin(Pelaaja pelaaja, int kortinJarjestysnumero) {
         pelaaja.yritystenMaaranKasvu();
-        if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysNumero,
-                kortinJarjestysNumero)) {
+        if (testaaOvatkoKortitSamoja(ensimmaisenKortinJarjestysnumero,
+                kortinJarjestysnumero)) {
             pelaaja.loydettyjenKorttiparienMaaranKasvu();
             return "Kortit olivat samoja";
         } else {
@@ -177,17 +177,17 @@ public class Peli {
      * Metodi testaa ovatko kaksi korttia samoja, eli ovatko niihin liittyvät
      * arvot samat
      *
-     * @param ensimmaisenKortinJarjestysNumero kertoo, monesko ensimmäiseksi
+     * @param ensimmaisenKortinJarjestysnumero kertoo, monesko ensimmäiseksi
      * valittu kortti on korttitaulukossa
-     * @param toisenKortinJarjestysNumero kertoo, monesko toiseksi valittu
+     * @param toisenKortinJarjestysnumero kertoo, monesko toiseksi valittu
      * kortti on korttitaulukossa
      *
      * @return true tai false riippuen siitä, ovatko kortit samoja
      */
-    public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysNumero,
-            int toisenKortinJarjestysNumero) {
-        if (korttienArvot.get(ensimmaisenKortinJarjestysNumero).equals(
-                korttienArvot.get(toisenKortinJarjestysNumero))) {
+    public boolean testaaOvatkoKortitSamoja(int ensimmaisenKortinJarjestysnumero,
+            int toisenKortinJarjestysnumero) {
+        if (korttienArvot.get(ensimmaisenKortinJarjestysnumero).equals(
+                korttienArvot.get(toisenKortinJarjestysnumero))) {
             return true;
 
         }
@@ -221,19 +221,19 @@ public class Peli {
      *
      * @return kortin arvo
      */
-    public int getKortinArvo(int kortinJarjestysNumero) {
-        return korttienArvot.get(kortinJarjestysNumero);
+    public int getKortinArvo(int kortinJarjestysnumero) {
+        return korttienArvot.get(kortinJarjestysnumero);
     }
 
     /**
      * Metodi palauttaa valitun kortin arvon merkkijonona
      *
-     * @param kortinJarjestysNumero kertoo, monesko valittu kortti on
+     * @param kortinJarjestysnumero kertoo, monesko valittu kortti on
      * korttitaulukossa
      * @return kortin arvo merkkijonona
      */
-    public String getKortinArvoMerkkiJonona(int kortinJarjestysNumero) {
-        return Integer.toString(korttienArvot.get(kortinJarjestysNumero));
+    public String getKortinArvoMerkkiJonona(int kortinJarjestysnumero) {
+        return Integer.toString(korttienArvot.get(kortinJarjestysnumero));
     }
 
     /**
@@ -241,8 +241,8 @@ public class Peli {
      *
      * @return kortin järjestysnumero
      */
-    public int getEnsimmaisenKortinJarjestysNumero() {
-        return ensimmaisenKortinJarjestysNumero;
+    public int getEnsimmaisenKortinJarjestysnumero() {
+        return ensimmaisenKortinJarjestysnumero;
     }
 
     /**
@@ -250,8 +250,8 @@ public class Peli {
      *
      * @return kortin järjestysnumero
      */
-    public int getToisenKortinJarjestysNumero() {
-        return toisenKortinJarjestysNumero;
+    public int getToisenKortinJarjestysnumero() {
+        return toisenKortinJarjestysnumero;
     }
 
     /**

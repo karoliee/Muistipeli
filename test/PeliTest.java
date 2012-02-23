@@ -113,7 +113,7 @@ public class PeliTest {
     @Test
     public void ensimmaiseksiKaannetyllaKortillaKortillaOnOikeaJarjestysNumero() {
         muistipeli.kaannaKortti(2, false);
-        assertEquals(muistipeli.getEnsimmaisenKortinJarjestysNumero(), 2);
+        assertEquals(muistipeli.getEnsimmaisenKortinJarjestysnumero(), 2);
 
     }
 
@@ -126,7 +126,7 @@ public class PeliTest {
         muistipeli.setKorttienArvot(korteillaEriArvot);
         muistipeli.kaannaKortti(1, false);
         muistipeli.kaannaKortti(2, false);
-        assertEquals(muistipeli.getToisenKortinJarjestysNumero(), 2);
+        assertEquals(muistipeli.getToisenKortinJarjestysnumero(), 2);
 
     }
 

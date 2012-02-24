@@ -94,7 +94,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
      */
     public Kayttoliittyma() {
         muistipeli = new Peli();
-        ajastin = new Ajastin(this, 300);
+        ajastin = new Ajastin(this, 350);
         pelataanKaksinpelia = false;
         teePelilauta();
 
@@ -452,7 +452,7 @@ public class Kayttoliittyma extends JPanel implements ActionListener {
     }
 
     /**
-     *
+     * Main-metodi tekee uuden käyttöliittymän
      * @param args the command line arguments
      */
     public static void main(String[] args) {
